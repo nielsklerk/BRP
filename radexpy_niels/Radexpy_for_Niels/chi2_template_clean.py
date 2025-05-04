@@ -62,7 +62,7 @@ def run_model(args):
     return i, j, res.fun, np.abs(res.x)
 
 
-num_cores = 10
+num_cores = os.cpu_count() - 1
 
 artefact_regions = [[5.0091,5.01071], [5.018,5.019], [5.112,5.15],
 [5.2157,5.2184], [5.2267,5.2290], [5.2441,5.2471],
@@ -78,7 +78,7 @@ artefact_regions = [[5.0091,5.01071], [5.018,5.019], [5.112,5.15],
 mol = ['H2O', 'CO'][1]
 
 # Read in your data however you want
-file = f'FullSpectrum_CS_Sz98.p'
+file = f'FullSpectrum_CS_V1094Sco.p'
 data = pickle.load(open(file, 'rb'))
 
 o_w = data['Wavelength']  # Wavelength array
@@ -96,6 +96,9 @@ mask = np.ones_like(o_w, dtype=bool)
 for start, end in artefact_regions:
     mask &= ~((o_w >= start) & (o_w <= end))
 
+o_w[~mask] = np.nan
+o_f_contsub[~mask] = np.nan
+
 # o_w = o_w[mask]
 # o_f_contsub = o_f_contsub[mask]
 
@@ -103,6 +106,7 @@ for molecule in ['H2O', 'CO']:
     if molecule == mol:
         continue
     mol_data = pickle.load(open(f'{molecule}_best_fit.p', 'rb'))
+    print(f'{molecule}: N= {mol_data['N_best']:.1e} cm^-2 | T= {mol_data["Tgas_best"]:.0f} K | Rdisk= {mol_data["Rdisk_best"]:.2f} au')
     o_f_contsub -= mol_data['m_f'] * mol_data['Rdisk_best'] ** 2
 
 
@@ -135,7 +139,7 @@ if mol == "CO2":
     color = "limegreen"
     regions = [[13.87, 13.91],  # CO2 hot band (left)
                [14.5, 14.6],
-               # [14.92, 14.99], # CO2 Q branch
+               [14.92, 14.99], # CO2 Q branch
                [15.43, 15.53],
                [16.18, 16.22],  # CO2 hot band (right) # Do not fit due to artifact
                [16.72, 16.78]
@@ -143,14 +147,14 @@ if mol == "CO2":
 
 elif mol == "HCN":
     color = "orange"
-    regions = [  # [13.75, 13.86],
+    regions = [[13.75, 13.86],
         [13.91, 14.1],  # As in Sierra's paper
         [14.29, 14.32]]
 
 elif mol == "C2H2":
     color = "yellow"
-    regions = [[13.62, 13.73]  # Main feature
-               # [13.87, 13.91]
+    regions = [[13.62, 13.73],  # Main feature
+               #[13.87, 13.91]
                ]  # CO2 left hot band
 
 elif mol == "H2O":
@@ -252,7 +256,7 @@ elif mol == 'OH':
 else:
     Tgas_list = np.linspace(100, 1900, 80)
 
-N_list = np.logspace(14, 22, 80)
+N_list = np.logspace(18, 26, 80)
 
 # Rdisk grid for brute forcing
 # Rdisk_list = np.linspace(0.01, 3.0, 1000)
