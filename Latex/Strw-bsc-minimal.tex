@@ -92,11 +92,9 @@ Some of the properties of the protoplanetary disks can be directly inferred from
 % \subsection{ProDiMo}
 
 % \subsection{FLiTs}
-\textbf{I still need to figure out how these work so I will add this later}
 \chapter{Methods}\label{Ch: Methods}
 \section{Data}
-For our research, we ran a model grid with 25 models with ProDiMo and used FLiTs to get the spectra. (but I may receive many more)
-\textbf{INSERT TABLE OF PARAMETERS}
+We ran 3 model grids with varying abundances of C and O. Each grid contains 25 models 
 \section{Analysis}
 For our analysis, we will use cross-correlation. This is a signal detection technique for detecting weak signals. It is defined as follows. 
 \begin{equation}
@@ -107,7 +105,7 @@ The autocorrelation is the cross-correlation of a function with itself
     R_{ff}(\tau)=\int^\infty_{-\infty}\overline{f(t)}f(t+\tau)dt
 \end{equation}
 As all our functions are real valued, we can omit the complex conjugation in the integrand.
-The flux density we have from FLiTs is in units of Jansky, but we would like to integrate the flux density to get the flux. For this, we need to convert the flux per unit frequency to flux per unit wavelength. We use equation
+The flux density we have from FLiTs is in units of Jansky, but we would like to integrate the flux density to get the flux. For this, we need to convert the flux per unit frequency to flux per unit wavelength. We use the equation
 \begin{equation}
     F_\lambda=\frac{c}{\lambda^2}F_\nu
 \end{equation}
