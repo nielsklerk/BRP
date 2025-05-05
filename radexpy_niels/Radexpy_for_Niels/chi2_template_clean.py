@@ -102,12 +102,12 @@ o_f_contsub[~mask] = np.nan
 # o_w = o_w[mask]
 # o_f_contsub = o_f_contsub[mask]
 
-for molecule in ['H2O', 'CO']:
-    if molecule == mol:
-        continue
-    mol_data = pickle.load(open(f'{molecule}_best_fit.p', 'rb'))
-    print(f'{molecule}: N= {mol_data['N_best']:.1e} cm^-2 | T= {mol_data["Tgas_best"]:.0f} K | Rdisk= {mol_data["Rdisk_best"]:.2f} au')
-    o_f_contsub -= mol_data['m_f'] * mol_data['Rdisk_best'] ** 2
+# for molecule in ['H2O', 'CO']:
+#     if molecule == mol:
+#         continue
+#     mol_data = pickle.load(open(f'{molecule}_best_fit.p', 'rb'))
+#     print(f'{molecule}: N= {mol_data['N_best']:.1e} cm^-2 | T= {mol_data["Tgas_best"]:.0f} K | Rdisk= {mol_data["Rdisk_best"]:.2f} au')
+#     o_f_contsub -= mol_data['m_f'] * mol_data['Rdisk_best'] ** 2
 
 
 # convert to masked array type
