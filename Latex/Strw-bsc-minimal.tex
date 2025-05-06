@@ -94,7 +94,10 @@ Some of the properties of the protoplanetary disks can be directly inferred from
 % \subsection{FLiTs}
 \chapter{Methods}\label{Ch: Methods}
 \section{Data}
-We ran a model grid with varying abundances of C and O. Each grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O. We vary the relative carbon abundance with 
+We ran a model grid with varying abundances of C and O. Each grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O. 
+
+FLiTs to simulate the spectra of each model. Both the entire spectrum with \textbf{INSERT EXACT MOLECULES IN THE TOTAL SPECTRUM} and the spectra of \textbf{INSERT MOLECULES WITH OWN SPECTRUM} as well. 
+
 \section{Analysis}
 For our analysis, we will use cross-correlation. This is a signal detection technique for detecting weak signals. It is defined as follows. 
 \begin{equation}
@@ -105,68 +108,91 @@ The autocorrelation is the cross-correlation of a function with itself
     R_{ff}(\tau)=\int^\infty_{-\infty}\overline{f(t)}f(t+\tau)dt
 \end{equation}
 As all our functions are real valued, we can omit the complex conjugation in the integrand.
+
+We will calculate the average spectrum for each species and divide that by the maximum of the spectrum to normalize it. We use this template spectrum to cross-correlate with the spectrum containing all the species. The cross-correlation should peak when the template spectrum matches with the spectrum containing all the species. To quantify the height of the peak, we take the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. We take the median as this is less susceptible to outliers to more optimally capture the general trend around the peak. We use hypothesis testing to test whether or not there is statistical evidence to say the molecule is present. We have the following null hypothesis and alternative hypothesis
+
+\begin{equation}
+    H_0: \text{The height of the peak in the cross-correlation is caused by noise}
+\end{equation}
+\begin{equation}
+    H_1: \text{The height of the peak in the cross-correlation is caused by the molecule}
+\end{equation}
+
+To assess the significance of the peak in cross-correlation, we use a Monte Carlo simulation to simulate 10000 synthetic spectra under the null hypothesis. First, we take all the flux values we have for different wavelength values. Second, we sample with replacement from the flux values until we have a collection of values that is the same size as the original set. Third, we take the cross-correlation and calculate the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The value of the original data is deemed significant when it exceeds 95\% of the values from the simulated data ($\alpha=0.05$).
+
+
 The flux density we have from FLiTs is in units of Jansky, but we would like to integrate the flux density to get the flux. For this, we need to convert the flux per unit frequency to flux per unit wavelength. We use the equation
 \begin{equation}
     F_\lambda=\frac{c}{\lambda^2}F_\nu
 \end{equation}
+
+
+
+
 \subsection{Simulations}
 We ran a grid of models with \textbf{INSERT PARAMETERS} prodimo. 
+
+To make the simulated spectra as realistic as possible, we would like to add noise to the data. The MINDS team has observations which have $SNR = 300$ \citep{SOURCE}. We want to make our simulated data in the same vein. Using the minimum of the spectrum, we estimate the noise level needed to create an $SNR = 300$. We assume that the noise is normally distributed. After applying this noise, we subtract the continuum to get the actual spectrum we can use to analyse the different molecules that compose it. 
+
 \subsection{Observations}
 1D LTE models to fit the model and try to enhance the hidden molecules
-\subsubsection{GWLup}\
-\begin{figure}
+\subsubsection{GWLup}
+\begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{spectrum 1.pdf}
+    \includegraphics[width=0.5\linewidth]{All Spectra PRODIMO+FLITS 1.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
 
 \subsubsection{Sz90}
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\linewidth]{spectrum 2.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
 \subsubsection{V1094Sco}
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\linewidth]{spectrum 3.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
 \chapter{Results}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{Spectrum Grid 1.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
-\end{figure}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{Spectrum Grid 2.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
-\end{figure}
-\begin{figure}
+
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{Spectrum Grid 2.pdf}
+%     \caption{Caption}
+%     \label{fig:enter-label}
+% \end{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Density.pdf}
-    \caption{Caption}
+    \caption{The distribution of the gas and dust in the disk of the fiducial model.}
     \label{fig:enter-label}
 \end{figure}
-\begin{figure}
+\lipsum[1]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Temperature.pdf}
-    \caption{Caption}
+    \caption{The temperature of the gas and dust in the disk of the fiducial model.}
     \label{fig:enter-label}
 \end{figure}
-\begin{figure}
+\lipsum[1]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Abundance.pdf}
+    \caption{The distribution of HCN, HNC, NH$_3$, and NO across the disk of the fiducial model.}
+    \label{fig:enter-label}
+\end{figure}
+\lipsum[1]
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{All Spectra PRODIMO+FLITS.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
-
 \chapter{Discussion}
 \lipsum[1-10]
 \chapter{Conclusion}
