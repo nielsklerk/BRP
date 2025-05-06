@@ -75,10 +75,10 @@ artefact_regions = [[5.0091,5.01071], [5.018,5.019], [5.112,5.15],
 [21.974,21.985], [25.69824,25.71313]]
 
 # Molecule to fit
-mol = ['H2O', 'CO'][1]
+mol = ['H2O', 'HCN', 'C2H2', 'CO2', '13CO2', 'OH'][2]
 
 # Read in your data however you want
-file = f'FullSpectrum_CS_V1094Sco.p'
+file = f'FullSpectrum_CS_GWLup.p'
 data = pickle.load(open(file, 'rb'))
 
 o_w = data['Wavelength']  # Wavelength array
@@ -86,7 +86,7 @@ o_f = data['Flux']  # Flux array
 o_f_contsub = data['CSFlux']  # Continuum-subtracted flux array
 
 # clip to useful range where we want to compute/plot our model
-clip_min, clip_max = 4.9, 6.3  # micron
+clip_min, clip_max = 13, 16.3  # micron
 
 clip_cnd = ((o_w >= clip_min) & (o_w <= clip_max))
 o_w = o_w[clip_cnd]
@@ -102,12 +102,12 @@ o_f_contsub[~mask] = np.nan
 # o_w = o_w[mask]
 # o_f_contsub = o_f_contsub[mask]
 
-# for molecule in ['H2O', 'CO']:
-#     if molecule == mol:
-#         continue
-#     mol_data = pickle.load(open(f'{molecule}_best_fit.p', 'rb'))
-#     print(f'{molecule}: N= {mol_data['N_best']:.1e} cm^-2 | T= {mol_data["Tgas_best"]:.0f} K | Rdisk= {mol_data["Rdisk_best"]:.2f} au')
-#     o_f_contsub -= mol_data['m_f'] * mol_data['Rdisk_best'] ** 2
+for molecule in ['H2O', 'HCN', 'C2H2', 'CO2', '13CO2', 'OH']:
+    if molecule == mol:
+        continue
+    mol_data = pickle.load(open(f'{molecule}_best_fit.p', 'rb'))
+    print(f'{molecule}: N= {mol_data['N_best']:.1e} cm^-2 | T= {mol_data["Tgas_best"]:.0f} K | Rdisk= {mol_data["Rdisk_best"]:.2f} au')
+    o_f_contsub -= mol_data['m_f'] * mol_data['Rdisk_best'] ** 2
 
 
 # convert to masked array type
@@ -256,7 +256,7 @@ elif mol == 'OH':
 else:
     Tgas_list = np.linspace(100, 1900, 80)
 
-N_list = np.logspace(18, 26, 80)
+N_list = np.logspace(14, 22, 80)
 
 # Rdisk grid for brute forcing
 # Rdisk_list = np.linspace(0.01, 3.0, 1000)
