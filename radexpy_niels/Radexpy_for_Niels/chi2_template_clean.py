@@ -75,18 +75,19 @@ artefact_regions = [[5.0091,5.01071], [5.018,5.019], [5.112,5.15],
 [21.974,21.985], [25.69824,25.71313]]
 
 # Molecule to fit
-mol = ['H2O', 'HCN', 'C2H2', 'CO2', '13CO2', 'OH'][2]
+mol = ['H2O', 'CO'][0]
 
 # Read in your data however you want
-file = f'FullSpectrum_CS_GWLup.p'
+file = f'FullSpectrum_CS_V1094Sco.p'
 data = pickle.load(open(file, 'rb'))
 
 o_w = data['Wavelength']  # Wavelength array
 o_f = data['Flux']  # Flux array
-o_f_contsub = data['CSFlux']  # Continuum-subtracted flux array
+o_f_contsub = data['CSFlux']  # Continuum-subtracted f
+# lux array
 
 # clip to useful range where we want to compute/plot our model
-clip_min, clip_max = 13, 16.3  # micron
+clip_min, clip_max = 4.9, 6.5  # micron
 
 clip_cnd = ((o_w >= clip_min) & (o_w <= clip_max))
 o_w = o_w[clip_cnd]
@@ -102,7 +103,7 @@ o_f_contsub[~mask] = np.nan
 # o_w = o_w[mask]
 # o_f_contsub = o_f_contsub[mask]
 
-for molecule in ['H2O', 'HCN', 'C2H2', 'CO2', '13CO2', 'OH']:
+for molecule in ['H2O', 'CO']:
     if molecule == mol:
         continue
     mol_data = pickle.load(open(f'{molecule}_best_fit.p', 'rb'))
@@ -236,8 +237,8 @@ else:
 # assumed source distance and velocity
 # Change these to the proper values for each source
 # don't worry if you cannot find the velocity, since that likely will not matter too much
-distance = 156  # pc
-v_obs = -8.4  # km/s 
+distance = 152  # pc
+v_obs = 0  # km/s
 
 # Instrumental R value assumed for model
 # MIRI has a higher spectral resolving power at short wavelengths
