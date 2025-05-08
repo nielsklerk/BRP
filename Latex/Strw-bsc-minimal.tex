@@ -1,6 +1,6 @@
-\documentclass[twoside,single]{lion-msc}
+\documentclass[twoside,single, authoryear, semicolon]{lion-msc}
 \usepackage{lipsum}
-
+% \usepackage[style=authoryear]{natbib}
 
 \title{Identifying Nitrogen Carriers in Planet-Forming Regions of Protoplanetary Disks}
 \author{Niels de Klerk}
@@ -71,7 +71,7 @@ In chapter \ref{Ch: Theoretical Background} we give background information about
 
 \section{Formation and evolution of Disks}
 Molecular clouds are large collections of gas and dust. When these clouds are perturbed, parts of the cloud can become dense enough, making them collapse under their gravity. This will result in the creation of a star surrounded by gas and dust. The angular momentum of each of the particles is randomly oriented, but on average the angular momentum vector is pointed in a certain direction. Two particles colliding will cause them to exchange angular momentum. If many collisions happen, all the angular momenta of the other than the average angular momentum vector get canceled out. This results in the formation of a disk around the pre-main-sequence star.
-The evolution of the disk can be categorized into 4 classes \cite{1987ApJ...312..788A}. Class 0 are objects where an optically thick envelope surrounds the protostar. Class I objects have a star and disk but are still embedded in an optically thick envelope. The star and disk become visible in class II objects as the star has become bright enough to blow away the envelope. In class III objects, the disk has largely been depleted of gas and dust, leaving behind planets and planetesimals. 
+The evolution of the disk can be categorized into 4 classes \citep{1987ApJ...312..788A}. Class 0 are objects where an optically thick envelope surrounds the protostar. Class I objects have a star and disk but are still embedded in an optically thick envelope. The star and disk become visible in class II objects as the star has become bright enough to blow away the envelope. In class III objects, the disk has largely been depleted of gas and dust, leaving behind planets and planetesimals. 
 % Factors that influence the evolution
 
 
@@ -86,6 +86,9 @@ The height of the disk is also an important factor in its structure. The midplan
     \label{fig:enter-label}
 \end{figure}
 
+
+\section{Emission Mechanisms}
+
 % \section{Radiative Transfer}
 \section{Modeling}
 Some of the properties of the protoplanetary disks can be directly inferred from disk measurements. For instances where this is not the case, we would still like to learn more from our data via a different method. We can use models to simulate the protoplanetary disk and generate synthetic data to compare to actual observations. There are various types of models. Ranging from 1D slab models to thermo-chemical disk models. For our research, we run simulations using PROtoplanetary DIsk MOdel (Prodimo), a thermo-chemical disk model. The output of those simulations is then put through Fast Line Tracing system (FLiTs) to get an accurate spectrum of the disk. 
@@ -93,7 +96,7 @@ Some of the properties of the protoplanetary disks can be directly inferred from
 
 % \subsection{FLiTs}
 \chapter{Methods}\label{Ch: Methods}
-\section{Data}
+\section{Simulation}
 We ran a model grid with varying abundances of C and O. Each grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O. 
 
 FLiTs to simulate the spectra of each model. Both the entire spectrum with \textbf{INSERT EXACT MOLECULES IN THE TOTAL SPECTRUM} and the spectra of \textbf{INSERT MOLECULES WITH OWN SPECTRUM} as well. 
@@ -122,6 +125,7 @@ To assess the significance of the peak in cross-correlation, we use a Monte Carl
 
 
 The flux density we have from FLiTs is in units of Jansky, but we would like to integrate the flux density to get the flux. For this, we need to convert the flux per unit frequency to flux per unit wavelength. We use the equation
+
 \begin{equation}
     F_\lambda=\frac{c}{\lambda^2}F_\nu
 \end{equation}
@@ -144,7 +148,7 @@ To make the simulated spectra as realistic as possible, we would like to add noi
     \label{fig:enter-label}
 \end{figure}
 
-\subsubsection{Sz90}
+\subsubsection{Sz98}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\linewidth]{spectrum 2.pdf}
@@ -172,31 +176,80 @@ To make the simulated spectra as realistic as possible, we would like to add noi
     \caption{The distribution of the gas and dust in the disk of the fiducial model.}
     \label{fig:enter-label}
 \end{figure}
-\lipsum[1]
+% \lipsum[1]
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Temperature.pdf}
     \caption{The temperature of the gas and dust in the disk of the fiducial model.}
     \label{fig:enter-label}
 \end{figure}
-\lipsum[1]
+% \lipsum[1]
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Abundance.pdf}
     \caption{The distribution of HCN, HNC, NH$_3$, and NO across the disk of the fiducial model.}
     \label{fig:enter-label}
 \end{figure}
-\lipsum[1]
+% \lipsum[1]
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{All Spectra PRODIMO+FLITS.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{heatmap HCN.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{heatmap NO.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{heatmap NH3.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{NO region of interest.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{NH3 region of interest 1.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{NH3 region of interest 2.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{Adding noise.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{cross-correlation.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+
 \chapter{Discussion}
-\lipsum[1-10]
+% \lipsum[1-10]
 \chapter{Conclusion}
-\lipsum[1-4]
+% \lipsum[1-4]
 \bibliographystyle{aa.bst}
 \bibliography{references}
 
