@@ -178,7 +178,7 @@ The flux density we have from FLiTs is in units of Jansky, but we would like to 
 \end{equation}
 
 \textbf{SPECTRUM CLASSIFICATION}
-
+The different species have different regions in which they emit. To classify these regions, we split the entire spectrum into windows of 0.001 $\mu$m from 4.9 to 27.5 $\mu$m. Next, we integrate the spectrum for each species in that window and store the species that has the highest flux in that region. Doing this for all models and taking the mode. We get the species for each window that is the brightest for most the simulated spectra.  
 \section{Cross-Correlation}
 For our analysis, we used cross-correlation. This is a signal detection technique for detecting weak signals. It is defined as follows. 
 \begin{equation}
@@ -206,6 +206,8 @@ To assess the significance of the peak in cross-correlation, we used a Monte Car
 
 \section{Observations}
 After looking at the simulated spectra, we wanted to apply our techniques to observations made with JWST MIRI MRS. We have access to 3 sources. 
+
+\textbf{MASKING OF REGIONS}
 1D LTE models to fit the model and try to enhance the hidden molecules
 \begin{figure}[!ht]
     \centering
@@ -289,26 +291,31 @@ We believe that OH is an important component in the formation of NH\3.
 \ce{NH2+ + OH -> NH3 + O+}
 \textbf{MORE REACTIONS}
 
-Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid in 2 groups. One group has C/O smaller than unity and the other greater. We chose this distinction as the behaviors of the spectra is different. This difference is also visible in figure \ref{fig:all spectra). 
+Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid in 2 groups. One group has C/O smaller than unity and the other greater. We chose this distinction as the behaviors of the spectra is different. This difference is also visible in figure \ref{fig:all spectra}. 
+
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{Classification c/o>1.pdf}
+    \includegraphics[width=\linewidth]{Figures/ClassificationCOgt0.pdf}
     \caption{Caption}
     \label{fig:class>1}
 \end{figure}
+
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{Classification c/o<1.pdf}
+    \includegraphics[width=\linewidth]{Figures/ClassificationCOst0.pdf}
     \caption{Caption}
     \label{fig:class<1}
 \end{figure}
+
 In both figure \ref{fig:class<1} and figure \ref{fig:class>1}
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{NO region of interest.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{NH3 region of interest 1.pdf}
@@ -330,7 +337,7 @@ All the spectra in figures \ref{} are without any noise. When we add noise to th
 \end{figure}
 
 \section{Molecule Detection}
-
+As you can see in figure \ref, it is hard to visually distinguish the NH3 and NO from the completed spectrum. However, cross-correlation is a technique that can be used to find those smaller signals. In the calculation of the cross-correlation, we use the average of the spectra of all the models in the model grid and normalise them. This template is then used to cross-correlate with the spectrum containing all the models. In figure you can see the cross-correlation of the H2O template with the entire spectrum. The peak signals that water is present in the spectrum. 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{cross-correlation.pdf}
@@ -338,11 +345,17 @@ All the spectra in figures \ref{} are without any noise. When we add noise to th
     \label{fig:enter-label}
 \end{figure}
 
+As some of the molecules have limited ranges in which they emit, we adjusted the ranges in which we cross-correlate the template and the spectrum. The ranges are listed in table \ref{}
 
+\textbf{INSERT TABLE OF RANGES}
+
+Using the ranges in table \ref{}. We compared the cross-correlation technique for all the molecules. We did this for the spectrum of the fiducial model. Once, just the spectrum and once the spectrum with the spectrum of the species we are testing is subtracted.
+
+\textbf{removing other species to enhance detection}
 \section{Application on Observations}
-
+We apply the techniques of the previous part 
 \chapter{Discussion}
-
+pin the end we have a discussion 
 \chapter{Conclusion}
 
 \bibliographystyle{aa.bst}
