@@ -387,13 +387,29 @@ OH              & Non-detection     & Non-detection                   \\ \hline
 We compared the cross-correlation technique for all the molecules. We did this for the spectrum of the fiducial model. Once, just the spectrum and once the spectrum with the spectrum of the species we are testing is subtracted.
 
 
-As some of the molecules have limited ranges in which they emit, we adjusted the ranges in which we cross-correlate the template and the spectrum. The ranges are listed in table \ref{}
+% As some of the molecules have limited ranges in which they emit, we adjusted the ranges in which we cross-correlate the template and the spectrum. The ranges are listed in table \ref{}
 
-\textbf{INSERT TABLE OF RANGES}
+% \begin{tabular}{lcc}
+% \hline
+% \textbf{Species} & \textbf{Min ($\mu$m)} & \textbf{Max ($\mu$m)} \\
+% \hline
+% C2H2   & 7.1 & 15.6 \\
+% CH4    & 6.3 & 9.7 \\
+% CO     & 4.9 & 5.6 \\
+% CO2    & 13.0 & 17.3 \\
+% H2O    & 4.9 & 27.5 \\
+% HCN    & 6.4 & 17.0 \\
+% NH3    & 5.1 & 27.5 \\
+% NO     & 4.9 & 6.6 \\
+% OH     & 8.3 & 27.5 \\
+% \hline
+% \end{tabular}
 
-Using the ranges in table \ref{}. We redid our analysis and got the following.
 
-\textbf{INSERT TABLE OF DETECTION PARTIAL RANGE}
+
+% Using the ranges in table \ref{}. We redid our analysis and got the following.
+
+% \textbf{INSERT TABLE OF DETECTION PARTIAL RANGE}
 
 As some of the flux of a species overlaps with the flux emitted by other species, it would make detection easier if the flux of the other species were removed. This was easily done with the simulated data, as the simulation gave the spectra of the individual species. Especially the region where NO is emitted is of interest, as the only other species that emit in that range are CO and H\2O. Removing the flux of CO and H\2O for the fiducial gave the spectrum shown in figure \ref{}
 
@@ -407,7 +423,7 @@ As some of the flux of a species overlaps with the flux emitted by other species
 \section{Application on Observations}
 We applied the techniques of the previous part to real data to see if they are effective here as well
 
-In GWLup CO\2, H\2O, HCN, C\2H\2, and OH have been detected \citep{Grant_2023}. In Sz98 CO, H2O, OH, CO2, and HCN have been detected \citep{Gasman_2023}. 
+In GWLup CO, CO\2, H\2O, HCN, C\2H\2, and OH have been detected \citep{Grant_2023}. In Sz98 CO, H2O, OH, CO2, and HCN have been detected \citep{Gasman_2023}. 
 
 Using the ranges in table \ref{}, we cross-correlated the templates with the measured spectra. The results of this are shown in table \ref{}
 
