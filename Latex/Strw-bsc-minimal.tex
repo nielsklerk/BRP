@@ -312,31 +312,37 @@ In both figure \ref{fig:class<1} and figure \ref{fig:class>1}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{NO region of interest.pdf}
+    \includegraphics[width=\linewidth]{Figures/NO_region.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{NH3 region of interest 1.pdf}
+    \includegraphics[width=\linewidth]{Figures/NH3_region1.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{NH3 region of interest 2.pdf}
+    \includegraphics[width=\linewidth]{Figures/NH3_region2.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/NH3_region3.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
 All the spectra in figures \ref{} are without any noise. When we add noise with SNR=300 to the spectra based on the methods described, we get \ref{}. In this figure, we see that the signal gets completely washed out in the noise. So it would be hard to detect it. 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{Adding noise.pdf}
+    \includegraphics[width=\linewidth]{Figures/AddNoise.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
-
+]
 \section{Molecule Detection}
 As you can see in figure \ref, it is hard to distinguish the NH3 and NO from the completed spectrum visually. However, cross-correlation is a technique that can be used to find those smaller signals. In calculating the cross-correlation, we used the average of the spectra of all the models in the model grid and normalized them. This template is then used to cross-correlate with the spectrum containing all the models. In figure \ref{}, you can see the cross-correlation of the H2O template with the entire spectrum. The peak signals that water is present in the spectrum. 
 \begin{figure}[!ht]
