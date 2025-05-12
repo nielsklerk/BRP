@@ -88,7 +88,7 @@ The height of the disk is also an important factor in its structure. The midplan
     \centering
     \includegraphics[width=\linewidth]{Figures/disk-sketch.png}
     \caption{A schematic representation of a protoplanetary disk. The planets in the solar system are shown as a point of reference. \cite{inproceedings}}
-    \label{fig:enter-label}
+    \label{fig: enter-label}
 \end{figure}
 
 \section{Disk Chemistry}
@@ -105,7 +105,7 @@ We want to search for a method to detect NO and NH\3 in the spectra of protoplan
 \chapter{Methods}\label{Ch: Methods}
 \section{ProDiMo Simulations}
 
-\begin{table}[!h]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{@{}lll@{}}
                                   &                             &                            \\ \hline\midrule
@@ -137,12 +137,12 @@ Chemical heating efficiency       & $\gamma^{chem}$             & 0.2           
 Distance to the observer          & d                           & 140 pc                     \\ \bottomrule
 \end{tabular}
 \caption{}
-\label{tab:parameters}
+\label{tab: parameters}
 \end{table}
-To investigate if we are able to detect NO and NH\3 in the spectra of protoplanetary disks, 
-we ran a model grid with varying abundances of C and O using ProDiMo. The parameters with which the models were run are in table \ref{tab:parameters}. The abundances of C and O were varied between -0.5 and 0.5 in steps of 0.25, where 0 corresponds to the solar abundance. The grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O.
+To investigate whether we can detect NO and NH\3 in the spectra of protoplanetary disks, 
+we ran a model grid with varying abundances of C and O using ProDiMo. The parameters with which the models were run are in table \ref{tab: parameters}. The abundances of C and O were varied between -0.5 and 0.5 in steps of 0.25, where 0 corresponds to the solar abundance. The grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O.
 
-\begin{table}[!h]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{@{}lll@{}}
                                   &                             &                            \\ \hline\midrule
@@ -162,7 +162,7 @@ Fe               & 3.240                  & Fixed                         \\
 PAH              & 3.444                  & Fixed                         \\ \bottomrule
 \end{tabular}
 \caption{}
-\label{tab:abundances}
+\label{tab: abundances}
 \end{table}
 
 
@@ -179,7 +179,7 @@ The flux density we have from FLiTs is in units of Jansky, but we would like to 
 \end{equation}
 
 \textbf{SPECTRUM CLASSIFICATION}
-The different species have different regions in which they emit. To classify these regions, we split the entire spectrum into windows of 0.001 $\mu$m from 4.9 to 27.5 $\mu$m. Next, we integrate the spectrum for each species in that window and store the species that has the highest flux in that region. Doing this for all models and taking the mode. We get the species for each window that is the brightest for most of the simulated spectra.  
+The different species have different regions in which they emit. To classify these regions, we split the entire spectrum into windows of 0.001 $\mu$m from 4.9 to 27.5 $\mu$m. Next, we integrate the spectrum for each species in that window and store the species that has the highest flux in that region. Doing this for all models and taking the mode. We get the species for each window that has the strongest emission for most of the simulated spectra.  
 \section{Cross-Correlation}
 For our analysis, we used cross-correlation. This is a signal detection technique for detecting weak signals. It is defined as follows. 
 \begin{equation}
@@ -214,144 +214,157 @@ After looking at the simulated spectra, we wanted to apply our techniques to obs
     \centering
     \includegraphics[width=\linewidth]{Figures/FullSpectrum_GWLup.pdf}
     \caption{The continuum subtracted spectrum of GWLup}
-    \label{fig:GWLup}
+    \label{fig: GWLup}
 \end{figure}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/FullSpectrum_Sz98.pdf}
     \caption{The continuum subtracted spectrum of Sz98}
-    \label{fig:Sz98}
+    \label{fig: Sz98}
 \end{figure}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/FullSpectrum_V1094Sco.pdf}
     \caption{The continuum subtracted spectrum of V1094Sco}
-    \label{fig:V1094Sco}
+    \label{fig: V1094Sco}
 \end{figure}
 
 
 
 \chapter{Results}
 \section{ProDiMo Output}
-After running the models, we analyzed their output. First, we look at the densities of the gas and dust in the disk. We see that the density of the gas stretches higher than the density of the dust. This is expected, as we know that the dust settles around the midplane. 
+After running the models, we analyzed their output. First, we looked at the densities of the gas and dust in the disk. The densities of the fiducial model are shown in figure \ref{fig: density}. The density of the gas stretches higher than the density of the dust. This is expected, as we know that the dust settles around the midplane. Furthermore, the density of the gas stretches further from the host star than the dust.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Density.pdf}
-    \caption{The distribution of the gas and dust in the disk of the fiducial model.}
-    \label{fig:density}
+    \caption{The distribution of gas and dust in the disk of the fiducial model.}
+    \label{fig: density}
 \end{figure}
 
-Next, we inspect the temperature of the gas and dust across the disk. We can see that the gas temperature is more structured around the midplane. The dust temperature gradient has straight sections above the main body of the disk. This result is also expected as the density of the dust is orders of magnitude lower in the regions above the disk. This results in the starlight getting barely blocked, so the temperature doesn't change across different heights.
+Subsequently, we inspected the temperatures of gas and dust across the disk. Those are shown in figure \ref{fig: temperature}.  The gas temperature is more structured around the midplane, whereas the dust temperature has straight sections above the main body of the disk. This result is also expected as the density of the dust is orders of magnitude lower in the regions above the disk. This results in the starlight getting barely blocked, so the temperature doesn't change across different heights.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Temperature.pdf}
-    \caption{The temperature of the gas and dust in the disk of the fiducial model.}
-    \label{fig:temperature}
+    \caption{The temperature profile of gas and dust in the disk of the fiducial model.}
+    \label{fig: temperature}
 \end{figure}
 
-Lastly, we inspect the distribution of HCN, HNC, NH\3, and NO -common nitrogen carriers. We see in figure \ref{fig:nitrogen distribution} that the density of the molecules changes a lot for different radii and heights. For example, in the region between 1, 2 we see that HCN decreases compared to the surrounding regions, but HNC increases in the same region. 
+Lastly, we inspected the distribution of nitrogen-bearing molecules: HCN, HNC, NH\3, and NO. Figure \ref{fig: nitrogen distribution} shows their distribution. The density of the molecules changes a lot for different radii and heights. For example, in the region between 0.05 and 0.1 au we see that HCN decreases compared to the surrounding regions, but HNC increases in the same region. There is a gap in the densities between 1 and 200 au. In these regions, the temperature drops below the melting point of these molecules, resulting in the formation of ice. 
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{Figures/Abundance.pdf}
+    \includegraphics[width=.8\linewidth]{Figures/Abundance.pdf}
     \caption{The distribution of HCN, HNC, NH\3, and NO across the disk of the fiducial model.}
-    \label{fig:nitrogen distribution}
+    \label{fig: nitrogen distribution}
 \end{figure}
+
 \section{FLiTs Spectra}
-The models in the model grid we have created were used with FLiTs to create accurate spectra. The resulting spectra containing 
-\begin{figure}[!h]
+The models in the model grid we created were used with FLiTs to create accurate spectra. The resulting spectra are shown in figure \ref{fig: all spectra}. There is a clear division in the shapes of the spectra. In the bottom left corner, you have 6 spectra that have a strong HCN feature. These models also have a C/O ratio greater than unity. The other models have strong water features and have a C/O ratio smaller than unity. 
+
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/All_spectra.pdf}
     \caption{The simulated spectra of all the models in the model grid using FLiTs. On the horizontal axis, the O abundance is varied from -0.5 to 0.5 w.r.t. the reference abundance. The C abundance is varied with -0.5 to 0.5 w.r.t. the reference abundance from top to bottom.}
-    \label{fig:all spectra}
+    \label{fig: all spectra}
 \end{figure}
-The flux of the different species changes depending on the abundances of C and O. In \ref{fig:flux HCN}, we can see this.
+
+The flux of the different species changes depending on the abundances of C and O. The total flux for HCN, NO, and NH\3 for all the models in the model grid are shown in figures \ref{fig: flux HCN}, \ref{fig: flux NO}, and \ref{fig: flux NH3}. 
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\linewidth]{Figures/HCN_heatmap.pdf}
-    \caption{The total received flux of HCN for all the models in the grid.}
-    \label{fig:flux HCN}
+    \caption{The total flux of HCN for all the models in the grid.}
+    \label{fig: flux HCN}
 \end{figure}
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\linewidth]{Figures/NO_heatmap.pdf}
-    \caption{The total received flux of NO for all the models in the grid.}
-    \label{fig:flux NO}
+    \caption{The total flux of NO for all the models in the grid.}
+    \label{fig: flux NO}
 \end{figure}
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.5\linewidth]{Figures/NH3_heatmap.pdf}
-    \caption{The total received flux of NH\3 for all the models in the grid.}
-    \label{fig:flux NH3}
+    \caption{The total flux of NH\3 for all the models in the grid.}
+    \label{fig: flux NH3}
 \end{figure}
 
 The HCN increases as C/O gets larger, and NO decreases with it. The flux of NH\3 generally increases as the C abundance gets lower. We hypothesize that the reason for this is the reactions that take place to form NH\3.
-We believe that OH is an important component in the formation of NH\3. 
+We believe that OH is an important component in the formation of NH\3.
+
 \ce{NH2+ + OH -> NH3 + O+}
+
 \textbf{MORE REACTIONS}
 
-Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid into 2 groups. One group has C/O smaller than unity, and the other greater. We chose this distinction as the behaviors of the spectra are different. This difference is also visible in figure \ref{fig:all spectra}. 
+Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid into 2 groups. One group has C/O smaller than unity, and the other greater. We chose this distinction as the behaviors of the spectra are different. This difference is also visible in figure \ref{fig: all spectra}. 
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/ClassificationCOgt0.pdf}
-    \caption{Caption}
-    \label{fig:class>1}
+    \caption{The regions of the spectrum where NO and NH\3 emission are strongest in the models that have a C/O greater than unity}
+    \label{fig: class>1}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/ClassificationCOst0.pdf}
-    \caption{Caption}
-    \label{fig:class<1}
+    \caption{The regions of the spectrum where NO and NH\3 emission are strongest in the models that have a C/O smaller than unity}
+    \label{fig: class<1}
 \end{figure}
 
-In both figure \ref{fig:class<1} and figure \ref{fig:class>1}
+In figure \ref{fig: class>1}, it is visible that the region between 4.9$\mu$m and 6 $\mu$m has many regions where NO emission is strongest. This coincides with the region where NO has a spectral feature. Between 6 $\mu$m and 6.4 $\mu$m you have a region where NH\3 is the brightest. Between 10 $\mu$m and 12 $\mu$m there are some smaller regions where NH\3 is strongest. In contrast, in figure \ref{fig: class<1}, the regions where NO or NH\3 emission is strongest are more barren. The NO emission regions are not the strongest anymore, as well as the NH\3 emission region next to it. The most promising region for NH\3 is now between 10 $\mu$m and 12 $\mu$m. 
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/NO_region.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{A zoomed-in region of the spectrum of the fiducial model between 4.9 $\mu$m and 6 $\mu$m where NO emission is strongest.}
+    \label{fig: NO region}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/NH3_region1.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{A zoomed-in region of the spectrum of the model with C+0.25 and O-0.25 between 6 $\mu$m and 6.5 $\mu$m where NH\3 emission is strongest.}
+    \label{fig: NH3 region 1}
 \end{figure}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/NH3_region2.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{A zoomed-in region of the spectrum of the model with C+0.25 and O-0.25 between 10 $\mu$m and 12 $\mu$m where NO emission is strongest.}
+    \label{fig: NH3 region 2}
 \end{figure}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/NH3_region3.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{A zoomed-in region of the spectrum of the fiducial model between 10 $\mu$m and 12 $\mu$m where NO emission is strongest.}
+    \label{fig: NH3 region 3}
 \end{figure}
-All the spectra in figures \ref{} are without any noise. When we add noise with SNR=300 to the spectra based on the methods described, we get \ref{}. In this figure, we see that the signal gets completely washed out in the noise. So it would be hard to detect it. 
+
+All the spectra in figures \ref{fig: NO region}, \ref{fig: NH3 region 1}, \ref{fig: NH3 region 2}, and \ref{fig: NH3 region 3} are all without any noise. When we added noise with SNR=300 to the same spectrum shown in figure \ref{fig: NH3 region 1} based on the methods described, we got the spectrum shown in figure \ref{fig: add noise}. In this figure, the emission of NH\3 gets completely washed out in the noise, making it much more difficult to detect it.  
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/AddNoise.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{A zoomed-in region of the spectrum of the model with C+0.25 and O-0.25 between 6 $\mu$m and 6.5 $\mu$m where NH\3 emission is strongest. A Gaussian noise corresponding to an SNR of 300 is added.}
+    \label{fig: add noise}
 \end{figure}
-]
+
 \section{Molecule Detection}
-As you can see in figure \ref, it is hard to distinguish the NH3 and NO from the completed spectrum visually. However, cross-correlation is a technique that can be used to find those smaller signals. In calculating the cross-correlation, we used the average of the spectra of all the models in the model grid and normalized them. This template is then used to cross-correlate with the spectrum containing all the models. In figure \ref{}, you can see the cross-correlation of the H2O template with the entire spectrum. The peak signals that water is present in the spectrum. 
+As you can see in figure \ref{fig: add noise}, it is hard to distinguish the NH\3 and NO from the completed spectrum visually. However, cross-correlation is a technique that can be used to find those smaller signals. In calculating the cross-correlation, we used the average spectrum for each species of all the models in the model grid and normalized them. This template was then used to cross-correlate with the spectrum containing all the models. In figure \ref{fig: crosscorr}, you can see the cross-correlation of the H\2O template with the entire spectrum. The peak signals that H\2O is present in the spectrum. 
+
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Cross-Correlation.pdf}
     \caption{Caption}
-    \label{fig:enter-label}
+    \label{fig: crosscorr}
 \end{figure}
-When we applied this method to the fiducial model and model C+0.25 O-0.25, we got the detections shown in table \ref{tab:fiducial detection} and \ref{tab:other detection} respectively. 
+
+When we applied this method to the fiducial model and model C+0.25 O-0.25, we got the detections shown in table \ref{tab: fiducial detection} and \ref{tab: other detection} respectively. 
+
 \begin{table}[!ht]
 \centering
 \begin{tabular}{lll}
@@ -368,7 +381,7 @@ NO              & Non-detection     & Non-detection                   \\
 OH              & Detection         & Non-detection                   \\ \hline
 \end{tabular}
 \caption{For Fiducial model}
-\label{tab:fiducial detection}
+\label{tab: fiducial detection}
 \end{table}
 
 \begin{table}[!ht]
@@ -387,7 +400,7 @@ NO              & Non-detection     & Non-detection                   \\
 OH              & Non-detection     & Non-detection                   \\ \hline
 \end{tabular}
 \caption{For model C+0.25 O-0.25}
-\label{tab:other detection}
+\label{tab: other detection}
 \end{table}
 
 We compared the cross-correlation technique for all the molecules. We did this for the spectrum of the fiducial model. Once, just the spectrum and once the spectrum with the spectrum of the species we are testing is subtracted.
@@ -421,9 +434,9 @@ As some of the flux of a species overlaps with the flux emitted by other species
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{}
+    \includegraphics[width=0.5\linewidth]{Fiducial H2O and CO removed}
     \caption{Caption}
-    \label{fig:enter-label}
+    \label{fig: enter-label}
 \end{figure}
 
 \section{Application on Observations}
@@ -434,6 +447,7 @@ In GWLup CO, CO\2, H\2O, HCN, C\2H\2, and OH have been detected \citep{Grant_202
 Using the ranges in table \ref{}, we cross-correlated the templates with the measured spectra. The results of this are shown in table \ref{}
 
 \begin{table}[!ht]
+\centering
 \begin{tabular}{llll}
 \hline
 \textbf{Specie} & \textbf{GWLup} & \textbf{Sz98} & \textbf{V1094Sco} \\ \hline
@@ -448,32 +462,32 @@ NO              & Non-detection  & Non-detection & Non-detection     \\
 OH              & Detection      & Detection     & Detection         \\ \hline
 \end{tabular}
 \caption{}
-\label{tab:my-table}
+\label{tab: my-table}
 \end{table}
 
 
-We used 1D LTE models to fit CO and H\2O in the region 4.9-6.3 $\mu$m.
+We used 1D LTE models to fit CO and H\2O in the region 4.9-6.5 $\mu$m.
 
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Fit_GWLup.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{The fitted H\2O and CO spectra using a 1D LTE model between 4.9 $\mu$m and 6.5$\mu$m for GWLup}
+    \label{fig: fit gwlup}
 \end{figure}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Fit_Sz98.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{The fitted H\2O and CO spectra using a 1D LTE model between 4.9 $\mu$m and 6.5$\mu$m for Sz98}
+    \label{fig: fit sz98}
 \end{figure}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Fit_V1094Sco.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \caption{The fitted H\2O and CO spectra using a 1D LTE model between 4.9 $\mu$m and 6.5$\mu$m for V1094Sco}
+    \label{fig: v1094sco}
 \end{figure}
 
-
+After removing the fits from the spectra and redoing the cross-correlation, we had a detection of NO in the spectrum of V1094Sco.
 
 \chapter{Discussion}
 
