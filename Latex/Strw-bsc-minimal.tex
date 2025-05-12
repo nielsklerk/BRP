@@ -338,15 +338,15 @@ All the spectra in figures \ref{} are without any noise. When we add noise with 
 \end{figure}
 
 \section{Molecule Detection}
-As you can see in figure \ref, it is hard to visually distinguish the NH3 and NO from the completed spectrum. However, cross-correlation is a technique that can be used to find those smaller signals. In the calculation of the cross-correlation, we used the average of the spectra of all the models in the model grid and normalize them. This template is then used to cross-correlate with the spectrum containing all the models. In figure \ref{}, you can see the cross-correlation of the H2O template with the entire spectrum. The peak signals that water is present in the spectrum. 
+As you can see in figure \ref, it is hard to distinguish the NH3 and NO from the completed spectrum visually. However, cross-correlation is a technique that can be used to find those smaller signals. In calculating the cross-correlation, we used the average of the spectra of all the models in the model grid and normalized them. This template is then used to cross-correlate with the spectrum containing all the models. In figure \ref{}, you can see the cross-correlation of the H2O template with the entire spectrum. The peak signals that water is present in the spectrum. 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{Figures/CrosCorrelation.pdf}
+    \includegraphics[width=\linewidth]{Figures/Cross-Correlation.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{figure}
 When we applied this method to the fiducial model and model C+0.25 O-0.25, we got the detections shown in table \ref{tab:fiducial detection} and \ref{tab:other detection} respectively. 
-\begin{table}[]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{lll}
 \hline
@@ -365,7 +365,7 @@ OH              & Detection         & Non-detection                   \\ \hline
 \label{tab:fiducial detection}
 \end{table}
 
-\begin{table}[]
+\begin{table}[!ht]
 \centering
 \begin{tabular}{lll}
 \hline
