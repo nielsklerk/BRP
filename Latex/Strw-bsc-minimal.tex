@@ -3,7 +3,7 @@
 \usepackage{booktabs}
 \usepackage[version=4]{mhchem}
 
-\title{Identifying Nitrogen Carriers in Planet-Forming Regions of Protoplanetary Disks}
+\title{Detecting Nitrogen Carriers in Planet-Forming Regions of Protoplanetary Disks}
 \author{Niels de Klerk}
 
 \major{Astronomy and Physics}
@@ -60,48 +60,85 @@
 \cleardoublepage
 \pagenumbering{arabic}
 \chapter{Introduction}
-The nebular hypothesis was first proposed in \textit{The Principia} by Emanuel Swedenborg in 1745. Immanuel Kant developed the theory further in 1752 and was modified by Pierre-Simon Laplace in 1796. The theory states that a planetary system is formed from a slowly rotating gas cloud that collapses into a disk. Centuries later, the first protoplanetary disk was observed by O'Dell using the Hubble Space Telescope \citep{ODell1993}. In recent years, the Atacama Large Millimeter/submillimeter Array (ALMA) has imaged a large collection of these protoplanetary disks, showing a wide variety of structures and compositions. The JWST MIRI mid-INfrared Disk Survey (MINDS) team uses the JWST to investigate the inner parts of protoplanetary disks. The study of protoplanetary disks is important to find answers to the fundamental questions, 'How did life arise?' and 'Are we alone in the universe?'.
+% The nebular hypothesis was first proposed in \textit{The Principia} by Emanuel Swedenborg in 1745. Immanuel Kant developed the theory further in 1752 and was modified by Pierre-Simon Laplace in 1796. The theory states that a planetary system is formed from a slowly rotating gas cloud that collapses into a disk. Centuries later, the first protoplanetary disk was observed by O'Dell using the Hubble Space Telescope \citep{ODell1993}. In recent years, the Atacama Large Millimeter/submillimeter Array (ALMA) has imaged a large collection of these protoplanetary disks, showing a wide variety of structures and compositions. The JWST MIRI mid-INfrared Disk Survey (MINDS) team uses the JWST to investigate the inner parts of protoplanetary disks. The study of protoplanetary disks is important to find answers to the fundamental questions, 'How did life arise?' and 'Are we alone in the universe?'.
 
-The spectrum of protoplanetary disks can tell us a lot about the properties of the disk and the host star. An important example is an observation of the disk around a T Tauri star 89sz \citep{Gasman_2023}. Using MIRI on the JWST, they probed the inner regions of the disk. They detected CO$_2$, H$_2$O, OH, CO, and HCN. Furthermore, no other organics were detected, suggesting a low C/O ($<$0.5) ratio. This result differed from the ratio found using ALMA ($>$1), which probed the outer regions. This highlights the complexity of disks and their chemistry.
+% The spectrum of protoplanetary disks can tell us a lot about the properties of the disk and the host star. An important example is an observation of the disk around a T Tauri star 89sz \citep{Gasman_2023}. Using MIRI on the JWST, they probed the inner regions of the disk. They detected CO$_2$, H$_2$O, OH, CO, and HCN. Furthermore, no other organics were detected, suggesting a low C/O ($<$0.5) ratio. This result differed from the ratio found using ALMA ($>$1), which probed the outer regions. This highlights the complexity of disks and their chemistry.
 
-However, this observation is not necessarily representative of disks. \cite{colmenares2024jwstmiridetectioncarbonrichchemistry} observed a disk around the T Tauri star DoAr 33 with an exceptionally high C/O ratio of 2-4. In addition to CO, H$_2$O, and CO$_2,$ like in the 89 sz disk, the more complex carbohydrates C$_2$H$_2$ and C$_4$H$_2$ were found. The presence of these molecules is indicative of this high ratio. A possible explanation for this carbon-rich environment is the slow accretion rate of the star, which results in slowing the radial mixing and the persistence of the carbon-grain destruction.
+% However, this observation is not necessarily representative of disks. \cite{colmenares2024jwstmiridetectioncarbonrichchemistry} observed a disk around the T Tauri star DoAr 33 with an exceptionally high C/O ratio of 2-4. In addition to CO, H$_2$O, and CO$_2,$ like in the 89 sz disk, the more complex carbohydrates C$_2$H$_2$ and C$_4$H$_2$ were found. The presence of these molecules is indicative of this high ratio. A possible explanation for this carbon-rich environment is the slow accretion rate of the star, which results in slowing the radial mixing and the persistence of the carbon-grain destruction.
 
-Observations of the protoplanetary disk around the T Tauri star GW Lup have given the first detection of $^{13}$CO$_2$ in a protoplanetary disk. \cite{Grant_2023} The combination with the spectral resolution of the JWST-MIRI and the high SNR allows for the detection of weaker spectral features. Notably, the deduced N$_{CO_2}$/N$_{H_2O}$ was significantly higher than previously thought. This could indicate a cavity between the H$_2$O and CO$_2$ snowlines. These findings show the new possibilities JWST provides for studying disk structures. 
+% Observations of the protoplanetary disk around the T Tauri star GW Lup have given the first detection of $^{13}$CO$_2$ in a protoplanetary disk. \cite{Grant_2023} The combination with the spectral resolution of the JWST-MIRI and the high SNR allows for the detection of weaker spectral features. Notably, the deduced N$_{CO_2}$/N$_{H_2O}$ was significantly higher than previously thought. This could indicate a cavity between the H$_2$O and CO$_2$ snowlines. These findings show the new possibilities JWST provides for studying disk structures. 
 
-The effects of a cavity on the spectrum were studied by \cite{vlasblom2023midinfraredspectrattauri}. It was speculated that 'CO$_2$-only sources' have inner cavities which extend beyond the H$_2$O snowline, but stay within the CO$_2$ snowline. By running thermo-chemical models with different inner cavity sizes, it was shown that N$_{CO_2}$/N$_{H_2O}$ grows as the size of the cavity grows and then sharply drops. The conclusions drawn from this can help to interpret the spectra of disks.
-
-In chapter \ref{Ch: Theoretical Background}, we give background information about processes in the protoplanetary disks and simulations. We present the data and the methodology in chapter \ref{Ch: Methods}.
-
+% The effects of a cavity on the spectrum were studied by \cite{vlasblom2023midinfraredspectrattauri}. It was speculated that 'CO$_2$-only sources' have inner cavities which extend beyond the H$_2$O snowline, but stay within the CO$_2$ snowline. By running thermo-chemical models with different inner cavity sizes, it was shown that N$_{CO_2}$/N$_{H_2O}$ grows as the size of the cavity grows and then sharply drops. The conclusions drawn from this can help to interpret the spectra of disks.
 
 
 \section{Formation and evolution of Disks}
-Molecular clouds are large collections of gas and dust. When these clouds are perturbed, parts of the cloud can become dense enough, making them collapse under their own gravity. This will result in the creation of a star surrounded by gas and dust. The angular momentum of each of the particles is randomly oriented, but on average, the angular momentum vector is pointed in a certain direction. Two particles colliding will cause them to exchange angular momentum. If many collisions happen, all the angular momenta other than the average angular momentum vector get canceled out. This results in the formation of a disk around the pre-main-sequence star.
-The evolution of the disk can be categorized into 4 classes \citep{1987ApJ...312..788A}. Class 0 objects are objects where an optically thick envelope surrounds the protostar. Class I objects have a star and disk but are still embedded in an optically thick envelope. The star and disk become visible in class II objects as the star has become bright enough to blow away the envelope. In class III objects, the disk has largely been depleted of gas and dust, leaving behind planets and planetesimals. 
-% Factors that influence the evolution
+% Molecular clouds are large collections of gas and dust. When these clouds are perturbed, parts of the cloud can become dense enough, making them collapse under their own gravity. This will result in the creation of a star surrounded by gas and dust. The angular momentum of each of the particles is randomly oriented, but on average, the angular momentum vector is pointed in a certain direction. Two particles colliding will cause them to exchange angular momentum. If many collisions happen, all the angular momenta other than the average angular momentum vector get canceled out. This results in the formation of a disk around the pre-main-sequence star.
+% The evolution of the disk can be categorized into 4 classes \citep{1987ApJ...312..788A}. Class 0 objects are objects where an optically thick envelope surrounds the protostar. Class I objects have a star and disk but are still embedded in an optically thick envelope. The star and disk become visible in class II objects as the star has become bright enough to blow away the envelope. In class III objects, the disk has largely been depleted of gas and dust, leaving behind planets and planetesimals. 
+% % Factors that influence the evolution
 
 
 
-The protoplanetary disk has structure, namely the radial structure and the vertical structure. The innermost regions ($<$10 AU) of the disk are the hottest and receive the most radiation. Most of the molecules are in gaseous form in this region, except for some silicates and metals. The star heavily influences the chemistry. The intermediate regions (10-100 AU) have lower temperatures, allowing molecules like water to condense. The outer regions ($>$100 AU) are the coldest in the disk. Molecules have formed ice here, making them inert. \\
-The height of the disk is also an important factor in its structure. The midplane is the horizontal plane through the center of the disk. Most dust particles settle around the midplane, whereas the gas particles are further out. The midplane is also colder than the outside of the disk as it receives less light from the star. The protoplanetary disk tends to flare outwards. Close to the star, the disk is fairly compact, but when you go outwards from the star, the disk gets more and more extended from the midplane. 
+% The protoplanetary disk has structure, namely the radial structure and the vertical structure. The innermost regions ($<$10 AU) of the disk are the hottest and receive the most radiation. Most of the molecules are in gaseous form in this region, except for some silicates and metals. The star heavily influences the chemistry. The intermediate regions (10-100 AU) have lower temperatures, allowing molecules like water to condense. The outer regions ($>$100 AU) are the coldest in the disk. Molecules have formed ice here, making them inert. \\
+% The height of the disk is also an important factor in its structure. The midplane is the horizontal plane through the center of the disk. Most dust particles settle around the midplane, whereas the gas particles are further out. The midplane is also colder than the outside of the disk as it receives less light from the star. The protoplanetary disk tends to flare outwards. Close to the star, the disk is fairly compact, but when you go outwards from the star, the disk gets more and more extended from the midplane. 
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/disk-sketch.png}
-    \caption{A schematic representation of a protoplanetary disk. The planets in the solar system are shown as a point of reference. \cite{inproceedings}}
-    \label{fig: enter-label}
-\end{figure}
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=\linewidth]{Figures/disk-sketch.png}
+%     \caption{A schematic representation of a protoplanetary disk. The planets in the solar system are shown as a point of reference. \cite{inproceedings}}
+%     \label{fig: enter-label}
+% \end{figure}
+
 
 \section{Disk Chemistry}
+Explaining something about general chem, mb including in depth nitrogen chem
 
 \section{Emission Mechanisms}
+It is important to understand how molecules emit photons. In this section, we will explain how these processes work. This is largely based on Chapter 11 of \cite{1979rpa..book.....R}. 
+
+When an electron transitions from an energy state with higher energy to an energy state of lower energy, it emits a photon with a wavelength
+
+\begin{equation}
+    \lambda=\frac{hc}{\Delta E}
+\end{equation}
+
+where $\Delta E$ is the difference in energy between the two states. 3 different transitions can take place within molecules. 
+
+First, there is the electronic transition. In this transition, an electron jumps from an orbital with higher energy to one with lower. UV 
+
+Second, there is the rotational transition. This transition changes the angular momentum of the molecule.radio and microwave
+
+\begin{equation}
+    E^{rot}=B_eK(K+1)
+\end{equation}
+
+where J is the rotational quantum number
+
+\begin{equation}
+    \Delta  E^{rot}=2B_e(K+1)
+\end{equation}
+
+Last, there are ro-vibrational transitions. This changes the vibration and rotation of the molecule. Explain something about PQR branches. IR
+
+\begin{equation}
+    E^{vib}=\hbar\omega(v+1)
+\end{equation}
+with $\omega=\sqrt{\frac{k}{\mu}}$ and $v$ the vibrational quantum number.
+\begin{equation}
+    \Delta E^{vib}=\hbar\omega
+\end{equation}
+
+selection rules:
+$\Delta v=\pm 1; \Delta K = 0, \pm1 (and for some \Delta K=0 is forbidden)$
 
 \section{JWST MIRI MRS}
 
-% \section{Radiative Transfer}
+
 \section{Modeling}
-Some of the properties of the protoplanetary disks can be directly inferred from disk measurements. For instances where this is not the case, we would still like to learn more from our data via a different method. We can use models to simulate the protoplanetary disk and generate synthetic data to compare to actual observations. There are various types of models. Ranging from 1D slab models to thermo-chemical disk models. For our research, we run simulations using the PROtoplanetary Disk Model (ProDiMo), a thermo-chemical disk model. The output of those simulations is then put through Fast Line Tracing system (FLiTs) to get an accurate spectrum of the disk. 
+% Some of the properties of the protoplanetary disks can be directly inferred from disk measurements. For instances where this is not the case, we would still like to learn more from our data via a different method. We can use models to simulate the protoplanetary disk and generate synthetic data to compare to actual observations. There are various types of models. Ranging from 1D slab models to thermo-chemical disk models. For our research, we run simulations using the PROtoplanetary Disk Model (ProDiMo), a thermo-chemical disk model. The output of those simulations is then put through Fast Line Tracing system (FLiTs) to get an accurate spectrum of the disk. 
+
 \section{Goal}
 We want to search for a method to detect NO and NH\3 in the spectra of protoplanetary disks using JWST MIRI MRS. 
+We present the methodology in chapter \ref{Ch: Methods}. The data and results are shown in chapter \ref{Ch: Results}. We discuss the results and their implications in chapter \ref{Ch: Discussion}. In chapter \ref{Ch: Conclusion}, we conclude our thesis.
 \chapter{Methods}\label{Ch: Methods}
 \section{ProDiMo Simulations}
 
@@ -136,7 +173,7 @@ PAH abundance rel. to ISM         & f$_{PAH}$                   & 0.01          
 Chemical heating efficiency       & $\gamma^{chem}$             & 0.2                        \\ \midrule
 Distance to the observer          & d                           & 140 pc                     \\ \bottomrule
 \end{tabular}
-\caption{}
+\caption{Disk parameters used for the models}
 \label{tab: parameters}
 \end{table}
 To investigate whether we can detect NO and NH\3 in the spectra of protoplanetary disks, 
@@ -161,7 +198,7 @@ Ar               & 6.080                  & Fixed                         \\
 Fe               & 3.240                  & Fixed                         \\
 PAH              & 3.444                  & Fixed                         \\ \bottomrule
 \end{tabular}
-\caption{}
+\caption{The elemental abundances used in the simulation of the model grid}
 \label{tab: abundances}
 \end{table}
 
@@ -200,9 +237,7 @@ We calculated the average spectrum for each species and divided that by the maxi
     H_1: \text{The height of the peak in the cross-correlation is caused by the molecule}
 \end{equation}
 
-To assess the significance of the peak in cross-correlation, we used a Monte Carlo simulation to simulate 10000 synthetic spectra under the null hypothesis. First, we take all the flux values we have for different wavelength values. Second, we sample with replacement from the flux values until we have a collection of values that is the same size as the original set. Third, we take the cross-correlation and calculate the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The value of the original data is deemed significant when it exceeds 95\% of the values from the simulated data ($\alpha=0.05$).
-
-\textbf{SOMETHING ABOUT REGIONS SELECTION}
+To assess the significance of the peak in cross-correlation, we used a Monte Carlo simulation to simulate 10000 synthetic spectra under the null hypothesis. First, we take all the flux values we have for different wavelength values. Second, we sample with replacement from the flux values until we have a collection of values that is the same size as the original set. Third, we take the cross-correlation and calculate the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The value of the original data is deemed significant when it exceeds 95\% of the values from the simulated data ($\alpha=0.05$)
 
 
 \section{Observations}
@@ -210,6 +245,7 @@ After looking at the simulated spectra, we wanted to apply our techniques to obs
 
 \textbf{MASKING OF REGIONS}
 1D LTE models to fit the model and try to enhance the hidden molecules
+\textbf{MORE EXPLANATION NEEDED}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/FullSpectrum_GWLup.pdf}
@@ -231,7 +267,7 @@ After looking at the simulated spectra, we wanted to apply our techniques to obs
 
 
 
-\chapter{Results}
+\chapter{Results}\label{Ch: Results}
 \section{ProDiMo Output}
 After running the models, we analyzed their output. First, we looked at the densities of the gas and dust in the disk. The densities of the fiducial model are shown in figure \ref{fig: density}. The density of the gas stretches higher than the density of the dust. This is expected, as we know that the dust settles around the midplane. Furthermore, the density of the gas stretches further from the host star than the dust.
 
@@ -359,7 +395,7 @@ As you can see in figure \ref{fig: add noise}, it is hard to distinguish the NH\
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{Figures/Cross-Correlation.pdf}
-    \caption{Caption}
+    \caption{The cross-correlation of the H\2O template with the spectrum the fiducial model}
     \label{fig: crosscorr}
 \end{figure}
 
@@ -380,7 +416,7 @@ NH\3             & Non-detection     & Non-detection                   \\
 NO              & Non-detection     & Non-detection                   \\
 OH              & Detection         & Non-detection                   \\ \hline
 \end{tabular}
-\caption{For Fiducial model}
+\caption{The detection of different molecules in the spectrum of the fiducial model using cross-correlation.}
 \label{tab: fiducial detection}
 \end{table}
 
@@ -399,7 +435,7 @@ NH\3             & Non-detection     & Non-detection                   \\
 NO              & Non-detection     & Non-detection                   \\
 OH              & Non-detection     & Non-detection                   \\ \hline
 \end{tabular}
-\caption{For model C+0.25 O-0.25}
+\caption{The detection of different molecules in the spectrum of the model with C+0.25 and O-0.25 using cross-correlation.}
 \label{tab: other detection}
 \end{table}
 
@@ -430,21 +466,19 @@ We compared the cross-correlation technique for all the molecules. We did this f
 
 % \textbf{INSERT TABLE OF DETECTION PARTIAL RANGE}
 
-As some of the flux of a species overlaps with the flux emitted by other species, it would make detection easier if the flux of the other species were removed. This was easily done with the simulated data, as the simulation gave the spectra of the individual species. Especially the region where NO is emitted is of interest, as the only other species that emit in that range are CO and H\2O. Removing the flux of CO and H\2O for the fiducial gave the spectrum shown in figure \ref{}
+As some of the flux of a species overlaps with the flux emitted by other species, it would make detection easier if the flux of the other species were removed. This was easily done with the simulated data, as the simulation gave the spectra of the individual species. Especially the region where NO is emitted is of interest, as the only other species that emit in that range are CO and H\2O. Removing the flux of CO and H\2O for the fiducial gave the spectrum shown in figure \ref{fig: H2O and CO removed}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\linewidth]{Fiducial H2O and CO removed}
-    \caption{Caption}
-    \label{fig: enter-label}
+    \caption{A zoomed-in region of the spectrum of the fiducial model between 4.9 $\mu$m and 6 $\mu$m. The emission of both H\2O and CO has been removed.}
+    \label{fig: H2O and CO removed}
 \end{figure}
 
 \section{Application on Observations}
 We applied the techniques of the previous part to real data to see if they are effective here as well
 
-In GWLup CO, CO\2, H\2O, HCN, C\2H\2, and OH have been detected \citep{Grant_2023}. In Sz98 CO, H2O, OH, CO2, and HCN have been detected \citep{Gasman_2023}. 
-
-Using the ranges in table \ref{}, we cross-correlated the templates with the measured spectra. The results of this are shown in table \ref{}
+We cross-correlated the templates with the measured spectra. The results of this are shown in table \ref{tab: realdata}.
 
 \begin{table}[!ht]
 \centering
@@ -461,8 +495,8 @@ NH3             & Non-detection  & Non-detection & Non-detection     \\
 NO              & Non-detection  & Non-detection & Non-detection     \\
 OH              & Detection      & Detection     & Detection         \\ \hline
 \end{tabular}
-\caption{}
-\label{tab: my-table}
+\caption{The detection of different molecules in the spectra of GWLup, Sz98, and V1094Sco using cross-correlation.}
+\label{tab: realdata}
 \end{table}
 
 
@@ -487,12 +521,27 @@ We used 1D LTE models to fit CO and H\2O in the region 4.9-6.5 $\mu$m.
     \label{fig: v1094sco}
 \end{figure}
 
-After removing the fits from the spectra and redoing the cross-correlation, we had a detection of NO in the spectrum of V1094Sco.
+After removing the fits from the spectra and redoing the cross-correlation, we detected NO emission in the spectrum of V1094Sco.
 
-\chapter{Discussion}
+\chapter{Discussion}\label{Ch: Discussion}
+\section{Interpretation}
+\section{Comparison to Other Works}
+\cite{Grant_2023} have detected CO, CO\2, H\2O, HCN, C\2H\2 and OH in the spectrum of GWLup. These are the same molecules we detected using our cross-technique. In the spectrum of Sz98 \cite{Gasman_2023} have detected CO, H\2O, OH, CO\2, and HCN. These are again the same molecules we detected. The fact that we have the same results as them, is a promising sign for the validity of our technique. 
+\section{Limitations}
+Assumptions:
+
+- average noise=0
+
+- center peak can come from other sources
+
+- bootstrapping of fluxes
+
+- averaging of the emission of each species
+
+\section{Future Work}
 
 
-\chapter{Conclusion}
+\chapter{Conclusion}\label{Ch: Conclusion}
 
 \bibliographystyle{aa.bst}
 \bibliography{references}
