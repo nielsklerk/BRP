@@ -281,7 +281,7 @@ After running the models, we analyzed their output. First, we looked at the dens
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{Figures/Density.pdf}
+    \includegraphics[width=\linewidth]{Figures/DensityTemperature.pdf}
     \caption{The distribution of gas and dust in the disk of the fiducial model.}
     \label{fig: density}
 \end{figure}
@@ -297,9 +297,24 @@ Subsequently, we inspected the temperatures of gas and dust across the disk. Tho
 
 Lastly, we inspected the distribution of nitrogen-bearing molecules: HCN, HNC, NH\3, and NO. Figure \ref{fig: nitrogen distribution} shows their distribution. The density of the molecules changes a lot for different radii and heights. For example, in the region between 0.05 and 0.1 au we see that HCN decreases compared to the surrounding regions, but HNC increases in the same region. There is a gap in the densities between 1 and 200 au. In these regions, the temperature drops below the freezing point of these molecules, resulting in the formation of ice. 
 
+
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=.8\linewidth]{Figures/Abundance.pdf}
+    \includegraphics[width=\linewidth]{Figures/Abundance1.pdf}
+    \caption{The distribution of HCN, HNC, NH\3, and NO across the disk of the fiducial model.}
+    \label{fig: nitrogen distribution}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/AbundanceN2.pdf}
+    \caption{The distribution of HCN, HNC, NH\3, and NO across the disk of the fiducial model.}
+    \label{fig: nitrogen distribution}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Abundance2.pdf}
     \caption{The distribution of HCN, HNC, NH\3, and NO across the disk of the fiducial model.}
     \label{fig: nitrogen distribution}
 \end{figure}
@@ -316,23 +331,35 @@ The models in the model grid we created were used with FLiTs to create accurate 
 
 The flux of the different species changes depending on the abundances of C and O. The total flux for HCN, NO, and NH\3 for all the models in the model grid are shown in figures \ref{fig: flux HCN}, \ref{fig: flux NO}, and \ref{fig: flux NH3}. 
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\linewidth]{Figures/HCN_heatmap.pdf}
-    \caption{The total flux of HCN for all the models in the grid.}
-    \label{fig: flux HCN}
-\end{figure}
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{Figures/HCN_heatmap.pdf}
+%     \caption{The total flux of HCN for all the models in the grid.}
+%     \label{fig: flux HCN}
+% \end{figure}
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.5\linewidth]{Figures/NO_heatmap.pdf}
-    \caption{The total flux of NO for all the models in the grid.}
-    \label{fig: flux NO}
-\end{figure}
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{Figures/NO_heatmap.pdf}
+%     \caption{The total flux of NO for all the models in the grid.}
+%     \label{fig: flux NO}
+% \end{figure}
 
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=0.5\linewidth]{Figures/NH3_heatmap.pdf}
+%     \caption{The total flux of NH\3 for all the models in the grid.}
+%     \label{fig: flux NH3}
+% \end{figure}
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/NH3_heatmap.pdf}
+    \includegraphics[width=\linewidth]{Figures/Heatmaps1.pdf}
+    \caption{The total flux of NH\3 for all the models in the grid.}
+    \label{fig: flux NH3}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Heatmaps2.pdf}
     \caption{The total flux of NH\3 for all the models in the grid.}
     \label{fig: flux NH3}
 \end{figure}
@@ -346,16 +373,23 @@ We believe that OH is an important component in the formation of NH\3.
 
 Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid into 2 groups. One group has C/O smaller than unity, and the other greater. We chose this distinction as the behaviors of the spectra are different. This difference is also visible in figure \ref{fig: all spectra}. 
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/ClassificationCOgt0.pdf}
-    \caption{The regions of the spectrum where NO and NH\3 emission are the  strongest compared to other molecular emission in the models that have a C/O greater than unity}
-    \label{fig: class>1}
-\end{figure}
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=\linewidth]{Figures/ClassificationCOgt0.pdf}
+%     \caption{The regions of the spectrum where NO and NH\3 emission are the  strongest compared to other molecular emission in the models that have a C/O greater than unity}
+%     \label{fig: class>1}
+% \end{figure}
+
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=\linewidth]{Figures/ClassificationCOst0.pdf}
+%     \caption{The regions of the spectrum where NO and NH\3 emission are strongest in the models that have a C/O smaller than unity}
+%     \label{fig: class<1}
+% \end{figure}
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\linewidth]{Figures/ClassificationCOst0.pdf}
+    \includegraphics[width=\linewidth]{Figures/ClassificationCO.pdf}
     \caption{The regions of the spectrum where NO and NH\3 emission are strongest in the models that have a C/O smaller than unity}
     \label{fig: class<1}
 \end{figure}
