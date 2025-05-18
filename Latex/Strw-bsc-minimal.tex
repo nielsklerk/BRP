@@ -294,14 +294,14 @@ After running the models, we analyzed their output. First, we looked at the dens
 
 Subsequently, we inspected the temperatures of gas and dust across the disk. Those are shown in \autoref{fig: temperature}.  The gas and dust temperatures vary across the disk for different heights and radii. However, they are equal in the midplane as they are coupled. Above the midplane, they decouple, and the gas and dust temperatures change. The gas temperatures are higher as they get heated by the star, whereas the dust temperatures are lower. Notably, the temperature gradient of the dust is vertically isothermal. This result is expected as the density of the dust is orders of magnitude lower in the regions above the disk. This results in the starlight getting barely blocked, so the temperature doesn't change across different heights.
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/Temperature.pdf}
-    \caption{The temperature profile of gas and dust in the disk of the fiducial model.}
-    \label{fig: temperature}
-\end{figure}
+% \begin{figure}[!ht]
+%     \centering
+%     \includegraphics[width=\linewidth]{Figures/Temperature.pdf}
+%     \caption{The temperature profile of gas and dust in the disk of the fiducial model.}
+%     \label{fig: temperature}
+% \end{figure}
 
-Lastly, we inspected the distribution of nitrogen-bearing molecules: HCN, HNC, NH\3, and NO. Figure \ref{fig: nitrogen distribution} shows their distribution. The density of the molecules changes a lot for different radii and heights. For example, in the region between 0.05 and 0.1 au we see that HCN decreases compared to the surrounding regions, but HNC increases in the same region. There is a gap in the densities between 1 and 200 au. In these regions, the temperature drops below the freezing point of these molecules, resulting in the formation of ice. 
+Lastly, we inspected the distribution of nitrogen-bearing molecules: HCN, HNC, NH\3, and NO. Figure \autoref{fig: nitrogen distribution} shows their distribution. The density of the molecules changes a lot for different radii and heights. For example, in the region between 0.05 and 0.1 au we see that HCN decreases compared to the surrounding regions, but HNC increases in the same region. There is a gap in the densities between 1 and 200 au. In these regions, the temperature drops below the freezing point of these molecules, resulting in the formation of ice. 
 
 
 \begin{figure}[!ht]
@@ -326,7 +326,7 @@ Lastly, we inspected the distribution of nitrogen-bearing molecules: HCN, HNC, N
 \end{figure}
 
 \section{FLiTs Spectra}
-The models in the model grid we created were used with FLiTs to create accurate spectra. The resulting spectra are shown in figure \ref{fig: all spectra}. There is a clear division in the shapes of the spectra. In the bottom left corner, you have 6 spectra that have a strong HCN feature. These models also have a C/O ratio greater than unity. The other models have strong water features and have a C/O ratio smaller than unity. 
+The models in the model grid we created were used with FLiTs to create accurate spectra. The resulting spectra are shown in \autoref{fig: all spectra}. There is a clear division in the shapes of the spectra. In the bottom left corner, you have 6 spectra that have a strong HCN feature. These models also have a C/O ratio greater than unity. The other models have strong water features and have a C/O ratio smaller than unity. 
 
 \begin{figure}[!ht]
     \centering
@@ -377,7 +377,7 @@ We believe that OH is an important component in the formation of NH\3.
 
 \textbf{MORE REACTIONS}
 
-Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid into 2 groups. One group has C/O smaller than unity, and the other greater. We chose this distinction as the behaviors of the spectra are different. This difference is also visible in figure \ref{fig: all spectra}. 
+Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid into 2 groups. One group has C/O smaller than unity, and the other greater. We chose this distinction as the behaviors of the spectra are different. This difference is also visible in \autoref{fig: all spectra}. 
 
 % \begin{figure}[!ht]
 %     \centering
@@ -400,7 +400,7 @@ Next, we wanted to identify regions in the spectrum that could help us detect NO
     \label{fig: class<1}
 \end{figure}
 
-In figure \ref{fig: class>1}, it is visible that the region between 4.9$\mu$m and 6 $\mu$m has many regions where NO emission is strongest. This coincides with the region where NO has a spectral feature. NH\3 is the brightest between 6 $\mu$m and 6.4 $\mu$m. Between 10 $\mu$m and 12 $\mu$m there are some smaller regions where NH\3 is strongest. In contrast, in figure \ref{fig: class<1}, the regions where NO or NH\3 emission is strongest are more barren. The NO emission regions are not the strongest anymore, as well as the NH\3 emission region next to it. The most promising region for NH\3 is now between 10 $\mu$m and 12 $\mu$m. 
+In figure \ref{fig: class>1}, it is visible that the region between 4.9$\mu$m and 6 $\mu$m has many spectral regions where NO emission is strongest. This coincides with the region where NO has a spectral feature. NH\3 is the brightest between 6 $\mu$m and 6.4 $\mu$m. Between 10 $\mu$m and 12 $\mu$m there are some smaller regions where NH\3 is strongest. In contrast, in figure \ref{fig: class<1}, the spectral regions where NO or NH\3 emission is strongest are more barren. The NO emission regions are not the strongest anymore, as well as the NH\3 emission region next to it. The most promising region for NH\3 is now between 10 $\mu$m and 12 $\mu$m. 
 
 \begin{figure}[!ht]
     \centering
@@ -532,7 +532,7 @@ We cross-correlated the templates with the measured spectra. The results of this
 \centering
 \begin{tabular}{llll}
 \hline
-\textbf{Specie} & \textbf{GWLup} & \textbf{Sz98} & \textbf{V1094Sco} \\ \hline
+\textbf{Molecule} & \textbf{GWLup} & \textbf{Sz98} & \textbf{V1094Sco} \\ \hline
 C2H2            & Detection      & Non-detection & Detection         \\
 CH4             & Non-detection  & Non-detection & Non-detection     \\
 CO              & Detection      & Detection     & Detection         \\
