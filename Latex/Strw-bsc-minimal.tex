@@ -1,4 +1,4 @@
-\documentclass[oneside, single, authoryear, semicolon]{lion-msc}
+\documentclass[twoside, single, authoryear, semicolon, 12pt]{lion-msc}
 \usepackage{lipsum}
 \usepackage{booktabs}
 \usepackage{pifont}
@@ -16,7 +16,7 @@
 \date{\displaydate{date}}
 
 \studentid{s3640477}                           % check you student ID, LaTeX does not do this
-\abstract{Here goes a wonderful abstract.}   % limit your self to 1/2 page or 500 words
+\abstract{Nitrogen is one of the most important elements for life on earth, and plays an important role in the chemistry of protoplanetary disks that are the birthplace for planets. However, the only nitrogen carrier detected in these disks is HCN. This thesis aims to investigate the detection of NO and NH\3 in the spectra taken by JWST MIRI MRS. For this, a grid of ProDiMo models with varying C and O abundances was used in combination with FLiTs to create spectra. The effects of the C and O abundances on the flux were investigated, and spectral regions of interest were selected. Furthermore, a new technique of detecting molecules using cross-correlation was studied. Utilizing this technique, molecules already detected in GWLup, Sz98, and V1094Sco were reaffirmed with a possible detection of NO in V1094Sco.}% limit your self to 1/2 page or 500 words
 \dailysupervisor{Msc. Marissa Vlasblom \\ \hspace*{\fill}Msc. Aditya M. Arabhavi}
 \supervisor{Prof. Dr. Ewine van Dishoeck \\ \hspace*{\fill}Prof. Dr. Inga Kamp} % Note that this should be a LION staff member!
 \corrector{Dr. Matthieu Schaller}                      % This could be a LION staff member or your external supervisor
@@ -27,7 +27,7 @@
 %\major{Physics and Mathematics}
 
 % optional cover picture - should be jpg or pdf
-% \coverpicture{\includegraphics[width=10cm]{Latex/lion-msc-logo.pdf}}
+% \coverpicture{\includegraphics[width=2cm]{Latex/lion-msc-logo.pdf}}
 
 % Use this to make hyperlinks visible in the document.
 % \hypersetup{colorlinks=true}
@@ -62,13 +62,13 @@
 \cleardoublepage
 \pagenumbering{arabic}
 \chapter{Introduction}
-The nebular hypothesis was first proposed in \textit{The Principia} by Emanuel Swedenborg in 1745. Immanuel Kant developed the theory further in 1752 and was modified by Pierre-Simon Laplace in 1796. The theory states that a planetary system is formed from a slowly rotating gas cloud that collapses into a disk. Centuries later, the first protoplanetary disk was observed by O'Dell using the Hubble Space Telescope \citep{ODell1993}. In recent years, the Atacama Large Millimeter/submillimeter Array (ALMA) has imaged a large collection of these protoplanetary disks, showing a wide variety of structures and compositions \citep{SOURCES}. The JWST MIRI mid-INfrared Disk Survey (MINDS) team uses the JWST to investigate the inner parts of protoplanetary disks\citep{SOURCE}. The study of protoplanetary disks is important to find answers to the fundamental questions, 'How did life arise?' and 'Are we alone in the universe?'.
+The nebular hypothesis was first proposed in \textit{The Principia} by Emanuel Swedenborg in 1745. Immanuel Kant developed the theory further in 1752 and later modified by Pierre-Simon Laplace in 1796. The theory states that a planetary system is formed from a slowly rotating gas cloud that collapses into a disk. Centuries later, the first protoplanetary disk was observed by O'Dell using the Hubble Space Telescope \citep{ODell1993}. In recent years, the Atacama Large Millimeter/submillimeter Array (ALMA) has imaged a large collection of these protoplanetary disks, showing a wide variety of structures and compositions (e.g. \cite{gardner2025exoalmaxialmaobservations, shoshi2025alma2dsuperresolutionimaging}). The JWST MIRI mid-INfrared Disk Survey (MINDS) team uses the JWST to investigate the inner parts of protoplanetary disks (e.g. \cite{Arabhavi_2025, Vlasblom_2025}). The study of protoplanetary disks is important to find answers to the fundamental questions, 'How did life arise?' and 'Are we alone in the universe?'.
 
-% The spectrum of protoplanetary disks can tell us a lot about the properties of the disk and the host star. An important example is an observation of the disk around a T Tauri star 89sz \citep{Gasman_2023}. Using MIRI on the JWST, they probed the inner regions of the disk. They detected CO$_2$, H$_2$O, OH, CO, and HCN. Furthermore, no other organics were detected, suggesting a low C/O ($<$0.5) ratio. This result differed from the ratio found using ALMA ($>$1), which probed the outer regions. This highlights the complexity of disks and their chemistry.
+The spectrum of protoplanetary disks can tell us a lot about the properties of the disk and the host star. An important example is an observation of the disk around a T Tauri star Sz98 \citep{Gasman_2023}. Using MIRI on the JWST, they probed the inner regions of the disk. They detected CO$_2$, H$_2$O, OH, CO, and HCN. Furthermore, no other organics were detected, suggesting a low C/O ($<$0.5) ratio. This result differed from the ratio found using ALMA ($>$1), which probed the outer regions. This highlights the complexity of disks and their chemistry.
 
-% However, this observation is not necessarily representative of disks. \cite{colmenares2024jwstmiridetectioncarbonrichchemistry} observed a disk around the T Tauri star DoAr 33 with an exceptionally high C/O ratio of 2-4. In addition to CO, H$_2$O, and CO$_2,$ like in the 89 sz disk, the more complex carbohydrates C$_2$H$_2$ and C$_4$H$_2$ were found. The presence of these molecules is indicative of this high ratio. A possible explanation for this carbon-rich environment is the slow accretion rate of the star, which results in slowing the radial mixing and the persistence of the carbon-grain destruction.
+However, this observation is not necessarily representative of disks. \cite{colmenares2024jwstmiridetectioncarbonrichchemistry} observed a disk around the T Tauri star DoAr 33 with an exceptionally high C/O ratio of 2-4. In addition to CO, H\2O, and CO\2, like in the Sz98 disk, the more complex carbohydrates C\2H\2 and C\4H\2 were found. The presence of these molecules is indicative of this high ratio. A possible explanation for this carbon-rich environment is the slow accretion rate of the star, which results in slowing the radial mixing and the persistence of the carbon-grain destruction.
 
-% Observations of the protoplanetary disk around the T Tauri star GW Lup have given the first detection of $^{13}$CO$_2$ in a protoplanetary disk. \cite{Grant_2023} The combination with the spectral resolution of the JWST-MIRI and the high SNR allows for the detection of weaker spectral features. Notably, the deduced N$_{CO_2}$/N$_{H_2O}$ was significantly higher than previously thought. This could indicate a cavity between the H$_2$O and CO$_2$ snowlines. These findings show the new possibilities JWST provides for studying disk structures. 
+Observations of the protoplanetary disk around the T Tauri star GW Lup have given the first detection of $^{13}$CO$_2$ in a protoplanetary disk. \cite{Grant_2023} The combination with the spectral resolution of the JWST-MIRI and the high SNR allows for the detection of weaker spectral features. Notably, the deduced N$_{CO_2}$/N$_{H_2O}$ was significantly higher than previously thought. This could indicate a cavity between the H$_2$O and CO$_2$ snowlines. These findings show the new possibilities JWST provides for studying disk structures. 
 
 % The effects of a cavity on the spectrum were studied by \cite{vlasblom2023midinfraredspectrattauri}. It was speculated that 'CO$_2$-only sources' have inner cavities which extend beyond the H$_2$O snowline, but stay within the CO$_2$ snowline. By running thermo-chemical models with different inner cavity sizes, it was shown that N$_{CO_2}$/N$_{H_2O}$ grows as the size of the cavity grows and then sharply drops. The conclusions drawn from this can help to interpret the spectra of disks.
 
@@ -110,7 +110,7 @@ where $\Delta E$ is the difference in energy between the two states. Molecules o
     \label{eq: boltzmann}
 \end{equation}
 
-with $N_i$ the number of molecules in state $i$, $E_i$ the energy of state $i$, $g_i$ the degeneracy of that energy state,  $T$ the temperature of the molecule and $Z$ the partition function $Z=\sum_j (g_j\exp{-E_j/k_BT})$.
+with $N_i$ the number of molecules in state $i$, $E_i$ the energy of state $i$, $g_i$ the degeneracy of that energy state, $T$ the temperature of the molecule and $Z$ the partition function $Z=\sum_j g_j\exp{(-E_j/k_BT)}$.
 Different transitions can take place within molecules. This section will discuss the 3 most fundamental transitions: electronic, vibrational, and rotational.
 
 \subsection{Electronic Transition}
@@ -133,13 +133,13 @@ The electronic transitions typically occur in the ultraviolet (UV) and visible (
 
 
 \subsection{Vibrational Transition}
-Vibrational transitions \textbf{how do i start}. This changes the vibration of the molecule. The bonds between atoms in a molecule can be viewed as springs connecting the atoms. These springs can have different motions, such as stretching and bending. 
+Vibrational transitions \textbf{how do i start this sentence}. This changes the vibration of the molecule. The bonds between atoms in a molecule can be viewed as springs connecting the atoms. These springs can have different motions, such as stretching and bending. 
 
 \begin{equation}
     E^{vib}=\hbar\omega(v+1/2)
 \end{equation}
 
-with $\hbar$ the reduced planck constant, $\omega=\sqrt{\frac{k}{\mu}}$ with $k$ the force constant and $\mu$ reduced mass, and $v$ the vibrational quantum number. Transitions between energy states follow the selection rule: $\Delta v=\pm 1$. This means the only permitted transitions occur between energy levels with a vibrational quantum number that is one lower or higher than the current state. This results in the difference in energy between states to be
+with $\hbar$ the reduced Planck constant, $\omega=\sqrt{\frac{k}{\mu}}$ with $k$ the force constant and $\mu$ reduced mass, and $v$ the vibrational quantum number. Transitions between energy states follow the selection rule: $\Delta v=\pm 1$. This means the only permitted transitions occur between energy levels with a vibrational quantum number that is one lower or higher than the current state. This results in the difference in energy between states to be
 
 \begin{equation}
     \Delta E^{vib}=\hbar\omega.
@@ -194,7 +194,7 @@ In nature, pure vibrational transitions are rare. More often than not, the vibra
 In \autoref{fig: rovib}, a distinctive shape is visible: P, Q, and R branches. The P branch is the set of peaks with a lower energy than the central peak. The Q branch is the central peak, and the set of peaks on the higher energy side of the peak is the R branch. The P, Q, and R branches correspond to $\Delta J=1, 0, -1$ respectively. For some molecules and some vibrational modes, the transition with $\Delta J=0$ is forbidden. This also means that the Q branch is missing in the spectrum.
 
 \section{JWST MIRI MRS}
-The James Webb Space Telescope (JWST) was launched on the 25th of December 2021. This new telescope was a big leap forward for space research. One of the instruments on board is the Mid-Infrared Instrument (MIRI). 
+The James Webb Space Telescope (JWST) was launched on the 25th of December 2021. This new telescope was a big leap forward for space research. One of the instruments on board is the Mid-Infrared Instrument (MIRI). This instrument is used for ...
 
 \section{Modeling of Protoplanetary Disks}
 Some of the properties of the protoplanetary disks can be directly inferred from disk measurements. For instances where this is not the case, we would still like to learn more from our data via a different method. We can use models to simulate the protoplanetary disk and generate synthetic data to compare to actual observations. There are various types of models. Ranging from 0D slab models to thermo-chemical disk models. For our research, we run simulations using the PROtoplanetary Disk Model (ProDiMo), a thermo-chemical disk model. The output of those simulations is then put through Fast Line Tracing system (FLiTs) to get an accurate spectrum of the disk. 
@@ -656,27 +656,27 @@ The fitted CO and H\2O emission was subsequently removed, and the cross-correlat
 \section{Interpretation}
 This thesis provides new insights into the detection of nitrogen carriers NO and NH\3 in the planet-forming regions of protoplanetary disks. The influence of C and O abundances on the spectra was analyzed, which gave interesting results. The spectra formed 2 groups: spectra dominated by H\2O emission for the models that had a C/O ratio smaller than unity, and spectra dominated by C\2H\2 emission for models with C/O greater than unity. Following this, emission of both NO and NH\3 was less obscured by water lines in the spectra of the carbon-rich models, which leads to the conclusion that carbon-rich sources are the most prominent sources for the detection of NO and NH\3 in the planet-forming regions of protoplanetary disks. 
 
-However, a direct NO and NH\3 detection from the spectrum poses to be hard due to the low intensity of the emission of these molecules and the level of noise. To combat this, we have developed a method using cross-correlation to detect weak spectral features. Using this technique on the simulated spectra generated using FLiTs gave the expected results. The most prominent features were detected in the spectrum, but not the weak emission from NO and NH\3. 
+However, a direct NO and NH\3 detection from the spectrum poses to be hard due to the low intensity of the emission of these molecules and the level of noise. To combat this, we have developed a method using cross-correlation to detect weak spectral features. Using this technique on the simulated spectra generated using FLiTs gave the expected results. The most prominent features were detected in the spectrum, but not the weak emission from NO and NH\3. NO was detected in the spectrum of \textbf{WHICH MODELS} after removing the emission of CO and H\2O. However, \textbf{RESULTS ON THE REMOVAL OF ALL EMISSIONS EXCEPT NH3}
+
+
 \section{Comparison to Other Works}
 \cite{Grant_2023} have detected CO, CO\2, H\2O, HCN, C\2H\2 and OH in the spectrum of GWLup. These are the same molecules we detected using our cross-technique. In the spectrum of Sz98 \cite{Gasman_2023}, they have detected CO, H\2O, OH, CO\2, and HCN. These are again the same molecules we detected. The fact that we have the same results as they is a promising sign for the validity of our technique. 
 
 \cite{groningenthesis} performed research similar to our own. However, they investigated the detection of SO\2 to learn more about the sulfur depletion problem. \textbf{MORE TEXT COMPARING OUR RESULTS}
 
 \section{Limitations}
-Assumptions:
+For the cross-correlation technique, we assume that the peak at lag=0 is purely from the molecule that is being tested. However, it could be the case that the cross-correlation of the noise with the template results in a peak, because the noise coincidentally follows a similar structure to the emission of the species. We suspect that this is highly unlikely, as the noise would then need to be in the same location (i.e., not shifted to different wavelengths) and follow a similar pattern (i.e., be bright in the same locations as the molecular emission). A problem that might be more impactful is fringing. Fringing is the effect when taking a spectrum that results in a regular pattern. This pattern could coincide with the pattern formed by the ro-vibrational transitions, which also has a regular spacing. If it were the case that these two phenomena would overlap, that could result in a false-positive.
 
-For the cross-correlation technique, we assume that the peak at lag=0 is purely from the molecule that is being tested. However, it could be the case that the cross-correlation of the noise with the template results in a peak, because the noise coincidentally follows a similar structure to the emission of the species. We suspect that this is highly unlikely as the noise then needs to be in the same location (so not shifted to different wavelengths), and it would need to follow a similar pattern (so be bright in the same locations as the molecule emission). A problem that might be more impactful is fringing. Fringing is the effect when taking a spectrum that results in a regular pattern. This pattern could coincide with the pattern formed by the ro-vibrational transitions, which also has a regular spacing. If it were the case that these two phenomena would overlap, that could result in a false-positive.
+Other than noise, other species could also interfere with our method of cross-correlation. When the emission of different spectra overlaps, that could result in a detection. For example, in \autoref{fig: NO region} the CO emission partly overlaps with the emission coming from NO. This, with the fact that the spacing of the two species is similar, could result in false positives. 
 
-Other than noise, other species could also interfere with our method of cross-correlation. When the emission of different spectra overlaps, that could result in a detection. For example, in \autoref{fig: NO region} the CO emission partly overlaps with the emission coming from NO. This, with the fact that the spacing of the 2 species is similar, could result in false-positives. 
+Following this, we use bootstrapping to create the hypothesis test by sampling the distribution of the test statistic. However, this destroys all patterns in the data. This can give a disproportionate view of the significance of a species' presence, leading to a false-positive.
 
-Following this, we use bootstrapping to create the hypothesis test by sampling the distribution of the test statistic. However, this destroys all patterns in the data. So this can give a disproportional view of the significance of the presence of a species, making a false-positive.
-
-Averaging the emission of all the species across the entire grid might not be the best technique to create a template. The different abundances heavily impact the shape of the emission and combining them into a single template results the a spectrum that has about the same shape, but can lose.
+Averaging the emission of all species across the entire grid may not be the best technique for creating a template. The different abundances heavily impact the shape of the emission and combining them into a single template results the a spectrum that has about the same shape, but can lose.
 
 \section{Future Work}
 In this work, the only things that were varied were the C and O abundances. Some other properties could be interesting to investigate, for example, different disk structures. The distribution of NH\3 in \autoref{fig: nitrogen distribution}, is close to the midplane in the disk, resulting in it being hidden inside the disk. Different disk structures, such as gaps, could expose the NH\3 reservoir, allowing for detection. 
 
-Furthermore, the stellar properties could affect the nitrogen carriers in the disk. 
+Furthermore, the stellar properties could affect the nitrogen carriers in the disk. Changing attributes such as stellar luminosity, mass, and temperature can result in different chemistries in the disk, thereby altering the spectrum that is measured. 
 
 Improving models to account for additional species or more realistic noise.
 
@@ -684,11 +684,12 @@ Refining spectral resolution and detection limits using advanced filters.
 
 \chapter{Conclusion}\label{Ch: Conclusion}
 In this thesis, we have looked at the influence of the carbon and oxygen abundances on the nitrogen carriers in a protoplanetary disk. 
-
+\begin{itemize}
+    \item h
+\end{itemize}
 \bibliographystyle{aa.bst}
 \bibliography{references}
 \appendix
-\chapter{Chi square fits}
-\chapter{More ProDiMo results}
+\chapter{More ProDiMo Results}
 \chapter{Chi square fits}
 \end{document}
