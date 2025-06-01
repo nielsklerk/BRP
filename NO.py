@@ -28,7 +28,7 @@ def mask_regions(wavelength, regions):
     return mask
 
 
-for Source in ['V1094Sco']:
+for Source in ['Sz98']:
 
     file = f'FullSpectrum_CS_{Source}.p'
     data = pickle.load(open(file, 'rb'))
@@ -67,7 +67,6 @@ T_list = data[:, 1]
 N_list = data[:, 2]
 
 
-
 if __name__ == '__main__':
     chis = np.zeros_like(index_list)
     tasks = [(int(k - 1), f'{int(k):04d}') for k in index_list]
@@ -76,6 +75,25 @@ if __name__ == '__main__':
     for i, chi in results:
         chis[i] = chi
 
+    log_likelihood = -0.5 * chis
+    log_prior = np.zeros_like(log_likelihood)
+
+    # Compute unnormalized log-posterior
+    log_posterior = log_likelihood + log_prior
+    posterior = np.exp(log_posterior - np.max(log_posterior))  # prevent underflow
+    posterior /= np.sum(posterior)
+    posterior_grid = posterior.reshape((len(np.unique(T_list)),len(np.unique(N_list))))
+    grid_indices = np.arange(posterior.size)
+    N_samples = 100000
+    sampled_indices = np.random.choice(grid_indices, size=N_samples, p=posterior)
+    i_sampled, j_sampled = np.unravel_index(sampled_indices, posterior_grid.shape)
+    # Convert to physical N and T values
+    T_sampled_values = np.unique(T_list)[i_sampled]
+    N_sampled_values = np.unique(N_list)[j_sampled]
+
+    # Compute upper limits (e.g. 95% for N)
+    N_95_upper = np.percentile(N_sampled_values, 95)
+    print(f"95% upper limit on N: {N_95_upper:.2e}")
     nx = len(np.unique(T_list))
     ny = len(np.unique(N_list))
 
@@ -88,4 +106,12 @@ if __name__ == '__main__':
     plt.xlabel('T [K]')
     plt.ylabel('N [log(cm-2)]')
     plt.savefig('Figures/CHI2MAP.pdf')
+    plt.show()
+    plt.subplot(1, 2, 2)
+    plt.hexbin(T_sampled_values, N_sampled_values,  gridsize=20, cmap='inferno')
+    plt.xlabel("Column Density N")
+    plt.ylabel("Temperature T")
+    plt.colorbar(label="Sample Density")
+
+    plt.tight_layout()
     plt.show()
