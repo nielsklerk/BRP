@@ -5,6 +5,10 @@
 \usepackage[version=4]{mhchem}
 \usepackage{parskip}
 \usepackage{float}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{caption} 
 
 \title{Detecting Nitrogen Carriers in Planet-Forming Regions of Protoplanetary Disks}
 \author{Niels de Klerk}
@@ -31,7 +35,7 @@
 % \coverpicture{\includegraphics[width=2cm]{Latex/lion-msc-logo.pdf}}
 
 % Use this to make hyperlinks visible in the document.
-\hypersetup{colorlinks=true}
+% \hypersetup{colorlinks=true}
 
 % ---------------------------------------------------------------- My defintions!
 % \renewcommand{\vec}[1] {\ensuremath{ \overrightarrow{ #1 } }}
@@ -341,8 +345,7 @@ To assess the significance of the peak in cross-correlation, we used a Monte Car
 
 
 \section{Observations}
-After looking at the simulated spectra, we wanted to apply our techniques to observations made with JWST MIRI MRS. We have access to 3 sources  GWLup \citep{Gasman_2023}, Sz98 \citep{Grant_2023}, and V1094Sco \citep{taboneinprepp}. The spectra we received were already continuum-subtracted and are shown in \autoref{fig: Measurements}. However, the continuum subtraction left artifacts in the spectrum. \cite{Grant_2023} has listed the regions in the spectrum containing such artifacts, and we used their list of regions to mask out the artefacts. Furthermore, we utilized LTE models to fit the observed spectra. This was used to find the emission of specific molecules and subtract them from the spectrum. This was used to find weaker emissions of other molecules in the residuals. 
-\textbf{MORE EXPLANATION NEEDED}
+After investigating the simulated spectra, we wanted to apply our techniques to observations made with JWST MIRI MRS. We have access to 3 sources  GWLup \citep{Gasman_2023}, Sz98 \citep{Grant_2023}, and V1094Sco \citep{taboneinprepp}. The spectra we received were already continuum-subtracted and are shown in \autoref{fig: Measurements}. However, the continuum subtraction left artifacts in the spectrum. \cite{Grant_2023} has listed the regions in the spectrum containing such artifacts, and their list of regions was used to mask out the artefacts. 
 
 \begin{figure}[H]
     \centering
@@ -351,8 +354,20 @@ After looking at the simulated spectra, we wanted to apply our techniques to obs
     \label{fig: Measurements}
 \end{figure}
 
-
-
+Furthermore, we utilized LTE models to fit the observed spectra. A similar procedure to the process described by \cite{Grant_2023} was followed. This was used to find the emission of specific molecules and subtract them from the spectrum. This was used to find weaker emissions of other molecules in the residuals. 
+\textbf{MORE EXPLANATION NEEDED}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\hline
+Source   & \makecell{Distance \\\citep{henning2024mindsjwstmirimidinfrared}}  & \makecell{Radial velocity \\ \citep{Frasca_2017}} \\ \hline
+GWLup    & 155.20 pc & -3.3 km/s       \\
+Sz98     & 156.27 pc & -1.4 km/s       \\
+V1094Sco & 152.44 pc & 2.2 km/s        \\ \hline
+\end{tabular}
+\caption{}
+\label{tab:my-table}
+\end{table}
 \chapter{Results}\label{Ch: Results}
 \section{ProDiMo Output}
 \begin{figure}[H]
@@ -556,12 +571,12 @@ CO$_2$     & Yes & No  & \ding{51}    & No  & No  & --        \\
 H$_2$O     & Yes & No  & \ding{51}    & No  & No  & --        \\
 HCN        & No  & No  & --           & Yes & No  & \ding{51} \\
 NH$_3$     & No  & No  & --           & No  & No  & --        \\
-NO         & No  & No  & --           & No  & No  & --        \\
+NO         & No  & No  & \ding{51}    & No  & No  & --        \\
 OH         & Yes & No  & \ding{51}    & No  & No  & --        \\
 \hline
 \end{tabular}
 }
-\caption{Molecular detections in the spectrum of the fiducial model (A) and the model with C+0.25 and O-0.25 (B) before and after subtracting molecular emission. A confirmed detection (\ding{51}) indicates that the molecule is detected in the full spectrum but disappears in the residual. \textbf{HOW TO SAY WHETHER IT IS THERE}}
+\caption{Molecular detections in the spectrum of the fiducial model (A) and the model with C+0.25 and O-0.25 (B) before and after subtracting molecular emission. A confirmed detection (\ding{51}) indicates that the molecule is detected in the full spectrum. A molecular emission is considered present in the full spectrum when the integrated flux over the wavelength range is greater than the integrated flux of a flat continuum at 0.1 mJy over the wavelength range.}
 \label{tab: combined_detections}
 \end{table}
 
@@ -592,7 +607,7 @@ We compared the cross-correlation technique for all the molecules. We did this f
 
 % \textbf{INSERT TABLE OF DETECTION PARTIAL RANGE}
 
-As some of the flux of a species overlaps with the flux emitted by other species, it would make detection easier if the fluxes of the other species were removed. This was easily done with the simulated data, as the simulation produced the spectra of the individual species. Especially the region where NO is emitted is of interest, as the only other species that emit in that range are CO and H\2O. Removing the flux of CO and H\2O for the fiducial gave the spectrum shown in \autoref{fig: H2O and CO removed}. \textbf{EXPLAINING ABOUT THE THEN DETECTION OF NO}
+As some of the flux of a species overlaps with the flux emitted by other species, it would make detection easier if the emissions of the other species were removed. This was easily done with the simulated data, as the simulation produced the spectra of the individual species. To test this, the cross-correlation technique was applied to only the emission of NO and NH\3 with the associated noise added. Repeating this 100 times with different random noise for every model in the model grid gave a detection rate of \textbf{NO PERCENT}\% and \textbf{NH3 percent}\% for NO and NH\3, respectively.  Especially the region where NO is emitted is of interest, as the only other species that emit in that range are CO and H\2O. Removing the flux of CO and H\2O for the fiducial gave the spectrum shown in \autoref{fig: H2O and CO removed}. \textbf{EXPLAINING ABOUT THE THEN DETECTION OF NO}
 
 \begin{figure}[H]
     \centering
@@ -701,7 +716,7 @@ In this thesis, we have looked at the influence of the carbon and oxygen abundan
 \begin{itemize}
     \item \textbf{SOMETHING ABOUT THE EFFECT OF C AND O ON FLUX}
     \item We have selected spectral regions, in which the emission from NO and NH\3 are the strongest. In particular, sources with a C/O ratio greater than unity have the greatest potential for detecting NO and NH\3 as their emission is not obscured by H\2O emission.
-    \item We developed a new molecule detection method using cross-correlation. Using the ProDiMo models in the grid, emission templates per species were created. 
+    \item We developed a new molecule detection method using cross-correlation. Using the ProDiMo models in the grid, emission templates were created for each species. 
     \item We reconfirmed the known species present in the spectra of GWLup, Sz98, and V1094Sco using the cross-correlation technique.
     \item We made a possible detection of NO in the spectrum of V1094Sco.
     \item \textbf{UPPERLIMITS ON THE SOURCES}
@@ -712,4 +727,5 @@ In this thesis, we have looked at the influence of the carbon and oxygen abundan
 \appendix
 \chapter{More ProDiMo Results}
 \chapter{Chi square fits}
+
 \end{document}
