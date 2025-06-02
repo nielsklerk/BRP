@@ -75,11 +75,21 @@ artefact_regions = [[5.0091,5.01071], [5.018,5.019], [5.112,5.15],
 [21.974,21.985], [25.69824,25.71313]]
 
 # Molecule to fit
-mol = ['H2O', 'CO'][0]
+mol = ['H2O', 'CO'][1]
 
+model_index = 2
 # Read in your data however you want
-file = f'FullSpectrum_CS_V1094Sco.p'
+source = ['GWLup', 'Sz98', 'V1094Sco'][model_index]
+file = f'FullSpectrum_CS_{source}.p'
 data = pickle.load(open(file, 'rb'))
+
+# assumed source distance and velocity
+# Change these to the proper values for each source
+# don't worry if you cannot find the velocity, since that likely will not matter too much
+# 155.20, 156.27, 152.44
+# -3.3, -1.4, 2.2 X-shooter spectroscopy of young stellar objects in Lupus
+distance = [155.20, 156.27, 152.44][model_index] # pc
+v_obs = [-3.3, -1.4, 2.2][model_index]  # km/s
 
 o_w = data['Wavelength']  # Wavelength array
 o_f = data['Flux']  # Flux array
@@ -234,11 +244,6 @@ else:
         o_f_contsub_mask.mask[(o_w >= reg[0]) & (o_w <= reg[1])] = True
         o_w_mask.mask[(o_w >= reg[0]) & (o_w <= reg[1])] = True
 
-# assumed source distance and velocity
-# Change these to the proper values for each source
-# don't worry if you cannot find the velocity, since that likely will not matter too much
-distance = 152  # pc
-v_obs = 0  # km/s
 
 # Instrumental R value assumed for model
 # MIRI has a higher spectral resolving power at short wavelengths
@@ -415,6 +420,6 @@ if __name__ == "__main__":
     plt.xlabel(r'T$_K$ in K')
     plt.ylabel(r'log10(N({})) in cm$^{{-2}}$'.format(mol))
     plt.title(mol)
-    # plt.savefig('chi2_map_{}_{}.png'.format(mol, source))
+    plt.savefig('chi2_map_{}_{}.pdf'.format(mol, source), bbox_inches='tight')
     plt.show()
     plt.close()
