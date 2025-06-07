@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{caption} 
+\usepackage{amsmath}
 
 \title{Detecting Nitrogen Carriers in Planet-Forming Regions of Protoplanetary Disks}
 \author{Niels de Klerk}
@@ -38,8 +39,8 @@
 % \hypersetup{colorlinks=true}
 
 % ---------------------------------------------------------------- My defintions!
-% \renewcommand{\vec}[1] {\ensuremath{ \overrightarrow{ #1 } }}
-\renewcommand{\vec}[1] {\ensuremath{ \mathbf{ #1 } }}
+\renewcommand{\vec}[1] {\ensuremath{ \overrightarrow{ #1 } }}
+% \renewcommand{\vec}[1] {\ensuremath{ \mathbf{ #1 } }}
 % \bra \ket \braket and \proj
 \newcommand{\bra}[1]{\ensuremath{\langle #1 \vert}}
 \newcommand{\ket}[1]{\ensuremath{\vert #1 \rangle}}
@@ -73,7 +74,7 @@ The spectrum of protoplanetary disks can tell us a lot about the properties of t
 
 However, this observation is not necessarily representative of disks. \cite{colmenares2024jwstmiridetectioncarbonrichchemistry} observed a disk around the T Tauri star DoAr 33 with an exceptionally high C/O ratio of 2-4. In addition to CO, H\2O, and CO\2, like in the Sz98 disk, the more complex carbohydrates C\2H\2 and C\4H\2 were found. The presence of these molecules is indicative of this high ratio. A possible explanation for this carbon-rich environment is the slow accretion rate of the star, which results in slowing the radial mixing and the persistence of the carbon-grain destruction.
 
-Observations of the protoplanetary disk around the T Tauri star GW Lup have given the first detection of $^{13}$CO$_2$ in a protoplanetary disk. \cite{Grant_2023} The combination with the spectral resolution of the JWST-MIRI and the high SNR allows for the detection of weaker spectral features. Notably, the deduced N$_{CO_2}$/N$_{H_2O}$ was significantly higher than previously thought. This could indicate a cavity between the H$_2$O and CO$_2$ snowlines. These findings show the new possibilities JWST provides for studying disk structures. 
+Observations of the protoplanetary disk around the T Tauri star GW Lup have given the first detection of $^{13}$CO$_2$ in a protoplanetary disk. \cite{Grant_2023} The combination with the spectral resolution of the JWST-MIRI and the high SNR allows for the detection of weaker spectral features. Notably, the deduced N$_{CO_2}$/N$_{H_2O}$ was significantly higher than previously thought. This could indicate a cavity between the H$_2$O and CO$_2$ snowlines. These findings demonstrate the new possibilities that JWST offers for studying disk structures. 
 
 % The effects of a cavity on the spectrum were studied by \cite{vlasblom2023midinfraredspectrattauri}. It was speculated that 'CO$_2$-only sources' have inner cavities which extend beyond the H$_2$O snowline, but stay within the CO$_2$ snowline. By running thermo-chemical models with different inner cavity sizes, it was shown that N$_{CO_2}$/N$_{H_2O}$ grows as the size of the cavity grows and then sharply drops. The conclusions drawn from this can help to interpret the spectra of disks.
 
@@ -81,6 +82,8 @@ Observations of the protoplanetary disk around the T Tauri star GW Lup have give
 \section{Formation and Evolution of Disks}
 Molecular clouds are large collections of gas and dust. When these clouds are perturbed, parts of the cloud can become dense enough, making them collapse under their own gravity. This will result in the creation of a star surrounded by gas and dust. The angular momentum of each of the particles is randomly oriented, but on average, the angular momentum vector is pointed in a certain direction. Two particles colliding will cause them to exchange angular momentum. If many collisions happen, all the angular momenta other than the average angular momentum vector get canceled out. This results in the formation of a disk around the pre-main-sequence star.
 The evolution of the disk can be categorized into 4 classes \citep{1987ApJ...312..788A}. Class 0 objects are objects where an optically thick envelope surrounds the protostar. Class I objects have a star and disk but are still embedded in an optically thick envelope. The star and disk become visible in class II objects as the star has become bright enough to blow away the envelope. In class III objects, the disk has largely been depleted of gas and dust, leaving behind planets and planetesimals. 
+
+
 % % Factors that influence the evolution
 
 
@@ -199,15 +202,54 @@ In nature, pure vibrational transitions are rare. More often than not, the vibra
 In \autoref{fig: rovib}, a distinctive shape is visible: P, Q, and R branches. The P branch is the set of peaks with a lower energy than the central peak. The Q branch is the central peak, and the set of peaks on the higher energy side of the peak is the R branch. The P, Q, and R branches correspond to $\Delta J=1, 0, -1$ respectively. For some molecules and some vibrational modes, the transition with $\Delta J=0$ is forbidden. This also means that the Q branch is missing in the spectrum.
 
 \section{JWST MIRI MRS}
-The James Webb Space Telescope (JWST) was launched on the 25th of December 2021. This new telescope was a big leap forward for space research. One of the instruments on board is the Mid-Infrared Instrument (MIRI). This instrument is used for observation in the mid-infrared, as the name suggests. 
+The James Webb Space Telescope (JWST) was launched on the 25th of December 2021. This new telescope was a big leap forward for space research. One of the instruments on board is the Mid-Infrared Instrument (MIRI). This instrument is used for observations in the mid-infrared, as the name suggests. MIRI has 4 observation modes in the wavelength range between 4.9 and 27.9 $\mu$m:  imaging, coronagraphic imaging, low-resolution spectroscopy, and medium-resolution spectroscopy \citep{}. 
 
 \section{Modeling of Protoplanetary Disks}
 Some of the properties of the protoplanetary disks can be directly inferred from disk measurements. For instances where this is not the case, we would still like to learn more from our data via a different method. We can use models to simulate the protoplanetary disk and generate synthetic data to compare to actual observations. There are various types of models. Ranging from 0D slab models to thermo-chemical disk models. 
 \textbf{EXPLAIN WHAT FIDUCIAL IS}
+
+
 \subsection{ProDiMo}
-For our research, we run simulations using the PROtoplanetary Disk Model (ProDiMo), a thermo-chemical disk model.
+For our research, we run simulations using the Protoplanetary Disk Model (ProDiMo), a thermo-chemical disk model. ProDiMo models both the gas and dust in a disk using a 2D slice of the disk and assuming that the disk is axisymmetric. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{code structure PRODIMO}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+
+Define the gas and dust densities for different radii and heights above the midplane. Set the stellar parameters: stellar mass, effective temperature, stellar luminosity, UV, and X-ray. Define interstellar properties: IR background, UV background, and Cosmic rays.  Then, it performs the radiative transfer, which yields the dust temperature and the radiation field at every point in the disk. This is followed by a chemical thermal balance, which provides the gas temperature, the density of different molecules, and the excitation levels of the molecules. 
+
+The gas density can be found using \autoref{eq: density}
+\begin{equation}
+    \rho_g(r,z)=\frac{\Sigma(r)}{\sqrt{2\pi}h(r)}\exp{\left(-\frac{z^2}{2h(r)^2}\right)},
+    \label{eq: density}
+\end{equation}
+where $\Sigma$ is the surface density, $h(r)$ the scale height (which can be calculated using hydrostatic equilibrium. There are several methods to calculate the dust density: fixed gas-to-dust mass ratio, radius-dependent gas-to-dust mass ratio, grain size-dependent gas-to-dust mass ratio, and settling. 
+
+To find the radiation field, \autoref{eq: radiative transfer} is used.
+\begin{equation}
+    \frac{1}{\rho(\vec{r})}\frac{\partial I_\nu(\rho(\vec{r}, \hat{k}))}{\partial s}=-\kappa^{ext}_\nu I_\nu(\rho(\vec{r}, \hat{k})) + \kappa^{abs}_\nu B_\nu(T(\vec{r})) + \kappa^{sca}_\nu J_\nu(\vec{r})
+    \label{eq: radiative transfer}
+\end{equation}
+where 
+
+It is further assumed that the disk is in radiative equilibrium 
+\begin{equation}
+    \int^\infty_0\kappa^{abs}_\nu B_\nu(T(\vec{r})d\nu=\int^\infty_0\kappa^{abs}_\nu J_\nu(\vec{r})d\nu
+\end{equation}
+which gives the dust temperature. This is iteratively repeated until the dust temperature converges.
+
+\textbf{chemistry}
+
 \subsection{FLiTs}
-The output of those simulations is then put through Fast Line Tracing system (FLiTs) to get an accurate spectrum of the disk. 
+The output of ProDiMo models can be put through the Fast Line Tracing system (FLiTs)\footnote{To get access to FLiTs, contact M. Min: M.Min@sron.nl} to get an accurate spectrum of the disk. The development of FLiTs is described by \cite{Woitke_2018}. FLiTs was developed as a tool to overcome some challenges that simulating spectra in the IR poses. This spectral region contains a great number of emission lines and energy levels. Disks are complex; light can be emitted in one region of the disk and reabsorbed elsewhere. Lastly, the full radiative transfer equation needs to be solved as high optical depths are involved. At the time of the development of FLiTs, there was another code available named RadLite \citep{Pontoppidan_2009}. However, this code was slow and 
+calculated the spectrum on a line-to-line basis, which prevented it from accurately describing line blending. So a new code, FLiTs, was developed to tackle these problems. 
+
+All quantities, such as density and temperature, are provided from ProDiMo to FLiTs and transformed from a points-based grid to a cell-based grid. The model assumes Keplerian rotation and ignores the small effects from the pressure gradient, which can slow down the rotation of the disk by a few percent. Parallel rays are then cast through the disk at the inclination angle. The solution of the radiative transfer equation per wavelength is then integrated along these rays to produce the spectrum. To avoid aliasing, it uses randomized spatial and spectral sampling. As each part of the disk contributes to different parts of the spectrum, bundles of rays are used at random locations. The accuracy is determined by the number of rays, which means higher spatial resolution.
+
+Compared to the single line spectrum produced by ProDiMo, FLiTs reproduced it accurately. In conclusion, FLiTs is a fast and accurate ray-tracer that can help to provide fits to observations and learn more from simulations.
 
 \section{Research Objectives and Scope}
 First, we want to investigate how nitrogen carriers depend on the abundances of carbon and oxygen. Furthermore, we aim to investigate how the emission of nitrogen carriers changes after increasing the nitrogen abundance. Next, we want to develop a method to detect nitric oxide (NO) and ammonia (NH\3) in the spectra of protoplanetary disks using JWST MIRI MRS. 
@@ -259,7 +301,7 @@ To investigate whether we can detect NO and NH\3 in the spectra of protoplanetar
 \label{eq: abundance}
 \end{equation}
 
-The abundances are defined as in \autoref{eq: abundance}, where the abundance ($\epsilon_X$) depends on the natural log of the ratio of the number density of that element X ($N_X$) to the number density of hydrogen ($N_H$). In this system, $\epsilon_H=12$ by definition. The differences in abundances of C and O compared to solar abundances were varied between -0.5 and 0.5 in steps of 0.25, where a difference of 0 corresponds to the solar abundance. The grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O (see \autoref{tab: abundances}). Furthermore, we increased the nitrogen abundance by an order of magnitude compared to the solar abundance to see what the effects on the spectrum are and to enhance the spectral features of nitrogen carriers.
+The abundances in the models are defined as in \autoref{eq: abundance}, where the abundance of some element X ($\epsilon_X$) depends on the natural log of the ratio of the number density of that element ($N_X$) to the number density of hydrogen ($N_H$). In this system, $\epsilon_H=12$ by definition. The difference in abundances of C and O compared to solar abundances was varied between -0.5 and 0.5 in steps of 0.25, where a difference of 0 corresponds to the solar abundance. The grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O (see \autoref{tab: abundances}). Furthermore, we increased the nitrogen abundance by an order of magnitude compared to the solar abundance to see what the effects on the spectrum are and to possibly enhance the spectral features of nitrogen carriers.
 
 \begin{table}[!ht]
 \centering
@@ -280,7 +322,7 @@ Ar               & 6.08                  & Fixed                         \\
 Fe               & 3.24                  & Fixed                         \\
 PAH              & 3.44                  & Fixed                         \\ \bottomrule
 \end{tabular}
-\caption{The elemental abundances used in the simulation of the grid of ProDiMo models}
+\caption{The elemental abundances used in the simulation of the grid of ProDiMo models. The solar abundances were used, except for N, which was enhanced by an order of magnitude.}
 \label{tab: abundances}
 \end{table}
 
@@ -288,17 +330,21 @@ PAH              & 3.44                  & Fixed                         \\ \bot
 
 The output of the ProDiMo model grid was used to generate the mid-infrared spectra using FLiTs. The full spectrum includes emission from C\2H\2, CH\4, CO, CO\2, H\2O, HCN, NH\3, NO, OH. In addition, FLiTs produced the spectra containing the emissions of the individual molecules. The FLiTs spectra were calculated at a very high spectral resolution ($R=1\cdot10^5$). To make the spectra more comparable to the JWST MIRI MRS spectra, we convolved the spectrum to a resolving power of $R = \lambda/\Delta\lambda = 3000$ using a Gaussian kernel to create a spectrum of the correct resolving power. The value of 3000 was chosen as it is approximately the average resolving power of the JWST MIRI MRS \citep{Argyriou_2023}. 
 
-Noise was added to the simulated spectra to make them as realistic as possible. The observations obtained by the MINDS JWST GTO program have a signal-to-noise ratio (SNR) of 300 \citep{henning2024mindsjwstmirimidinfrared}.  To make the simulated data align with an $SNR = 300$, the minimum of the simulated spectrum before continuum subtraction was used to find the variance $\sigma^2$ by using \autoref{eq: SNR}.
+Noise was added to the simulated spectra to make them as realistic as possible. The observations obtained by the MINDS JWST GTO program have a signal-to-noise ratio (SNR) of 300 \citep{henning2024mindsjwstmirimidinfrared}. To make the simulated data align with an $SNR = 300$, the minimum of the simulated spectrum before continuum subtraction was used to find the variance $\sigma^2$ by using \autoref{eq: SNR}.
+
 \begin{equation}
     SNR = \frac{F_{min}}{\sigma}\Rightarrow\sigma=\frac{F_{min}}{SNR}
     \label{eq: SNR}
 \end{equation}
+
 The variance $\sigma^2$ was then used to add Gaussian noise to each flux value following \autoref{eq: noise}.
+
 \begin{equation}
     \tilde{F}_i = F_i + \varepsilon_i,\;\varepsilon_i\sim\mathcal{N}(0, \sigma^2)
     \label{eq: noise}
 \end{equation}
-After applying this noise, we subtracted the continuum to get the spectrum. This spectrum was subsequently used to analyze the different molecules that compose it.
+
+After applying this noise, we subtracted the continuum, which was subsequently used to analyze.
 
 
 The flux density provided by FLiTs is in units of Jansky. To obtain the flux, we integrated the flux density by first converting the flux density from per unit frequency to per unit wavelength using \autoref{eq: conversion}.
@@ -308,11 +354,11 @@ The flux density provided by FLiTs is in units of Jansky. To obtain the flux, we
     \label{eq: conversion}
 \end{equation}
 
-Different species emit light in distinct spectral regions. To classify these regions, we split the entire spectrum into windows of 0.001 $\mu$m from 4.9 to 27.5 $\mu$m. Next, we integrate the spectrum for each species in that window and note the species that has the highest flux in that region. Doing this for all models and taking the mode gives the species for each window that has the strongest emission for most of the simulated spectra.  
+Different species emit light in distinct spectral regions. To classify these regions, we split the entire spectrum into windows of 0.01 $\mu$m from 4.9 to 27.5 $\mu$m. The window size of 0.01 $\mu$m was chosen, as it is approximately the expected window size at this spectral resolution ($R=\lambda/\Delta\lambda\Rightarrow\Delta\lambda=\frac{\lambda}{R}\approx\frac{30 \mu \mathrm{m}}{3000}=0.01 \mu \mathrm{m}$). Next, we integrate the emission for each species in that window and note the species that has the highest flux in that region. Doing this for all models and taking the mode gives the species for each window that has the strongest emission for most of the simulated spectra.  
 
 
 \section{Cross-Correlation Technique}
-For our analysis, we used cross-correlation. This is a signal detection technique used to detect weak signals. We implemented this to detect the weak spectral features of NO and NH\3. It is defined as follows. 
+For our analysis, we used cross-correlation. This is a signal detection technique used to detect weak signals. This technique was implemented to detect the weak spectral features of NO and NH\3. It is defined as follows. 
 
 \begin{equation}
     R_{fg}(\tau)=\int^\infty_{-\infty}\overline{f(t)}g(t+\tau)dt
@@ -329,23 +375,24 @@ where $R_{fg}(\tau)$ is the cross-correlation, $f$ and $g$ are functions, and $\
     \centering
     \includegraphics[width=0.5\linewidth]{VISUALIZE CROSSCORRELATION}
     \caption{Caption}
-    \label{fig:enter-label}
+    \label{fig: crosscorr vis}
 \end{figure}
 
-To test the spectra for the presence of specific molecules, we used the emissions for each species across the model grid. The emissions per molecule for each model were added together and divided by the maximum to normalize them. We used this template emission to cross-correlate with the spectrum containing all the species. The cross-correlation should peak when the template spectrum matches the spectrum containing all the species. To quantify the height of the peak, we calculated the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. We took the median as this is less susceptible to outliers to capture the general trend around the peak more optimally. We used hypothesis testing to test whether or not there is statistical evidence to say the molecule is present. We had the following null hypothesis and alternative hypothesis
+To test the spectra for the presence of specific molecules, we used the emissions for each species across the model grid. The emission per molecule for each model was added together and divided by the maximum to normalize them. This template emission was cross-correlated with the spectrum containing emission from all the species. The cross-correlation should peak when the template spectrum matches the spectrum containing all the species. To quantify the height of the peak, we calculated the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The median, which was selected in favor of the mean as it is less susceptible to outliers, captures the general trend around the peak. Hypothesis testing was implemented to test whether or not there is statistical evidence to say the molecule is present in the spectrum. We had the following null hypothesis and alternative hypothesis, with the difference between the height of the peak and the median of neighboring points as the test statistic. 
 
 \begin{equation}
     H_0: \text{The height of the peak in the cross-correlation is caused by noise}
 \end{equation}
+
 \begin{equation}
     H_1: \text{The height of the peak in the cross-correlation is caused by the molecule}
 \end{equation}
 
-To assess the significance of the peak in cross-correlation, we used a Monte Carlo simulation to simulate 10000 synthetic spectra under the null hypothesis. First, we take all the flux values we have for different wavelength values. Second, we sample with replacement from the flux values until we have a collection of values that is the same size as the original set. Third, we take the cross-correlation and calculate the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The value of the test statistic is deemed significant when it exceeds 95\% of the values from the simulated data ($\alpha=0.05$)
+To assess the significance of the peak in cross-correlation, a Monte Carlo simulation was used to simulate 10000 synthetic spectra under the null hypothesis. First, all the flux values for different wavelength values are collected in a set. Second, flux values were sampled with replacement from the set until there was a collection of values that is the same size as the original set. This procedure is akin to bootstrap sampling. In this way, a completely randomized spectrum is created, which simulates pure noise. Third, we took the cross-correlation of this randomized spectrum with the template and calculated the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. Repeating these steps to create 10000 spectra, and with it corresponding values for the test statistic, resulted in a distribution. The peak is deemed significant, and thus the molecule is present, when its test statistic exceeds 95\% of the test statistic values from the randomized spectra ($\alpha=0.05$).
 
 
 \section{Observations}
-After investigating the simulated spectra, we wanted to apply our techniques to observations made with JWST MIRI MRS. We have access to 3 sources  GWLup \citep{Gasman_2023}, Sz98 \citep{Grant_2023}, and V1094Sco \citep{taboneinprepp}. The spectra we received were already continuum-subtracted and are shown in \autoref{fig: Measurements}. However, the continuum subtraction left artifacts in the spectrum. \cite{Grant_2023} has listed the regions in the spectrum containing such artifacts, and their list of regions was used to mask out the artefacts. 
+After investigating the simulated spectra, the techniques were extended to observations made with JWST MIRI MRS. We have access to 3 sources: GWLup \citep{Gasman_2023}, Sz98 \citep{Grant_2023}, and V1094Sco \citep{taboneinprepp}. The spectra we received were already continuum-subtracted and are shown in \autoref{fig: Measurements}. However, the continuum subtraction left artifacts in the spectrum. \cite{Grant_2023} has listed the regions in the spectrum containing such artifacts, and their list of regions was used to mask out the artefacts. 
 
 \begin{figure}[H]
     \centering
@@ -354,8 +401,17 @@ After investigating the simulated spectra, we wanted to apply our techniques to 
     \label{fig: Measurements}
 \end{figure}
 
-Furthermore, we utilized LTE models to fit the observed spectra. A similar procedure to the process described by \cite{Grant_2023} was followed. This was used to find the emission of specific molecules and subtract them from the spectrum. This was used to find weaker emissions of other molecules in the residuals. 
+Furthermore, LTE models were used to fit the observed spectra. A similar procedure to the process described by \cite{Grant_2023} was followed.
+
+\begin{equation}
+    \chi^2=\frac{1}{N}\sum_{i=1}^N\frac{F_{i,obs}-F_{i, mod}}{\sigma^2}
+\end{equation}
+
+
+This was used to find the emission of specific molecules and subtract them from the spectrum. This was used to find weaker emissions of other molecules in the residuals. 
 \textbf{MORE EXPLANATION NEEDED}
+
+
 \begin{table}[H]
 \centering
 \begin{tabular}{ccc}
@@ -365,9 +421,11 @@ GWLup    & 155.20 pc & -3.3 km/s       \\
 Sz98     & 156.27 pc & -1.4 km/s       \\
 V1094Sco & 152.44 pc & 2.2 km/s        \\ \hline
 \end{tabular}
-\caption{}
-\label{tab:my-table}
+\caption{The distances and radial velocities of GWLup, Sz98, and V1094Sco}
+\label{tab: dist+rv}
 \end{table}
+
+
 \chapter{Results}\label{Ch: Results}
 \section{ProDiMo Output}
 \begin{figure}[H]
@@ -376,7 +434,7 @@ V1094Sco & 152.44 pc & 2.2 km/s        \\ \hline
     \caption{The density and temperature maps of gas and dust in the disk of the fiducial model. The horizontal axis shows the distance $r$ from the host star, and the vertical axis shows the height above the midplane $z$ divided by the radius $r$.}
     \label{fig: tempdensity}
 \end{figure}
-\textbf{COMPARING NON-ENHANCED TO ENHANCED}
+% \textbf{COMPARING NON-ENHANCED TO ENHANCED}
 After running the models, we analyzed their output. First, we looked at the densities of the gas and dust in the disk. The densities of the fiducial model are shown in the top row of \autoref{fig: tempdensity}. The density of the gas is more vertically extended than the density of the dust. This is expected, as the dust settles around the midplane. Furthermore, the gas density stretches farther from the host star than the dust. 
 
 Next, we inspected the temperatures of gas and dust across the disk. Those are shown in the bottom row of \autoref{fig: tempdensity}.  The gas and dust temperatures vary across the disk for different heights and radii. However, they are equal in the midplane as they are coupled. Above the midplane, they decouple, and the temperatures of the gas and dust change. The gas temperatures are higher as they get heated by the star, whereas the dust temperatures are lower. Notably, the temperature of the dust is vertically isothermal. This result is expected as the density of the dust is orders of magnitude lower than that of the gas in the upper regions of the disk.  As a result, starlight passes through with minimal obstruction, leading to little variation in temperature with height.
@@ -666,7 +724,7 @@ LTE models were then used to fit CO and H\2O in the region 4.9-6.5 $\mu$m to the
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Figures/Fits.pdf}
-    \caption{The fitted H\2O and CO spectra using a 0D LTE model between 4.9 $\mu$m and 6.5$\mu$m for GWLup, Sz98, and V1094Sco}
+    \caption{The fitted H\2O and CO spectra using a LTE model between 4.9 $\mu$m and 6.5$\mu$m for GWLup, Sz98, and V1094Sco}
     \label{fig: fits}
 \end{figure}
 
@@ -674,7 +732,7 @@ The fitted CO and H\2O emission was subsequently removed, and the cross-correlat
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Figures/NO_Detect.pdf}
-    \caption{The fitted H\2O and CO spectra using a 0D LTE model between 4.9 $\mu$m and 6.5$\mu$m for V1094Sco}
+    \caption{The fitted H\2O and CO spectra using a LTE model between 4.9 $\mu$m and 6.5$\mu$m for V1094Sco}
     \label{fig: no detect}
 \end{figure}
 
@@ -727,15 +785,15 @@ In this thesis, we have looked at the influence of the carbon and oxygen abundan
 \appendix
 \chapter{More ProDiMo Results}
 \chapter{Chi square fits}
-\begin{figure}[H]
+\begin{figure}[!ht]
     \centering
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{radexpy_niels/Radexpy_for_Niels/chi2_map_H2O_GWLup.pdf}
         \caption{caption}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{radexpy_niels/Radexpy_for_Niels/chi2_map_CO_GWLup.pdf}
         \caption{caption}
@@ -743,15 +801,15 @@ In this thesis, we have looked at the influence of the carbon and oxygen abundan
     \caption{caption}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
     \centering
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{radexpy_niels/Radexpy_for_Niels/chi2_map_H2O_Sz98.pdf}
         \caption{caption}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{radexpy_niels/Radexpy_for_Niels/chi2_map_CO_Sz98.pdf}
         \caption{caption}
@@ -759,15 +817,15 @@ In this thesis, we have looked at the influence of the carbon and oxygen abundan
     \caption{caption}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
     \centering
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{radexpy_niels/Radexpy_for_Niels/chi2_map_H2O_V1094Sco.pdf}
         \caption{caption}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{radexpy_niels/Radexpy_for_Niels/chi2_map_CO_V1094Sco.pdf}
         \caption{caption}
