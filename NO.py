@@ -18,19 +18,15 @@ from scipy.constants import c
 from scipy.constants import astronomical_unit as au
 from scipy.constants import parsec as pc
 from spectres import spectres
+import matplotlib.ticker as ticker
 
 
-def check_chi(args):
-    i, index = args
+def check_chi(index):
+    Rdisk = np.linspace(0.5, 1, 10)
     slab_model = rs.read_slab(f'NO/NO_{index}.fits.gz', verbose=True)
-    min_chi = min(rs.red_chi2_slab(slab_model, spectra, mask=mask, overlap=True))
-    return i, min_chi
-
-def corr(args):
-    i, index = args
-    slab_model = rs.read_slab(f'NO/NO_{index}.fits.gz', verbose=True)
-    min_chi = min(rs.red_chi2_slab(slab_model, spectra, mask=mask, overlap=True))
-    return i, min_chi
+    slab_model.convolve(R=3000, overlap=True, NLTE=False, vr=vr, verbose=False)
+    min_chi = rs.red_chi2_slab(slab_model, spectra, distance=distance, Rdisk=Rdisk, mask=mask, overlap=True, noise_level=noise_est)
+    return min(min_chi), Rdisk[np.argmin(min_chi)]
 
 
 def mask_regions(wavelength, regions):
@@ -47,6 +43,9 @@ file = f'FullSpectrum_CS_{Source}.p'
 data = pickle.load(open(file, 'rb'))
 wavelength = data['Wavelength']
 flux_cont_sub = data['CSFlux']
+
+noise_est = np.std(flux_cont_sub[(wavelength>15.90)&(wavelength<15.94)])
+print(noise_est)
 clip_min, clip_max = 4.9, 6.5  # micron
 
 clip_cnd = ((wavelength >= clip_min) & (wavelength <= clip_max))
@@ -78,108 +77,99 @@ data = np.loadtxt('NT_index.dat')
 index_list = data[:, 0]
 T_list = data[:, 1]
 N_list = data[:, 2]
-# for index in index_list:
-#     print(f'Index: {index}, T_list: {T_list[int(index)]}, N_list: {N_list[int(index)]}')
-test_slab = rs.read_slab(f'NO/NO_{int(index_list[(T_list==800)&(N_list==14)]):04d}.fits.gz', verbose=True)
 
 
-Rdisk = 3
 distance = [155.20, 156.27, 152.44][model_index]
 vr = [-3300, -1400, 2200][model_index]
 
-test_slab.convolve(R=3000, overlap=True, NLTE=False, vr=vr)
+# test_slab = rs.read_slab(f'NO/NO_{int(index_list[(T_list==800)&(N_list==16)]):04d}.fits.gz', verbose=True)
+# test_slab.convolve(R=3000, overlap=True, NLTE=False, vr=vr)
+# for rdisk in np.linspace(0.5, 1, 10):
+#     area=np.pi*(rdisk*au/distance/pc)**2
+#     modelSpec=spectres(spectra[:,0],c/test_slab.convOverlapFreq[::-1]*1e-3,test_slab.convOverlapLTE[::-1]*1e23,verbose=False,fill=0.0)
+#     norm_modelSpec = np.trapezoid(modelSpec, wavelength[clip_cnd])
+#     fig,ax=plt.subplots(figsize=(12,4))
+#     ax.step(wavelength[clip_cnd], modelSpec*area*1000)
+#     ax.step(wavelength[clip_cnd], total*1000)
+#     ax.set_xlim([4.9, 6.5])
+#     ax.set_ylim([-5, 15])
+#     plt.show()
 
-# area=np.pi*(Rdisk*au/distance/pc)**2
-# modelSpec=spectres(spectra[:,0],c/test_slab.convOverlapFreq[::-1]*1e-3,test_slab.convOverlapLTE[::-1]*1e23,verbose=False,fill=0.0)
-# norm_modelSpec = np.trapezoid(modelSpec, wavelength[clip_cnd])
-# fig,ax=plt.subplots(figsize=(12,4))
-# ax.step(wavelength[clip_cnd], modelSpec*area*1000)
-# ax.step(wavelength[clip_cnd], total*1000)
-# ax.set_xlim([5.1, 5.6])
-# ax.set_ylim([-5, 15])
-# plt.show()
-
-
-
-norm_total = total / np.trapezoid(total, wavelength[clip_cnd])
-def crosscorr(index):
-    test_slab = rs.read_slab(f'NO/NO_{int(index):04d}.fits.gz', verbose=True)
-    test_slab.convolve(R=3000, overlap=True, NLTE=False, vr=vr)
-    modelSpec = spectres(spectra[:, 0], c / test_slab.convOverlapFreq[::-1] * 1e-3,
-                         test_slab.convOverlapLTE[::-1] * 1e23, verbose=False, fill=0.0)
-    norm_modelSpec = modelSpec / np.trapezoid(modelSpec, wavelength[clip_cnd])
-    # norm_modelSpec = modelSpec * area
-    cc_mid = correlate(norm_modelSpec, norm_total, mode='full')[len(norm_modelSpec) - 1]
-    return cc_mid
 
 if __name__ == '__main__':
-    cc = np.zeros_like(index_list)
+    chis = np.zeros_like(index_list)
+    Rdisks = np.zeros_like(index_list)
     tasks = [f'{int(k):04d}' for k in index_list]
     with Pool(11) as pool:
-        results = pool.map(crosscorr, tasks)
-    for i, cc_mid in enumerate(results):
-        cc[i] = cc_mid
+        results = pool.map(check_chi, tasks)
+    for i, (chi, r)  in enumerate(results):
+        chis[i] = chi
+        Rdisks[i] = r
+    log_likelihood = -0.5 * chis
+    log_prior = np.full_like(T_list, -np.inf)
+    log_prior[(T_list >= 400)] = 0
 
+    # Compute unnormalized log-posterior
+    log_posterior = log_likelihood + log_prior
+    posterior = np.exp(log_posterior - np.max(log_posterior))  # prevent underflow
+    posterior /= np.sum(posterior)
+    posterior_grid = posterior.reshape((len(np.unique(T_list)),len(np.unique(N_list))))
+    grid_indices = np.arange(posterior.size)
+    N_samples = 100000
+    sampled_indices = np.random.choice(grid_indices, size=N_samples, p=posterior)
+    i_sampled, j_sampled = np.unravel_index(sampled_indices, posterior_grid.shape)
+    # Convert to physical N and T values
+    T_sampled_values = np.unique(T_list)[i_sampled]
+    N_sampled_values = np.unique(N_list)[j_sampled]
+
+    # Compute upper limits (e.g. 95% for N)
+    N_95_upper = np.percentile(N_sampled_values, 95)
+    print(f"95% upper limit on N: {N_95_upper:.2f}")
     nx = len(np.unique(T_list))
     ny = len(np.unique(N_list))
 
-    Z = cc.reshape(ny, nx)  # NOTE: imshow expects shape (rows=ny, cols=nx)
+    Rdisk_grid = Rdisks.reshape(ny, nx)
+    Z = chis.reshape(ny, nx)  # NOTE: imshow expects shape (rows=ny, cols=nx)
+    Z = np.min(Z)/Z
 
+    map_extent = [T_list[0], T_list[-1],
+                  N_list[0], N_list[-1]]
     # Now plot with imshow
-    plt.imshow(Z, extent=(T_list.min(), T_list.max(), N_list.min(), N_list.max()), origin='lower', aspect='auto',
+    m = plt.imshow(np.log(Z), extent=map_extent, origin='lower', aspect='auto',
                cmap='magma')
-    plt.colorbar(label='CrossCorrelation')
+    plt.colorbar(m, label=r'$\chi^2_{min}/\chi^2$')
+
+    Rdisk_levels = np.linspace(0, 2, 5)
+    Rdisk_contours = plt.contour(Rdisk_grid, levels=Rdisk_levels, origin='lower',
+                                 extent=map_extent, colors='white', zorder=2)
+    fmt = ticker.LogFormatterMathtext()
+    fmt.create_dummy_axis()
+    plt.clabel(Rdisk_contours, Rdisk_contours.levels, fmt=fmt)
+
+
+
     plt.xlabel('T [K]')
     plt.ylabel('N [log(cm-2)]')
-    # plt.savefig('Figures/CHI2MAP.pdf')
+    plt.savefig('Figures/CHI2MAP.pdf')
+    plt.show()
+    m = plt.imshow(posterior_grid.T, extent=map_extent, origin='lower', aspect='auto')
+    plt.colorbar(m, label=r'$\chi^2_{min}/\chi^2$')
+    plt.xlabel('T [K]')
+    plt.ylabel('N [log(cm-2)]')
     plt.show()
 
+    T_bins = np.linspace(min(T_sampled_values), max(T_sampled_values), len(np.unique(T_sampled_values))+1)
+    N_bins = np.linspace(min(N_sampled_values), max(N_sampled_values), len(np.unique(N_sampled_values))+1)
 
-# if __name__ == '__main__':
-#     chis = np.zeros_like(index_list)
-#     tasks = [(int(k - 1), f'{int(k):04d}') for k in index_list]
-#     with Pool(11) as pool:
-#         results = pool.map(check_chi, tasks)
-#     for i, chi in results:
-#         chis[i] = chi
-#
-#     log_likelihood = -0.5 * chis
-#     log_prior = np.zeros_like(log_likelihood)
-#
-#     # Compute unnormalized log-posterior
-#     log_posterior = log_likelihood + log_prior
-#     posterior = np.exp(log_posterior - np.max(log_posterior))  # prevent underflow
-#     posterior /= np.sum(posterior)
-#     posterior_grid = posterior.reshape((len(np.unique(T_list)),len(np.unique(N_list))))
-#     grid_indices = np.arange(posterior.size)
-#     N_samples = 100000
-#     sampled_indices = np.random.choice(grid_indices, size=N_samples, p=posterior)
-#     i_sampled, j_sampled = np.unravel_index(sampled_indices, posterior_grid.shape)
-#     # Convert to physical N and T values
-#     T_sampled_values = np.unique(T_list)[i_sampled]
-#     N_sampled_values = np.unique(N_list)[j_sampled]
-#
-#     # Compute upper limits (e.g. 95% for N)
-#     N_95_upper = np.percentile(N_sampled_values, 95)
-#     print(f"95% upper limit on N: {N_95_upper:.2e}")
-#     nx = len(np.unique(T_list))
-#     ny = len(np.unique(N_list))
-#
-#     Z = chis.reshape(ny, nx)  # NOTE: imshow expects shape (rows=ny, cols=nx)
-#
-#     # Now plot with imshow
-#     plt.imshow(Z, extent=(T_list.min(), T_list.max(), N_list.min(), N_list.max()), origin='lower', aspect='auto',
-#                cmap='magma')
-#     plt.colorbar(label='Reduced Chi-squared')
-#     plt.xlabel('T [K]')
-#     plt.ylabel('N [log(cm-2)]')
-#     plt.savefig('Figures/CHI2MAP.pdf')
-#     plt.show()
-#     plt.subplot(1, 2, 2)
-#     plt.hexbin(T_sampled_values, N_sampled_values,  gridsize=20, cmap='inferno')
-#     plt.xlabel("Column Density N")
-#     plt.ylabel("Temperature T")
-#     plt.colorbar(label="Sample Density")
-#
-#     plt.tight_layout()
-#     plt.show()
+    # Compute 2D histogram
+    H, T_edges, N_edges = np.histogram2d(T_sampled_values, N_sampled_values, bins=[T_bins, N_bins])
+
+    # Plot with imshow
+    plt.pcolormesh(T_edges, N_edges, H.T, cmap='inferno', shading='auto')
+
+    plt.ylabel("Column Density N")
+    plt.xlabel("Temperature T")
+    plt.colorbar(label="Sample Density")
+
+    plt.tight_layout()
+    plt.show()
