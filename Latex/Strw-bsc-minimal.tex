@@ -86,24 +86,31 @@ Molecular clouds are large collections of gas and dust. When these clouds are pe
 The evolution of the disk can be categorized into 4 classes \citep{1987ApJ...312..788A}. Class 0 objects are objects where an optically thick envelope surrounds the protostar. Class I objects have a star and disk but are still embedded in an optically thick envelope. The star and disk become visible in class II objects as the star has become bright enough to blow away the envelope. In class III objects, the disk has largely been depleted of gas and dust, leaving behind planets and planetesimals. 
 
 \subsection{Disk Dynamics}
+Dust particles move around in the protoplanetary disk. Due to their relative motion with the gas, they experience drag, slowing them down. This results in the dust particles settling towards the midplane of the disk. 
+
 Magnetic fields can act like springs between particles. When particles in adjacent orbits come close together, they can magnetically interact. These particles have different velocities, where the particle in the inner orbit has a larger speed than the particle in the outer orbit. The interaction between the particles will make their velocities more similar. As a result, the particle in the inner orbit loses angular momentum, and the particle in the outer orbit gains it. Therefore, the inner particle moves closer to the star and falls into an orbit with a higher speed, whereas the other particle does the opposite. Hence, the difference in velocity is increased, which means there is an instability. This instability is known as magneto-rotational instability (MRI), and was first described by \cite{RevModPhys.70.1}. 
 
-
-\textbf{Gravitational instability}
+When protoplanetary disks get massive, they can collapse under their own gravity. This effect is counteracted by pressure gradients and shear motion. All of these influences on the stability of the disk can be captured by the Toomre Q parameter.
+\begin{equation}
+    Q = \frac{c_s\Omega}{\pi G\Sigma}
+\end{equation}
+where the disk is stable for $Q>1$.
 
 \subsection{Disk Dispersion}
-\textbf{PHOTO-EVAPORATION}
+Over time, a protoplanetary disk will evaporate due to material falling into the star or planets, or material gets irradiated by stellar and interstellar UV and X-rays. 
 
 
-\subsection{Substructures}
-\textbf{gaps}
-\textbf{dust to planet}
+\subsection{Planets and Substructures}
+To form planets around a star, dust particles need to clump together. However, this process is lengthy as the size of the dust particles is on the order of micrometers, and planets on the order of thousands of kilometers. Through collisions, particles can stick together to form bigger particles. However, there are several limiting factors that reduce this growth. As particles get bigger, they experience more drag, so they slow down greatly. This limits the number of collisions as the particle encounters fewer other particles. Another limitation is that when bigger particles collide, the collision can be so powerful that it breaks them up into tiny pieces. 
+\textbf{more}
+
+Gaps in the disk can form due to several reasons, but one interesting reason is the interaction with a planet.
+
 
 \textbf{STRUCTURE}
 The dust and gas are the two components of protoplanetary disks and evolve separately. 
 
 
-\textbf{particle motion}
 
 
 2,4
@@ -125,19 +132,20 @@ The dust and gas are the two components of protoplanetary disks and evolve separ
 \section{Disk Chemistry}
 Explaining something about general chemistry, including in-depth nitrogen chemistry
 
+\subsection{Heating and Cooling}
 PAH
 
 discuss \cite{van_Gelder_2024}
 \section{Emission Mechanisms}
-It is important to understand how molecules emit photons. In this section, we will explain how these processes work. This is largely based on Chapter 11 of \cite{1979rpa..book.....R}. 
+It is important to understand how molecules emit photons, as this can help to understand how molecules are detected in spectra. In this section, we will explain how these processes work. This is largely based on Chapter 11 of \cite{1979rpa..book.....R}. 
 
-When a molecule transitions from a higher energy state to a lower energy state, it emits a photon with a wavelength
+When a molecule transitions from a higher energy state to a lower energy state, it emits a photon with a wavelength given by
 
 \begin{equation}
     \lambda=\frac{hc}{\Delta E}
 \end{equation}
 
-where $\Delta E$ is the difference in energy between the two states. Molecules order themselves in different energy states following the rules of thermodynamics. In thermal equilibrium, they organize according to the Boltzmann distribution (\autoref{eq: boltzmann}). 
+where $\lambda$ is the wavelength of the light, $h$ the Planck constant, $c$ the speed of light, and $\Delta E$ is the difference in energy between the two states. Molecules order themselves in different energy states following the rules of thermodynamics. In thermal equilibrium, they organize according to the Boltzmann distribution (\autoref{eq: boltzmann}). 
 
 \begin{equation}
     \frac{N_i}{N}=\frac{g_i\exp{(-E_i/k_BT)}}{Z}
@@ -148,13 +156,14 @@ with $N_i$ the number of molecules in state $i$, $E_i$ the energy of state $i$, 
 Different transitions can take place within molecules. This section will discuss the 3 most fundamental transitions: electronic, vibrational, and rotational.
 
 \subsection{Electronic Transition}
-The transition of the highest energy is the electronic transition. In this transition, an electron jumps from an orbital with higher energy to one with lower energy. For simplicity, we will examine the hydrogen atom. The energy levels in the hydrogen atom are determined by 
+The transition of the highest energy is the electronic transition. In this transition, an electron jumps from an orbital with higher energy to one with lower energy. This reduces the total energy of the molecule. For simplicity, we will examine the hydrogen atom. The energy levels in the hydrogen atom are determined by: 
 
 \begin{equation}
     E^e=-\frac{13.6\mathrm{ eV}}{n^2},
     \label{eq: electronic}
 \end{equation}
-where n is the principal quantum number. The energy 13.6 eV in \autoref{eq: electronic} is called the ionization energy. This is the energy of an electron in the ground state needs to be gained to get unbound, resulting in the ionization of the atom. The transitions to $n=1$ are called the Lyman series (Ly$\alpha$, Ly$\beta$, etc.). The Balmer series corresponds with the transitions to $n=2$ (H$\alpha$, H$\beta$, etc) and the Paschen series with $n=3$. The degeneracy of each state is $g(n)=2n^2$. The energy levels and the line strengths corresponding to transitions between these energy levels are shown in \autoref{fig: elec}.
+
+where n is the principal quantum number. The energy 13.6 eV in \autoref{eq: electronic} is called the ionization energy. This is the energy an electron in the ground state needs to gain to get unbound, resulting in the ionization of the atom. The transitions to $n=1$ are called the Lyman series (Ly$\alpha$, Ly$\beta$, etc.). The Balmer series corresponds with the transitions to $n=2$ (H$\alpha$, H$\beta$, etc) and the Paschen series with $n=3$. The degeneracy of each state is $g(n)=2n^2$. The energy levels and the line strengths corresponding to transitions between these energy levels are shown in \autoref{fig: elec}.
 
 \begin{figure}[H]
     \centering
@@ -163,23 +172,25 @@ where n is the principal quantum number. The energy 13.6 eV in \autoref{eq: elec
     \label{fig: elec}
 \end{figure}
 
+In \autoref{fig: elec}, the collection of lines on the high-energy side corresponds with the Lyman series. The collection of lines to the left of it corresponds to the Balmer series, etc.
 The electronic transitions typically occur in the ultraviolet (UV) and visible (VIS) parts of the electromagnetic spectrum. For example, the transition from n=2 to n=1, the Ly$\alpha$ transition, occurs at 121.567 nm.
 
 
 \subsection{Vibrational Transition}
-Vibrational transitions \textbf{how do i start this sentence}. This changes the vibration of the molecule. The bonds between atoms in a molecule can be viewed as springs connecting the atoms. These springs can have different motions, such as stretching and bending. 
+Vibrational transitions are corrections to the energy states set by the electronic transitions. This transition changes the vibration of the molecule. 
+The bonds between atoms in a molecule can be viewed as springs connecting the atoms. These springs can have different motions, such as stretching and bending. The energies of these motions are discrete and given by: 
 
 \begin{equation}
     E^{vib}=\hbar\omega(v+1/2)
 \end{equation}
 
-with $\hbar$ the reduced Planck constant, $\omega=\sqrt{\frac{k}{\mu}}$ with $k$ the force constant and $\mu$ reduced mass, and $v$ the vibrational quantum number. Transitions between energy states follow the selection rule: $\Delta v=\pm 1$. This means the only permitted transitions occur between energy levels with a vibrational quantum number that is one lower or higher than the current state. This results in the difference in energy between states to be
+with $\hbar$ the reduced Planck constant ($\hbar=\frac{h}{2\pi}$), $\omega=\sqrt{\frac{k}{\mu}}$ with $k$ the force constant and $\mu$ reduced mass, and $v$ the vibrational quantum number. Transitions between energy states follow the selection rule: $\Delta v=\pm 1$. This means the only permitted transitions occur between energy levels with a vibrational quantum number that is one lower or higher than the current state. This results in the difference in energy between states to be:
 
 \begin{equation}
     \Delta E^{vib}=\hbar\omega.
 \end{equation}
 
- Plotting the energy levels and the resulting spectrum gives \autoref{fig: vib}.
+The energy levels and the resulting spectrum are shown in \autoref{fig: vib}.
 
 \begin{figure}[H]
     \centering
@@ -192,19 +203,20 @@ The vibrational transitions typically occur in the infrared (IR) part of the ele
 
 
 \subsection{Rotational Transition}
-The transition with the lowest energy is the rotational transition. This transition changes the angular momentum of the molecule. 
+The transition with the lowest energy is the rotational transition. This transition changes the angular momentum of the molecule. Molecules rotate with discrete energies given by:
 
 \begin{equation}
     E^{rot}=B_eJ(J+1)
 \end{equation}
 
-where J is the rotational quantum number
+where $B_e$ is the rotational constant, and $J$ is the rotational quantum number. 
+The degeneracy of each state is $g(n)=2J+1$. Transitions between energy states follow the selection rule: $\Delta J=\pm 1$. This means the only permitted transitions occur between energy levels with a rotational quantum number that is one lower or higher than the current state. This results in the energy difference between a state with rotational quantum number $J+1$ to the state with rotational quantum number $J$ to be:
 
 \begin{equation}
     \Delta  E^{rot}=2B_e(J+1)
 \end{equation}
 
-The degeneracy of each state is $g(n)=2J+1$. Transitions between energy states follow the selection rule: $\Delta J=\pm 1$. This means the only permitted transitions occur between energy levels with a rotational quantum number that is one lower or higher than the current state. Plotting the energy levels and the resulting spectrum following the Boltzmann distribution gives \autoref{fig: ro}.
+The energy levels and the resulting spectrum following the Boltzmann distribution are shown in \autoref{fig: ro}.
 
 \begin{figure}[H]
     \centering
@@ -278,14 +290,23 @@ All quantities, such as density and temperature, are provided from ProDiMo to FL
 Compared to the single line spectrum produced by ProDiMo, FLiTs reproduced it accurately. In conclusion, FLiTs is a fast and accurate ray-tracer that can help to provide fits to observations and learn more from simulations.
 
 \section{Research Objectives and Scope}
-First, we want to investigate how nitrogen carriers depend on the abundances of carbon and oxygen. Furthermore, we aim to investigate how the emission of nitrogen carriers changes after increasing the nitrogen abundance. Next, we want to develop a method to detect nitric oxide (NO) and ammonia (NH\3) in the spectra of protoplanetary disks using JWST MIRI MRS. 
+First, we want to investigate how nitrogen carriers depend on the abundances of carbon and oxygen. Next, we want to develop a method to detect nitric oxide (NO) and ammonia (NH\3) in the spectra of protoplanetary disks using JWST MIRI MRS. Lastly, we want to apply our methods to observations and determine upper limits on the column densities of NO and NH\3 for these sources. 
 We present the methodology in \autoref{Ch: Methods}. The data and results are shown in \autoref{Ch: Results}. We discuss the results and their implications in \autoref{Ch: Discussion}. In \autoref{Ch: Conclusion}, we conclude our thesis.
 
 
 \chapter{Methods}\label{Ch: Methods}
-\section{ProDiMo Simulations}
 
-\begin{table}[!ht]
+\section{ProDiMo Simulations}
+To investigate whether we can detect NO and NH\3 in the spectra of protoplanetary disks and how nitrogen carriers depend on the C and O abundance, we used a grid of ProDiMo models with varying abundances of C and O. The parameters with which the models were run are given in \autoref{tab: parameters}.
+
+\begin{equation}
+    \epsilon_X\equiv\log\frac{N_X}{N_H}+12
+\label{eq: abundance}
+\end{equation}
+
+The abundances in the models are defined as in \autoref{eq: abundance}, where the abundance of some element X ($\epsilon_X$) depends on the natural log of the ratio of the number density of that element ($N_X$) to the number density of hydrogen ($N_H$). In this system, $\epsilon_H=12$ by definition. The difference in abundances of C and O compared to solar abundances was varied between -0.5 and 0.5 in steps of 0.25, where a difference of 0 corresponds to the solar abundance. The grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O (see \autoref{tab: abundances}). Additionally, the nitrogen abundance was increased by one order of magnitude compared to the solar abundance to see what the effects on the spectrum are and to possibly enhance the spectral features of nitrogen carriers, thereby making their detection easier.
+
+\begin{table}[H]
 \centering
 \begin{tabular}{@{}lll@{}}
                                   &                             &                            \\ \hline\midrule
@@ -320,16 +341,10 @@ Distance to the observer          & d                           & 140 pc        
 \label{tab: parameters}
 \end{table}
 
-To investigate whether we can detect NO and NH\3 in the spectra of protoplanetary disks and how nitrogen carriers depend on the C and O abundance, we used a grid of ProDiMo models with varying abundances of C and O. The parameters with which the models were run are given in \autoref{tab: parameters}.
 
-\begin{equation}
-    \epsilon_X\equiv\log\frac{N_X}{N_H}+12
-\label{eq: abundance}
-\end{equation}
+The output of the ProDiMo model grid was used to generate the mid-infrared spectra using FLiTs. The full spectrum includes emission from C\2H\2, CH\4, CO, CO\2, H\2O, HCN, NH\3, NO, OH. In addition, FLiTs produced spectra containing the emissions of the individual molecules. The FLiTs spectra were calculated at a very high spectral resolution ($R=1\cdot10^5$). To make the spectra more comparable to the JWST MIRI MRS spectra, the spectrum was convolved to a resolving power of $R = \lambda/\Delta\lambda = 3000$ using a Gaussian kernel to create a spectrum of the correct resolving power. The value of 3000 was chosen as it is approximately the average resolving power of the JWST MIRI MRS \citep{Argyriou_2023}. 
 
-The abundances in the models are defined as in \autoref{eq: abundance}, where the abundance of some element X ($\epsilon_X$) depends on the natural log of the ratio of the number density of that element ($N_X$) to the number density of hydrogen ($N_H$). In this system, $\epsilon_H=12$ by definition. The difference in abundances of C and O compared to solar abundances was varied between -0.5 and 0.5 in steps of 0.25, where a difference of 0 corresponds to the solar abundance. The grid contains 25 models, with the fiducial model in the middle, which is based on the solar abundances of C and O (see \autoref{tab: abundances}). Furthermore, we increased the nitrogen abundance by an order of magnitude compared to the solar abundance to see what the effects on the spectrum are and to possibly enhance the spectral features of nitrogen carriers.
-
-\begin{table}[!ht]
+\begin{table}[H]
 \centering
 \begin{tabular}{@{}ccc@{}}
                                   &                             &                            \\ \hline\midrule
@@ -348,13 +363,9 @@ Ar               & 6.08                  & Fixed                         \\
 Fe               & 3.24                  & Fixed                         \\
 PAH              & 3.44                  & Fixed                         \\ \bottomrule
 \end{tabular}
-\caption{The elemental abundances used in the simulation of the grid of ProDiMo models. The solar abundances were used, except for N, which was enhanced by an order of magnitude.}
+\caption{The elemental abundances used in the simulation of the grid of ProDiMo models. The solar abundances were used, except for N, which was enhanced by one order of magnitude.}
 \label{tab: abundances}
 \end{table}
-
-
-
-The output of the ProDiMo model grid was used to generate the mid-infrared spectra using FLiTs. The full spectrum includes emission from C\2H\2, CH\4, CO, CO\2, H\2O, HCN, NH\3, NO, OH. In addition, FLiTs produced the spectra containing the emissions of the individual molecules. The FLiTs spectra were calculated at a very high spectral resolution ($R=1\cdot10^5$). To make the spectra more comparable to the JWST MIRI MRS spectra, we convolved the spectrum to a resolving power of $R = \lambda/\Delta\lambda = 3000$ using a Gaussian kernel to create a spectrum of the correct resolving power. The value of 3000 was chosen as it is approximately the average resolving power of the JWST MIRI MRS \citep{Argyriou_2023}. 
 
 Noise was added to the simulated spectra to make them as realistic as possible. The observations obtained by the MINDS JWST GTO program have a signal-to-noise ratio (SNR) of 300 \citep{henning2024mindsjwstmirimidinfrared}. To make the simulated data align with an $SNR = 300$, the minimum of the simulated spectrum before continuum subtraction was used to find the variance $\sigma^2$ by using \autoref{eq: SNR}.
 
@@ -370,7 +381,7 @@ The variance $\sigma^2$ was then used to add Gaussian noise to each flux value f
     \label{eq: noise}
 \end{equation}
 
-After applying this noise, we subtracted the continuum, which was subsequently used to analyze.
+After applying this noise, we subtracted the continuum. This continuum-subtracted spectrum was subsequently used for analysis.
 
 
 The flux density provided by FLiTs is in units of Jansky. To obtain the flux, we integrated the flux density by first converting the flux density from per unit frequency to per unit wavelength using \autoref{eq: conversion}.
@@ -380,22 +391,17 @@ The flux density provided by FLiTs is in units of Jansky. To obtain the flux, we
     \label{eq: conversion}
 \end{equation}
 
-Different species emit light in distinct spectral regions. To classify these regions, we split the entire spectrum into windows of 0.01 $\mu$m from 4.9 to 27.5 $\mu$m. The window size of 0.01 $\mu$m was chosen, as it is approximately the expected window size at this spectral resolution ($R=\lambda/\Delta\lambda\Rightarrow\Delta\lambda=\frac{\lambda}{R}\approx\frac{30 \mu \mathrm{m}}{3000}=0.01 \mu \mathrm{m}$). Next, we integrate the emission for each species in that window and note the species that has the highest flux in that region. Doing this for all models and taking the mode gives the species for each window that has the strongest emission for most of the simulated spectra.  
+Different species emit light in distinct spectral regions. To classify these regions, the entire spectrum was split into windows of 0.01 $\mu$m from 4.9 to 27.5 $\mu$m. The window size of 0.01 $\mu$m was chosen, as it is approximately the expected window size at this spectral resolution ($R=\lambda/\Delta\lambda\Rightarrow\Delta\lambda=\frac{\lambda}{R}\approx\frac{30 \mu \mathrm{m}}{3000}=0.01 \mu \mathrm{m}$). Next, we integrate the emission for each species in that window and note the species that has the highest flux in that region. Doing this for all models and taking the mode gives the species for each window that has the strongest emission for most of the simulated spectra.  
 
 
 \section{Cross-Correlation Technique}
-For our analysis, we used cross-correlation. This is a signal detection technique used to detect weak signals. This technique was implemented to detect the weak spectral features of NO and NH\3. It is defined as follows. 
+For our analysis, we used cross-correlation. This is a signal detection technique used to detect weak signals. This technique was implemented to detect the weak spectral features of NO and NH\3. It is defined as follows: 
 
 \begin{equation}
     R_{fg}(\tau)=\int^\infty_{-\infty}\overline{f(t)}g(t+\tau)dt
 \end{equation}
 
-where $R_{fg}(\tau)$ is the cross-correlation, $f$ and $g$ are functions, and $\tau$ is the lag. As all our functions are real valued, we can omit the complex conjugation in the integrand.
-% The autocorrelation is the cross-correlation of a function with itself
-
-% \begin{equation}
-%     R_{ff}(\tau)=\int^\infty_{-\infty}\overline{f(t)}f(t+\tau)dt
-% \end{equation}
+where $R_{fg}(\tau)$ is the cross-correlation, $f$ and $g$ are functions of $t$, and $\tau$ is the lag. As all our functions are real valued, we can omit the complex conjugation in the integrand.
 
 \begin{figure}[H]
     \centering
@@ -404,7 +410,9 @@ where $R_{fg}(\tau)$ is the cross-correlation, $f$ and $g$ are functions, and $\
     \label{fig: crosscorr vis}
 \end{figure}
 
-To test the spectra for the presence of specific molecules, we used the emissions for each species across the model grid. The emission per molecule for each model was added together and divided by the maximum to normalize them. This template emission was cross-correlated with the spectrum containing emission from all the species. The cross-correlation should peak when the template spectrum matches the spectrum containing all the species. To quantify the height of the peak, we calculated the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The median, which was selected in favor of the mean as it is less susceptible to outliers, captures the general trend around the peak. Hypothesis testing was implemented to test whether or not there is statistical evidence to say the molecule is present in the spectrum. We had the following null hypothesis and alternative hypothesis, with the difference between the height of the peak and the median of neighboring points as the test statistic. 
+\autoref{fig: crosscorr} illustrates how the cross correlation can be used to detect a weak signal and its location. On the left, the added Gaussian is barely visible, whereas on the right, there is a clear peak, which signals that the weak signal is present in the noise and its location.
+
+To apply this technique to spectra to test for the presence of specific molecules, we used the emissions for each species across the model grid. The emission per molecule for each model was added together and divided by the maximum to normalize them. This template emission was cross-correlated with the spectrum containing emission from all the species. The cross-correlation should peak when the template spectrum matches the spectrum containing all the species. To quantify the height of the peak, we calculated the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The median, which was selected in favor of the mean as it is less susceptible to outliers, captures the general trend around the peak. Hypothesis testing was implemented to test whether or not there is statistical evidence to say the molecule is present in the spectrum. We had the following null hypothesis and alternative hypothesis, with the difference between the height of the peak and the median of neighboring points as the test statistic. 
 
 \begin{equation}
     H_0: \text{The height of the peak in the cross-correlation is caused by noise}
@@ -433,11 +441,8 @@ Furthermore, LTE models were used to fit the observed spectra. A similar procedu
     \chi^2=\frac{1}{N}\sum_{i=1}^N\frac{(F_{i,obs}-F_{i, mod})^2}{\sigma^2}
 \end{equation}
 
-where N is the number of spectral elements and $\sigma^2$ the variance in an emission-free region of the spectrum. The degrees of freedom (DOF) of the fit are two: column-density and temperature. To get the accurate spectrum, the distance and radial velocity (\autoref{tab: dist+rv}) must be taken into account. The LTE model spectrum needs to be multiplied by the emitting area, which is assumed to be a disk with radius $R$. However, as this is just a scaling factor $R$ is not considered a DOF. The confidence intervals corresponding to 1$\sigma$, 2$\sigma$, and 3$\sigma$ are given by $\chi^2_{min}+2.3$, $\chi^2_{min}+6.2$, and $\chi^2_{min}+11.8$ respectively. The emission of the molecules was fitted iteratively. First, the emission per molecule was fitted to the spectrum. Second, the fits were improved by subtracting the fitted emission of all other molecules from the first step, except for the one that was being fitted, and fitting to the residuals. Lastly, the previous step is repeated one more time. 
+where N is the number of spectral elements and $\sigma^2$ the variance in an emission-free region of the spectrum, the degrees of freedom (DOF) of the fit are two: column-density and temperature. To get the accurate spectrum, the distance and radial velocity (\autoref{tab: dist+rv}) must be taken into account. The LTE model spectrum needs to be multiplied by the emitting area, which is assumed to be a disk with radius $R$. However, as this is just a scaling factor $R$ is not considered a DOF. The confidence intervals corresponding to 1$\sigma$, 2$\sigma$, and 3$\sigma$ are given by $\chi^2_{min}+2.3$, $\chi^2_{min}+6.2$, and $\chi^2_{min}+11.8$ respectively. The emission of the molecules was fitted iteratively. First, the emission per molecule was fitted to the spectrum. Second, the fits were improved by subtracting the fitted emission of all other molecules from the first step, except for the one that was being fitted, and fitting to the residuals. Lastly, the previous step is repeated one more time. 
 The fitted spectra were used to find the emission of specific molecules and subtract them from the spectrum. This was used to find weaker emissions of other molecules in the residuals. 
-To produce an estimate on the upper limit
-\textbf{EXPLANATION ON THE UPPER LIMITS}
-
 
 \begin{table}[H]
 \centering
@@ -451,6 +456,25 @@ V1094Sco & 152.44 pc & 2.2 km/s        \\ \hline
 \caption{The distances and radial velocities of GWLup, Sz98, and V1094Sco}
 \label{tab: dist+rv}
 \end{table}
+
+To produce an estimate on the upper limit, we used Bayes' theorem to find the posterior distribution of the parameters. 
+\begin{equation}
+    P(model|data)\propto P(data|model)P(model)
+    \label{eq: Bayes}
+\end{equation}
+where $P(model|data)$ is the posterior distribution, $P(data|model)$ the likelihood, and $P(model)$ the prior. Assuming that the residuals are normally distributed gives the likelihood
+\begin{equation}
+    P(data|model)\propto\exp\left(-\frac{\chi^2}{2}\right)
+\end{equation}
+The ProDiMo models were used to set a lower limit on the temperature, which is implemented in the flat prior
+\begin{equation}
+    P(model) = 
+    \begin{cases}
+        1, & \text{if } T > T_0 \\
+        0, & \text{if } T \leq T_0
+    \end{cases}
+\end{equation}
+We combined the likelihood and prior using \autoref{eq: Bayes} to get the posterior distribution. Next, samples were drawn from this distribution. The upper limit on the column density was derived from the samples as the value below which 95\% of the samples fall. 
 
 
 \chapter{Results}\label{Ch: Results}
@@ -752,17 +776,37 @@ The fitted CO and H\2O emission was subsequently removed, and the cross-correlat
 
 
 \subsection{Upperlimits on NH3 and NO}
-\begin{table}[]
+After subtracting the CO and H\2O emission from the spectra in the region between 4.9 $\mu$m and 6.5 $\mu$m, the only emission remaining is that of NO and NH\3. This was used to calculate the $\chi^2$ for different values of column density and temperature. This value can then be used to find the likelihood distribution. To update the prior, the temperature of the emitting regions of NO and NH\3 in the fiducial model was used (\autoref{fig: NONH3temp}).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{}
+    \caption{Caption}
+    \label{fig: NONH3temp}
+\end{figure}
+Using this, we concluded that the minimum temperature of NO is 400 K and of NH\3 750 K. These values were filled into the prior
+\begin{equation}
+    P(model) = 
+    \begin{cases}
+        1, & \text{if } T > T_0 \\
+        0, & \text{if } T \leq T_0
+    \end{cases}
+\end{equation}
+where $T_o=400$ K for NO and $T_o=750$ K for NH\3. Multiplying the prior with the likelihood distribution gave the posterior distribution up to a normalization constant, which was found be integrating the posterior distribution over all values of $N$ and $T$ and setting that equal to 1. 10000 samples were drawn from the posterior distribution and the number density values below which 95\% of the values fall are shown in \autoref{tab: upper limits}.
+
+\begin{table}[H]
 \begin{tabular}{lll}
 \hline
-Source   & NO   & NH\3 \\ \hline
-GWLup    & 16.5 & 21.29               \\
-Sz98     & 17   & 20.18               \\
-V1094Sco & 16.7 & 21.57               \\ \hline
+Source   & NO ($\log_{10}(\mathrm{N[cm^{-2}]}))$   & NH\3 ($\log_{10}(\mathrm{N[cm^{-2}]}))$\\ \hline
+GWLup    & 16.5 & 21.3               \\
+Sz98     & 17   & 20.2               \\
+V1094Sco & 16.7 & 21.6               \\ \hline
 \end{tabular}
-\caption{}
-\label{tab:my-table}
+\caption{The upper limits on the column density of NO and NH\3 for GWLup, Sz98, and V1094Sco}
+\label{tab: upper limits}
 \end{table}
+
+
+
 \chapter{Discussion}\label{Ch: Discussion}
 \section{Interpretation}
 This thesis provides new insights into the detection of nitrogen carriers NO and NH\3 in the planet-forming regions of protoplanetary disks. The influence of C and O abundances on the spectra was analyzed, which gave interesting results. The spectra formed 2 groups: spectra dominated by H\2O emission for the models that had a C/O ratio smaller than unity, and spectra dominated by C\2H\2 emission for models with C/O greater than unity. Following this, emission of both NO and NH\3 was less obscured by water lines in the spectra of the carbon-rich models, which leads to the conclusion that carbon-rich sources are the most prominent sources for the detection of NO and NH\3 in the planet-forming regions of protoplanetary disks. 
@@ -803,7 +847,7 @@ In this thesis, we have looked at the influence of the carbon and oxygen abundan
     \item We developed a new molecule detection method using cross-correlation. Using the ProDiMo models in the grid, emission templates were created for each species. 
     \item We reconfirmed the known species present in the spectra of GWLup, Sz98, and V1094Sco using the cross-correlation technique.
     \item We made a possible detection of NO in the spectrum of V1094Sco.
-    \item \textbf{UPPERLIMITS ON THE SOURCES}
+    \item We determined upper limits on the column densities of NO and NH\3 for GWLup, Sz98, and V1094Sco.
 \end{itemize}
 \textbf{SOMETHING ABOUT THE FUTURE}
 \bibliographystyle{aa.bst}
