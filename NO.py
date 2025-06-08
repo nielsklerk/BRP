@@ -51,7 +51,7 @@ clip_min, clip_max = 4.9, 6.5  # micron
 clip_cnd = ((wavelength >= clip_min) & (wavelength <= clip_max))
 total = flux_cont_sub[clip_cnd].copy()
 for mol in ['H2O', 'CO']:
-    file = f'{Source}4_9_6_3/{mol}_best_fit.p'
+    file = f'radexpy_niels/Radexpy_for_Niels/{Source}4_9_6_3/{mol}_best_fit.p'
     data = pickle.load(open(file, 'rb'))
     o_w = data['o_w']
     # o_w = np.nan_to_num(o_w, nan=0)
@@ -124,7 +124,7 @@ if __name__ == '__main__':
 
     # Compute upper limits (e.g. 95% for N)
     N_95_upper = np.percentile(N_sampled_values, 95)
-    print(f"95% upper limit on N: {N_95_upper:.2f}")
+    print(f"95% upper limit on N: {N_95_upper:.1f}")
     nx = len(np.unique(T_list))
     ny = len(np.unique(N_list))
 
@@ -162,14 +162,16 @@ if __name__ == '__main__':
     N_bins = np.linspace(min(N_sampled_values), max(N_sampled_values), len(np.unique(N_sampled_values))+1)
 
     # Compute 2D histogram
-    H, T_edges, N_edges = np.histogram2d(T_sampled_values, N_sampled_values, bins=[T_bins, N_bins])
+    H, T_edges, N_edges = np.histogram2d(T_sampled_values, N_sampled_values, bins=[T_bins, N_bins], density=True)
 
     # Plot with imshow
     plt.pcolormesh(T_edges, N_edges, H.T, cmap='inferno', shading='auto')
-
-    plt.ylabel("Column Density N")
-    plt.xlabel("Temperature T")
+    plt.axhline(N_95_upper, c='white')
+    plt.text(1200, N_95_upper + 0.3, f'Upper Limit = {N_95_upper:.1f}', fontsize=14, color='white', ha='center', va='bottom')
+    plt.xlabel(r'T$_K$ in K')
+    plt.ylabel(r'log10(N({})) in cm$^{{-2}}$'.format(mol))
     plt.colorbar(label="Sample Density")
 
     plt.tight_layout()
+    plt.savefig('upper_{}_{}.pdf'.format(mol, Source), bbox_inches='tight')
     plt.show()
