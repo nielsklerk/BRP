@@ -405,7 +405,7 @@ where $R_{fg}(\tau)$ is the cross-correlation, $f$ and $g$ are functions of $t$,
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=.5\linewidth]{VISUALIZE CROSSCORRELATION.pdf}
+    \includegraphics[width=\linewidth]{Figures/Correlationexample.pdf}
     \caption{Caption}
     \label{fig: crosscorr vis}
 \end{figure}
@@ -426,7 +426,7 @@ To assess the significance of the peak in cross-correlation, a Monte Carlo simul
 
 
 \section{Observations}
-After investigating the simulated spectra, the techniques were extended to observations made with JWST MIRI MRS. We have access to 3 sources: GWLup \citep{Gasman_2023}, Sz98 \citep{Grant_2023}, and V1094Sco \citep{taboneinprepp}. The spectra we received were already continuum-subtracted and are shown in \autoref{fig: Measurements}. However, the continuum subtraction left artifacts in the spectrum. \cite{Grant_2023} has listed the regions in the spectrum containing such artifacts, and that list of regions was used to mask out the artefacts. 
+After investigating the simulated spectra, the techniques were extended to observations made with JWST MIRI MRS. We have access to 3 sources: GWLup \citep{Gasman_2023}, Sz98 \citep{Grant_2023}, and V1094Sco \citep{taboneinprepp}. The spectra were already continuum-subtracted and are shown in \autoref{fig: Measurements}. However, the continuum subtraction left artifacts in the spectrum. \cite{Grant_2023} has listed the regions in the spectrum containing such artifacts, and that list of regions was used to mask out the artefacts. 
 
 \begin{figure}[H]
     \centering
@@ -435,14 +435,15 @@ After investigating the simulated spectra, the techniques were extended to obser
     \label{fig: Measurements}
 \end{figure}
 
-Furthermore, LTE models were used to fit the observed spectra. A similar procedure to the process described by \cite{Grant_2023} was followed. 
+LTE models were used to fit the observed spectra. A similar procedure to the process described by \cite{Grant_2023} was followed. This is based on least-squares fitting, which minimizes $\chi^2$ given by:
 
 \begin{equation}
     \chi^2=\frac{1}{N}\sum_{i=1}^N\frac{(F_{i,obs}-F_{i, mod})^2}{\sigma^2}
+    \label{eq: chi-square}
 \end{equation}
 
-where N is the number of spectral elements and $\sigma^2$ the variance in an emission-free region of the spectrum, the degrees of freedom (DOF) of the fit are two: column-density and temperature. To get the accurate spectrum, the distance and radial velocity (\autoref{tab: dist+rv}) must be taken into account. The LTE model spectrum needs to be multiplied by the emitting area, which is assumed to be a disk with radius $R$. However, as this is just a scaling factor $R$ is not considered a DOF. The confidence intervals corresponding to 1$\sigma$, 2$\sigma$, and 3$\sigma$ are given by $\chi^2_{min}+2.3$, $\chi^2_{min}+6.2$, and $\chi^2_{min}+11.8$ respectively. The emission of the molecules was fitted iteratively. First, the emission per molecule was fitted to the spectrum. Second, the fits were improved by subtracting the fitted emission of all other molecules from the first step, except for the one that was being fitted, and fitting to the residuals. Lastly, the previous step is repeated one more time. 
-The fitted spectra were used to find the emission of specific molecules and subtract them from the spectrum. This was used to find weaker emissions of other molecules in the residuals. 
+where N is the number of spectral elements and $\sigma^2$ the variance in an emission-free region of the spectrum, the degrees of freedom (DOF) of the fit are two: column-density $N$ and temperature $T$. To get the accurate spectrum, the distance and radial velocity (\autoref{tab: dist+rv}) must be taken into account. Larger distances result in a smaller angular size of objects, and the radial velocity causes the light to Doppler shift. The LTE model spectrum needs to be multiplied by the emitting area, which is assumed to be a disk with radius $R_e$. However, as this is just a scaling factor, $R$ is not considered a degree of freedom (DOF). The confidence intervals corresponding to 1$\sigma$, 2$\sigma$, and 3$\sigma$ are given by $\chi^2_{min}+2.3$, $\chi^2_{min}+6.2$, and $\chi^2_{min}+11.8$ respectively. The emission of the molecules was fitted iteratively. First, the emission per molecule was fitted to the spectrum. Second, the fits were improved by subtracting the fitted emission of all other molecules using the fitted spectra from the first step, except for the one that was being fitted, and fitting to the residuals. Lastly, the previous step is repeated one more time. 
+The fitted spectra were used to find the emission of specific molecules and subtract them from the spectrum. This was used to find weaker emissions of NO and NH\3 in the residuals. 
 
 \begin{table}[H]
 \centering
@@ -457,16 +458,21 @@ V1094Sco & 152.44 pc & 2.2 km/s        \\ \hline
 \label{tab: dist+rv}
 \end{table}
 
-To produce an estimate on the upper limit, we used Bayes' theorem to find the posterior distribution of the parameters. 
+To produce an estimate on the upper limit, we used Bayes' theorem (\autoref{eq: Bayes}) to find the posterior distribution of the parameters. 
+
 \begin{equation}
     P(model|data)\propto P(data|model)P(model)
     \label{eq: Bayes}
 \end{equation}
-where $P(model|data)$ is the posterior distribution, $P(data|model)$ the likelihood, and $P(model)$ the prior. Assuming that the residuals are normally distributed gives the likelihood
+
+where $P(model|data)$ is the posterior distribution, $P(data|model)$ the likelihood, and $P(model)$ the prior. Assuming that the residuals are normally distributed gives the likelihood:
+
 \begin{equation}
     P(data|model)\propto\exp\left(-\frac{\chi^2}{2}\right)
 \end{equation}
-The ProDiMo models were used to set a lower limit on the temperature, which is implemented in the flat prior
+
+where $\chi^2$ is defined as in \autoref{eq: chi-square}. The ProDiMo models were used to set a lower limit $T_0$ on the temperature, which is implemented in the flat prior:
+
 \begin{equation}
     P(model) = 
     \begin{cases}
@@ -474,6 +480,7 @@ The ProDiMo models were used to set a lower limit on the temperature, which is i
         0, & \text{if } T \leq T_0
     \end{cases}
 \end{equation}
+
 We combined the likelihood and prior using \autoref{eq: Bayes} to get the posterior distribution. Next, samples were drawn from this distribution. The upper limit on the column density was derived from the samples as the value below which 95\% of the samples fall. 
 
 
@@ -492,13 +499,6 @@ After running the models, we analyzed their output. First, we looked at the dens
 
 Next, we inspected the temperatures of gas and dust across the disk. Those are shown in the bottom row of \autoref{fig: tempdensity}.  The gas and dust temperatures vary across the disk for different heights and radii. However, they are equal in the midplane as they are coupled. Above the midplane, they decouple, and the temperatures of the gas and dust change. The gas temperatures are higher as they get heated by the star, whereas the dust temperatures are lower. Notably, the temperature of the dust is vertically isothermal. This result is expected as the density of the dust is orders of magnitude lower than that of the gas in the upper regions of the disk.  As a result, starlight passes through with minimal obstruction, leading to little variation in temperature with height.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\linewidth]{Figures/Temperature.pdf}
-%     \caption{The temperature profile of gas and dust in the disk of the fiducial model.}
-%     \label{fig: temperature}
-% \end{figure}
-
 
 \begin{figure}[H]
     \centering
@@ -506,22 +506,23 @@ Next, we inspected the temperatures of gas and dust across the disk. Those are s
     \caption{The distribution of H\2O, CO\2, OH, and CO across the disk of the fiducial model. The line origins of molecules in the wavelength range of JWST MIRI MRS are highlighted in cyan. The horizontal axis shows the distance $r$ from the host star, and the vertical axis shows the height above the midplane $z$ divided by the radius $r$.}
     \label{fig: others distribution}
 \end{figure}
-\lipsum[1]
+In \autoref{fig: others distribution}, the distribution of H\2O, CO\2, OH, and CO is shown. A large reservoir of H\2O is visible between the host star and 1 au. In contrast, OH is only present in the atmosphere of the disk. This is caused by two effects. First, there is the formation of H\2O. OH can combine with hydrogen to form H\2O, which depletes the OH in the center of the disk. Secondly, there is photo-dissociation. In the upper parts of the atmosphere, there is less shielded from high-energy light such as UV and X-rays. This results in the dissociation of H\2O, forming OH. CO is also present throughout the disk. In contrast, the abundance of CO\2 is very low at larger radii (\textgreater 100 au) compared to the other molecules. There is a gap in the densities between 1 and 200 au. In these areas, the temperature drops below the freezing point of these molecules, and they are well shielded from UV radiation, resulting in the formation of ice. 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=.8\linewidth]{Figures/AbundanceN2.pdf}
     \caption{The distribution of N\2 across the disk of the fiducial model. The line origin of N\2 in the wavelength range of JWST MIRI MRS is highlighted in cyan. The horizontal axis shows the distance $r$ from the host star, and the vertical axis shows the height above the midplane $z$ divided by the radius $r$.}
     \label{fig: n2 distribution}
 \end{figure}
-\lipsum[2]
-\lipsum[2]
+
+The distribution of N\2 is shown in \autoref{fig: n2 distribution}. The abundance of N\2 is very high throughout the disk. This is expected as N\2 has a strong triple bond, which makes the molecules extremely stable and inert. However, this also means that most of the nitrogen in a disk is stored in N\2 molecules. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Figures/Abundance2.pdf}
     \caption{The distribution of HCN, HNC, NH\3, and NO across the disk of the fiducial model. The line origins of molecules in the wavelength range of JWST MIRI MRS are highlighted in cyan. The horizontal axis shows the distance $r$ from the host star, and the vertical axis shows the height above the midplane $z$ divided by the radius $r$.}
     \label{fig: nitrogen distribution}
 \end{figure}
-Lastly, we inspected the distribution of nitrogen-bearing molecules: N\2 (\autoref{fig: n2 distribution}), HCN, HNC, NH\3, and NO (\autoref{fig: nitrogen distribution}). The density of the molecules changes a lot for different radii and heights. For example, in the region between 0.05 and 0.1 au, HCN decreases compared to the surrounding areas, but HNC increases in the same region. There is a gap in the densities between 1 and 200 au. In these areas, the temperature drops below the freezing point of these molecules, and they are well shielded from UV radiation, resulting in the formation of ice. 
+Lastly, we inspected the distribution of nitrogen-bearing molecules: N\2 (\autoref{fig: n2 distribution}), HCN, HNC, NH\3, and NO (\autoref{fig: nitrogen distribution}). The density of the molecules changes a lot for different radii and heights. For example, in the region between 0.05 and 0.1 au, HCN decreases compared to the surrounding areas, but HNC increases in the same region.
 \newpage
 \section{FLiTs Spectra}
 Consistent mid-infrared spectra were calculated using FLiTs for all the models in the grid. The resulting spectra are shown in \autoref{fig: all spectra}. There is a clear division in the shapes of the spectra. In the bottom left corner, 6 spectra have a strong C\2H\2 feature. These models also have a C/O ratio greater than unity. The other models have strong water features and have a C/O ratio smaller than unity. 
@@ -533,7 +534,7 @@ Consistent mid-infrared spectra were calculated using FLiTs for all the models i
     \label{fig: all spectra}
 \end{figure}
 \subsection{Total Flux across Grid}
-The flux of the different species changes depending on the abundances of C and O. \autoref{fig: Heatmaps1} shows the total flux for CO, CO\2, H\2O, and OH across the grid of models. The total flux for C\2H\2, HCN, NO, and NH\3 for all the models in the grid is shown in \autoref{fig: Heatmaps2}. 
+The flux of the different molecules changes depending on the abundances of C and O. The total flux between 5 $\mu$m and 28.5 $\mu$m was calculated for all the molecules for which there are FLiTs spectra. \autoref{fig: Heatmaps1} shows the total flux for CO, CO\2, H\2O, and OH across the grid of models. The total flux for C\2H\2, HCN, NO, and NH\3 for all the models in the grid is shown in \autoref{fig: Heatmaps2}. 
 
 \begin{figure}[H]
     \centering
@@ -542,7 +543,8 @@ The flux of the different species changes depending on the abundances of C and O
     \label{fig: Heatmaps1}
 \end{figure}
 
-\lipsum[1-2]
+The total flux of the molecules shown in \autoref{fig: Heatmaps1} shows patterns that are expected. The flux from H\2O and OH both increase as the abundance of C gets lower and the abundance of O gets higher. This is expected as this means that there is more O to form these compounds and less C, taking up O to form other compounds such as CO. The inverse is true for CO, where the flux increases as the abundance of C gets higher and the abundance of O gets lower. Much of the O gets stored in CO. When there is an increase in the O abundance on top of the higher C abundance, the amount of CO\2 also increases. 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Figures/Heatmaps2.pdf}
@@ -550,7 +552,7 @@ The flux of the different species changes depending on the abundances of C and O
     \label{fig: Heatmaps2}
 \end{figure}
 
-The HCN flux increases as C/O gets larger, and NO decreases. The flux of NH\3 generally increases as the C abundance gets lower. We hypothesize that the cause for this is the reactions that take place to form NH\3.
+In \autoref{fig: Heatmaps2}, it is clear that there is a large flux from C\2H\2 for the spectra that have a C/O ratio greater than unity and barely any flux from the spectra that have a C/O ratio smaller than unity. The HCN flux increases as C/O becomes larger, as this means there is more carbon available to store nitrogen in. In contrast, NO flux increases as C/O becomes smaller, as this means there is more O available. The flux of NH\3 does not follow a clear pattern, but it generally increases as the C abundance gets lower. We hypothesize that the cause for this is the reactions that take place to form NH\3.
 OH is an important component in the formation of NH\3. \textbf{CHECK CHEMISTRY}
 
 \ce{NH2+ + OH -> NH3 + O+}
@@ -559,7 +561,7 @@ OH is an important component in the formation of NH\3. \textbf{CHECK CHEMISTRY}
 Furthermore, there could be some competition with HCN, where more N is locked in HCN when the C abundance is larger. 
 
 \subsection{Regions of Interest}
-Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. We split the model grid into 2 groups. One group has C/O smaller than unity, and the other greater. We chose this distinction as the behaviors of the spectra are different. This difference is also visible in \autoref{fig: all spectra}. 
+Next, we wanted to identify regions in the spectrum that could help us detect NO and NH\3. The model grid was split into 2 groups, as noted before. One group has C/O smaller than unity, and the other greater. The spectra were split into 0.01 $\mu$m spectral windows, and for each window, the molecule that had the strongest emissions compared to the other molecules was determined. The result is shown in \autoref{fig: classes}.
 
 % \begin{figure}[H]
 %     \centering
@@ -582,7 +584,9 @@ Next, we wanted to identify regions in the spectrum that could help us detect NO
     \label{fig: classes}
 \end{figure}
 
-In the top row of \autoref{fig: classes}, it is visible that the region between 4.9$\mu$m and 6 $\mu$m has many spectral regions where NO emission is strongest. NH\3 has the brightest emission compared to all the other molecules between 6 $\mu$m and 6.4 $\mu$m. Between 10 $\mu$m and 12 $\mu$m there are some smaller regions where NH\3 is strongest. In contrast, in the bottom row of \autoref{fig: classes}, the spectral regions where NO or NH\3 emission is strongest are more barren. The NO emission regions are not the strongest anymore, and neither is the NH\3 emission region next to it. The most promising region for NH\3 is now between 10 $\mu$m and 12 $\mu$m. 
+In the top row of \autoref{fig: classes} corresponding to the model with a C/O ratio greater than unity, it is visible that the region between 4.9$\mu$m and 6 $\mu$m has many spectral regions where the emission from NO is the strongest. NH\3 has the brightest emission compared to all the other molecules between 6 $\mu$m and 6.4 $\mu$m. Between 10 $\mu$m and 12 $\mu$m there are some smaller regions where NH\3 is the strongest. In contrast, in the bottom row of \autoref{fig: classes} corresponding to the model with a C/O ratio smaller than unity, the spectral regions where NO or NH\3 emission is strongest are more barren. The NO emission regions are no longer the strongest anymore, and neither is the NH\3 emission region between 6 $\mu$m and 6.4 $\mu$m. This is caused by the presence of H\2O lines, which completely outshine the NO and NH\3 emission in this region. The most promising region for NH\3 is now between 9.5 $\mu$m and 13 $\mu$m with a few small windows in which the emission of NH\3 is the strongest.
+
+These regions in the spectra were examined to evaluate the detectability of NO and NH\3. For this, the fiducial model was used to represent the spectra with $C/O<1$, and the model with abundances C+0.25 and O-0.25 was used to represent the spectra with $C/O>1$.
 
 \begin{figure}[H]
     \centering
@@ -591,7 +595,7 @@ In the top row of \autoref{fig: classes}, it is visible that the region between 
     \label{fig: NO region}
 \end{figure}
 
-\lipsum[2]
+In the region shown in \autoref{fig: NO region}, a bright CO spectral feature is present. This makes the detection of NO difficult. However, the CO lines become more barren around 5.45 $\mu$m and disappear above 5.5 $\mu$m, which makes the emission of NO the only emission in this region. 
 
 \begin{figure}[H]
     \centering
@@ -600,7 +604,7 @@ In the top row of \autoref{fig: classes}, it is visible that the region between 
     \label{fig: NH3 region 1}
 \end{figure}
 
-\lipsum[2]
+\autoref{fig: NO region} shows that the emission of NH\3 makes up a large part of the spectrum in this region. There are a few lines from other molecules and a bright HCN feature starting around 6.35 $\mu$m.
 
 \begin{figure}[H]
     \centering
@@ -609,7 +613,7 @@ In the top row of \autoref{fig: classes}, it is visible that the region between 
     \label{fig: NH3 region 2}
 \end{figure}
 
-\lipsum[2]
+The spectral region shown in \autoref{fig: NH3 region 2} has similar features to the region shown in \autoref{fig: NH3 region 1}. This region also has a part where the NH\3 emission makes up most of the spectrum, with a few lines from other molecules. Similarly, bright lines are coming from C\2H\2 and HCN starting around 11.25 $\mu$m.
 
 \begin{figure}[H]
     \centering
@@ -618,7 +622,7 @@ In the top row of \autoref{fig: classes}, it is visible that the region between 
     \label{fig: NH3 region 3}
 \end{figure}
 
-The spectra in \autoref{fig: NO region}, \autoref{fig: NH3 region 1}, \autoref{fig: NH3 region 2}, and \autoref{fig: NH3 region 3} are all without any noise. When we added noise with SNR=300 to the same spectrum shown in figure \autoref{fig: NH3 region 1}, based on the methods described, we got the spectrum shown in figure \autoref{fig: add noise}. In this figure, the emission of NH\3 is obscured by noise at this SNR, making it much more difficult to detect.  
+All of the regions shown up until this point were for the fiducial model, which has $C/O<1$. For the model with $C/O>1$, NO has no more regions where it is the brightest and there are fewer windows where NH\3 is the brightest. Some of these windows are shown in \autoref{fig: NH3 region 3}. The emission from H\2O is much stronger than that of NH\3, making it undetectable. There are some regions (e.g., at 11.8 $\mu$m) where the emission from NH\3 falls between lines from H\2O. 
 
 \begin{figure}[H]
     \centering
@@ -637,45 +641,7 @@ As visible in \autoref{fig: add noise}, it is hard to distinguish the NH\3 and N
     \label{fig: crosscorr}
 \end{figure}
 
-When we applied this method to the fiducial model and model C+0.25 O-0.25, we got the detections shown in \autoref{tab: combined_detections}. 
-
-% \begin{table}[!ht]
-% \centering
-% \begin{tabular}{lll}
-% \hline
-% \textbf{Molecule} & \textbf{Spectrum} & \textbf{Spectrum - Target Flux} \\ \hline
-% C\2H\2            & Non-detection     & Non-detection                   \\
-% CH\4             & Non-detection     & Non-detection                   \\
-% CO              & Detection         & Non-detection                   \\
-% CO\2             & Detection         & Non-detection                   \\
-% H\2O             & Detection         & Non-detection                   \\
-% HCN             & Non-detection     & Non-detection                   \\
-% NH\3             & Non-detection     & Non-detection                   \\
-% NO              & Non-detection     & Non-detection                   \\
-% OH              & Detection         & Non-detection                   \\ \hline
-% \end{tabular}
-
-% \label{tab: fiducial detection}
-% \end{table}
-
-% \begin{table}[!ht]
-% \centering
-% \begin{tabular}{lll}
-% \hline
-% \textbf{Molecule} & \textbf{Spectrum} & \textbf{Spectrum - Target Flux} \\ \hline
-% C\2H\2            & Detection         & Non-detection                   \\
-% CH\4             & Non-detection     & Non-detection                   \\
-% CO              & Detection         & Non-detection                   \\
-% CO\2             & Non-detection     & Non-detection                   \\
-% H\2O             & Non-detection     & Non-detection                   \\
-% HCN             & Detection         & Non-detection                   \\
-% NH\3             & Non-detection     & Non-detection                   \\
-% NO              & Non-detection     & Non-detection                   \\
-% OH              & Non-detection     & Non-detection                   \\ \hline
-% \end{tabular}
-
-% \label{tab: other detection}
-% \end{table}
+When this method was applied to the fiducial model and model C+0.25 O-0.25, we got the detections shown in \autoref{tab: combined_detections}. To check whether the cross-correlation technique can give false positives, the previous step was repeated, but this time with the emission for the molecule that is checked removed from the spectrum.
 
 \begin{table}[!ht]
 \centering
@@ -685,13 +651,13 @@ When we applied this method to the fiducial model and model C+0.25 O-0.25, we go
 \textbf{Molecule} & \textbf{A: Detected} & \textbf{A: Residual} & \textbf{A: Confirmed} & \textbf{B: Detected} & \textbf{B: Residual} & \textbf{B: Confirmed} \\
 \hline
 C$_2$H$_2$ & No  & No  & --           & Yes & No  & \ding{51} \\
-CH$_4$     & No  & No  & --           & No  & No  & --        \\
+% CH$_4$     & No  & No  & --           & No  & No  & --        \\
 CO         & Yes & No  & \ding{51}    & Yes & No  & \ding{51} \\
 CO$_2$     & Yes & No  & \ding{51}    & No  & No  & --        \\
-H$_2$O     & Yes & No  & \ding{51}    & No  & No  & --        \\
+H$_2$O     & Yes & No  & \ding{51}    & No  & No  & \ding{51} \\
 HCN        & No  & No  & --           & Yes & No  & \ding{51} \\
 NH$_3$     & No  & No  & --           & No  & No  & --        \\
-NO         & No  & No  & \ding{51}    & No  & No  & --        \\
+NO         & No  & No  & \ding{51}    & No  & No  & \ding{51} \\
 OH         & Yes & No  & \ding{51}    & No  & No  & --        \\
 \hline
 \end{tabular}
@@ -700,28 +666,9 @@ OH         & Yes & No  & \ding{51}    & No  & No  & --        \\
 \label{tab: combined_detections}
 \end{table}
 
-We compared the cross-correlation technique for all the molecules. We did this for the spectrum of the fiducial model. Once, we cross-correlate with the spectrum to see if the molecule is present, and once with the molecule emission subtracted from the spectrum to check that this does not result in a false-positive.
+In \autoref{tab: combined_detections}, it is clear that the cross-correlation technique does not result in any false positives. However, the emission from NH\3 is too weak to count towards being present in the spectrum, and although NO is bright enough, it is not being detected using this technique. 
 
-
-% As some of the molecules have limited ranges in which they emit, we adjusted the ranges in which we cross-correlate the template and the spectrum. The ranges are listed in table \ref{}
-
-% \begin{tabular}{lcc}
-% \hline
-% \textbf{Species} & \textbf{Min ($\mu$m)} & \textbf{Max ($\mu$m)} \\
-% \hline
-% C2H2   & 7.1 & 15.6 \\
-% CH4    & 6.3 & 9.7 \\
-% CO     & 4.9 & 5.6 \\
-% CO2    & 13.0 & 17.3 \\
-% H2O    & 4.9 & 27.5 \\
-% HCN    & 6.4 & 17.0 \\
-% NH3    & 5.1 & 27.5 \\
-% NO     & 4.9 & 6.6 \\
-% OH     & 8.3 & 27.5 \\
-% \hline
-% \end{tabular}
-
-As some of the flux of a species overlaps with the flux emitted by other species, it would make detection easier if the emissions of the other species were removed. This was easily done with the simulated data, as the simulation produced the spectra of the individual species. To test this, the cross-correlation technique was applied to only the emission of NO and NH\3 with the associated noise added. Repeating this 100 times with different random noise for every model in the model grid gave a detection rate of 100\% and 23.8\% for NO and NH\3, respectively.  Especially the region where NO is emitted is of interest, as the only other species that emit in that range are CO and H\2O. Removing the flux of CO and H\2O for the fiducial gave the spectrum shown in \autoref{fig: H2O and CO removed}.
+As some of the flux of a species overlaps with the flux emitted by other species, it would make detection easier if the emissions of the other species were removed. This was easily done with the simulated data, as the simulation produced the spectra of the individual species. To test this, the cross-correlation technique was applied to only the emission of NO and NH\3 separately, with the associated noise added. Repeating this 100 times with different random noise for every model in the model grid gave a detection rate of 100\% and 23.8\% for NO and NH\3, respectively.  Especially the region where NO is emitted is of interest, as the only other species that emit in that range are CO and H\2O. Removing the flux of CO and H\2O for the fiducial gave the spectrum shown in \autoref{fig: H2O and CO removed}.
 
 \begin{figure}[H]
     \centering
@@ -731,7 +678,7 @@ As some of the flux of a species overlaps with the flux emitted by other species
 \end{figure}
 
 \section{Application of Detection Methods to JWST Observations}
-After the confirmation that this technique is valid on the simulated spectra, we applied it to real data to see if they are effective here as well.
+After the confirmation that this technique is valid on the simulated spectra, it was applied to real data to see if they are effective here as well.
 
 \subsection{Molecule Detection}
 Using the templates generated from the emission of the species for all the ProDiMo models in the grid, we cross-correlated the templates with the measured spectra. The results of this are shown in \autoref{tab: realdata}.
@@ -741,13 +688,13 @@ Using the templates generated from the emission of the species for all the ProDi
 \begin{tabular}{|l|ccc|}
 \hline
 \textbf{Molecule} & \textbf{GWLup} & \textbf{Sz98} & \textbf{V1094Sco} \\ \hline
-C2H2            & Detection      & Non-detection & Detection         \\
-CH4             & Non-detection  & Non-detection & Non-detection     \\
+C\2H\2            & Detection      & Non-detection & Detection         \\
+% CH4             & Non-detection  & Non-detection & Non-detection     \\
 CO              & Detection      & Detection     & Detection         \\
-CO2             & Detection      & Detection     & Detection         \\
-H2O             & Detection      & Detection     & Detection         \\
+CO\2             & Detection      & Detection     & Detection         \\
+H\2O             & Detection      & Detection     & Detection         \\
 HCN             & Detection      & Detection     & Detection         \\
-NH3             & Non-detection  & Non-detection & Non-detection     \\
+NH\3             & Non-detection  & Non-detection & Non-detection     \\
 NO              & Non-detection  & Non-detection & Non-detection     \\
 OH              & Detection      & Detection     & Detection         \\ \hline
 \end{tabular}
@@ -756,8 +703,9 @@ OH              & Detection      & Detection     & Detection         \\ \hline
 \label{tab: realdata}
 \end{table}
 
+The detection in \autoref{tab: realdata} aligned with what was expected from the detected molecules in the simulated spectra. 
 
-LTE models were then used to fit CO and H\2O in the region 4.9-6.5 $\mu$m to the measured spectra. This region was selected as it mostly contains emission of just H\2O, CO, and NO. Furthermore, it was previously shown in the simulated spectra that NO was detectable when removing all other emissions from the spectrum. The resulting fits are shown in \autoref{fig: fits}.
+LTE models were then used to fit CO and H\2O in the region between 4.9 $\mu$m and 6.5 $\mu$m to the measured spectra. This region was selected as it mostly contains emission of just H\2O, CO, and NO. Furthermore, it was previously shown in the simulated spectra that NO was detectable when removing all other emissions from the spectrum. The resulting fits are shown in \autoref{fig: fits}.
 
 \begin{figure}[H]
     \centering
@@ -777,13 +725,16 @@ The fitted CO and H\2O emission was subsequently removed, and the cross-correlat
 
 \subsection{Upperlimits on NH3 and NO}
 After subtracting the CO and H\2O emission from the spectra in the region between 4.9 $\mu$m and 6.5 $\mu$m, the only emission remaining is that of NO and NH\3. This was used to calculate the $\chi^2$ for different values of column density and temperature. This value can then be used to find the likelihood distribution. To update the prior, the temperature of the emitting regions of NO and NH\3 in the fiducial model was used (\autoref{fig: NONH3temp}).
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{}
-    \caption{Caption}
+    \includegraphics[width=\linewidth]{Figures/NONH3temp.pdf}
+    \caption{The temperature of the gas across the disk. The emitting region of NH\3 is highlighted in cyan, and the emitting region of NO is highlighted in gold.}
     \label{fig: NONH3temp}
 \end{figure}
+
 Using this, we concluded that the minimum temperature of NO is 400 K and of NH\3 750 K. These values were filled into the prior
+
 \begin{equation}
     P(model) = 
     \begin{cases}
@@ -791,13 +742,14 @@ Using this, we concluded that the minimum temperature of NO is 400 K and of NH\3
         0, & \text{if } T \leq T_0
     \end{cases}
 \end{equation}
+
 where $T_o=400$ K for NO and $T_o=750$ K for NH\3. Multiplying the prior with the likelihood distribution gave the posterior distribution up to a normalization constant, which was found be integrating the posterior distribution over all values of $N$ and $T$ and setting that equal to 1. 10000 samples were drawn from the posterior distribution and the number density values below which 95\% of the values fall are shown in \autoref{tab: upper limits}.
 
 \begin{table}[H]
 \begin{tabular}{lll}
 \hline
 Source   & NO ($\log_{10}(\mathrm{N[cm^{-2}]}))$   & NH\3 ($\log_{10}(\mathrm{N[cm^{-2}]}))$\\ \hline
-GWLup    & 16.5 & 21.3               \\
+GWLup    & 16.5 & 21.1               \\
 Sz98     & 17   & 20.2               \\
 V1094Sco & 16.7 & 21.6               \\ \hline
 \end{tabular}
