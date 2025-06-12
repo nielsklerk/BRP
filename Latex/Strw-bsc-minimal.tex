@@ -153,7 +153,6 @@ Over time, increasingly complex molecules can form on the surfaces. In particula
 However, molecules on the surfaces of grains are not there forever. Several mechanisms cause the molecules to transition to the gas phase, i.e., desorption. When high-energy photons hit grains, they can photodesorb molecules off the grain's surface, but this can also result in photochemistry as discussed in the previous part. Other mechanisms, such as thermal desorption and cosmic rays hitting the surface, can remove molecules from the grains and put them back in the gas. As a result, there is an interplay between gas and grain-surface chemistry, where they each affect the molecules that are being produced and destroyed.
 
 \subsection{Chemical Networks}
-
 \section{Emission Mechanisms}
 Understanding how molecules emit photons is important, as this can help to understand how molecules are detected in spectra. In this section, we will explain how these processes work. This is largely based on Chapter 11 of \cite{1979rpa..book.....R}. 
 
@@ -255,7 +254,7 @@ In nature, pure vibrational transitions are rare. Often, the vibrational transit
     \label{fig: rovib}
 \end{figure}
 
-In \autoref{fig: rovib}, a distinctive shape is visible: P, Q, and R branches. The P branch is the set of peaks with a lower energy than the central peak. The Q branch is the central peak, and the set of peaks on the higher energy side of the peak is the R branch. The P, Q, and R branches correspond to $\Delta J=1, 0, -1$ respectively. For some molecules and some vibrational modes, the transition with $\Delta J=0$ is forbidden. This also means that the Q branch is missing in the spectrum. This is, for example, the case for the ro-vibrational band of CO at \~ $\mu$m.
+In \autoref{fig: rovib}, a distinctive shape is visible: P, Q, and R branches. The P branch is the set of peaks with a lower energy than the central peak. The Q branch is the central peak, and the set of peaks on the higher energy side of the peak is the R branch. The P, Q, and R branches correspond to $\Delta J=1, 0, -1$ respectively. For some molecules and some vibrational modes, the transition with $\Delta J=0$ is forbidden. This also means that the Q branch is missing in the spectrum. This is, for example, the case for the ro-vibrational band of CO at $\sim$ 4 $\mu$m.
 
 \section{JWST MIRI MRS}
 The James Webb Space Telescope (JWST) was launched on the 25th of December 2021. JWST was a big leap forward for space research. One of the instruments on board is the Mid-Infrared Instrument (MIRI). This instrument is used for observations in the mid-infrared. MIRI has four observation modes in the wavelength range between 4.9 and 27.9 $\mu$m:  imaging, coronagraphic imaging, low-resolution spectroscopy, and medium-resolution spectroscopy (MRS) \citep{}. 
@@ -386,7 +385,7 @@ X-ray luminosity                  & L$_\mathrm{X}$                       & 10$^{
 X-ray emission temperature        & T$_\mathrm{X}$                       & 2$\times10^7$ K            \\ \midrule
 Strength of interstellar UV       & $\chi^{\mathrm{ISM}}$                & 1                          \\
 Strength of interstellar IR       & $\chi^{\mathrm{ISM}}_{\mathrm{IR}}$           & 0                          \\
-Cosmic ray H$_2$ ionization rate  & $\zeta_{\mathrm{CR}}$                & $1.7\times10^{-17}$s$ ^{-1}$ \\ \midrule
+Cosmic ray H$_2$ ionization rate  & $\zeta_{\mathrm{CR}}$                & $1.7\times10^{-17}$ s$ ^{-1}$ \\ \midrule
 Inner disk radius                 & R$_{\mathrm{in}}$                    & 0.05 au                    \\
 Outer disk radius                 & R$_{\mathrm{tap}}$                   & 30 au                      \\
 Column density power index        & $\epsilon$                  & 1                          \\
@@ -480,6 +479,7 @@ where $R_{fg}(\tau)$ is the cross-correlation, $f$ and $g$ are functions of $t$,
 
 \autoref{fig: crosscorr} illustrates how the cross correlation can be used to detect a weak signal, and if it is detected, the location in the signal. On the left, the added Gaussian is barely visible, whereas on the right, there is a clear peak, which signals that the weak signal is present in the noise and its location.
 
+\section{Hypothesis Testing}
 We used the emissions for each species across the model grid to apply this technique to spectra to test for the presence of specific molecules. The emission per molecule for each model was added together and normalized by dividing by the maximum. This template emission was cross-correlated with the spectrum containing emission from all the species. The cross-correlation should peak when the template spectrum matches the spectrum containing all the species. To quantify the height of the peak, we calculated the difference between the height of the peak and the median value of the cross-correlation in a small region around the peak. The median, which was selected in favor of the mean as the median is less susceptible to outliers, captures the general trend around the peak. Hypothesis testing was implemented to test whether or not there is statistical evidence to say the molecule is present in the spectrum. We had the following null hypothesis and alternative hypothesis, with the difference between the height of the peak and the median of neighboring points as the test statistic.
 
 \[
@@ -789,10 +789,10 @@ LTE models were then used to fit CO and H\2O in the region between 4.9 $\mu$m an
     \label{fig: fits}
 \end{figure}
 
-The fitted CO and H\2O emission was subsequently removed, and the cross-correlation technique was applied to the residuals of the spectrum. In GWLup and Sz98, no NO was detected. However, V1094Sco has a detection of NO. The residuals of V1094Sco and the scaled NO template are shown in \autoref{fig: no detect}. 
+The fitted CO and H\2O emission was subsequently removed, and the cross-correlation technique was applied to the residuals of the spectrum. In GWLup and Sz98, no NO was detected. However, V1094Sco has a detection of NO. The residuals of GWLup, Sz98, and V1094Sco and the scaled NO templates are shown in \autoref{fig: no detect}. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{Figures/NO_Detect.pdf}
+    \includegraphics[width=\linewidth]{Figures/NO_Detect_stacked.pdf}
     \caption{The fitted H\2O and CO spectra using a LTE model between 4.9 $\mu$m and 6.5$\mu$m for V1094Sco}
     \label{fig: no detect}
 \end{figure}
@@ -804,7 +804,7 @@ After subtracting the CO and H\2O emission from the spectra in the region betwee
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{Figures/NONH3temp.pdf}
-    \caption{The temperature of the gas across the disk. The emitting region of NH\3 is highlighted in cyan, and the emitting region of NO is highlighted in gold. The black contour lines show 400 K and 750 K. The emitting region of NO is outside the 400 K contour, meaning that its temperature is at least 400 K. Similarly, the emitting region of NH\3 is outside 750 K contour, meaning that its temperature is at least 750 K. }
+    \caption{The temperature of the gas across the disk. The emitting region of NH\3 is highlighted in cyan, and the emitting region of NO is highlighted in gold. The black contour lines show 400 K and 750 K. The emitting region of NO is outside the 400 K contour, meaning that its temperature is at least 400 K. Similarly, the emitting region of NH\3 is outside 750 K contour, meaning that its temperature is at least 750 K.}
     \label{fig: NONH3temp}
 \end{figure}
 
@@ -835,6 +835,7 @@ V1094Sco & 16.7 & 21.6               \\ \hline
 
 
 \chapter{Discussion}\label{Ch: Discussion}
+In this chapter, we discuss our results. First, we explain the interpretation of the results. Thereafter, we compare the molecules detected in the observations to the papers that provided the data, and compare our results to \cite{groningenthesis}. Next, we discuss the limitations of the simulations and the cross-correlation technique. Lastly, we present several improvements and ideas that other work could build on.
 \section{Interpretation}
 This thesis provides new insights into the detection of nitrogen carriers NO and NH\3 in the planet-forming regions of protoplanetary disks. The influence of C and O abundances on the spectra was analyzed, which gave interesting results. The spectra formed two groups: spectra dominated by H\2O emission for the models that have a C/O ratio smaller than unity, and spectra dominated by C\2H\2 emission for models with C/O greater than unity. Following this, emission of both NO and NH\3 was less obscured by water lines in the spectra of the carbon-rich models, which leads to the conclusion that carbon-rich sources are the most prominent sources for the detection of NO and NH\3 in the planet-forming regions of protoplanetary disks. 
 
